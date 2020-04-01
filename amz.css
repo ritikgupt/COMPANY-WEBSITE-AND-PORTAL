@@ -276,20 +276,16 @@ justify-content:center;
     letter-spacing:-1px;
     line-height:.42;
 }
-.restaurant-info{
+.company-info{
     text-align:center;
 }
-.restaurant-description{
+.company-description{
     margin-bottom:3rem;
 }
-.restaurant-description p{
+.company-description p{
 line-height:1.6;
 margin-bottom:2.4rem;
 }
-/* .restaurant-info-img p{
-    line-height:1.6;
-margin-bottom:2.4rem;
-} */
 .as1{
     text-decoration: none;
   display: inline-block;
@@ -642,7 +638,7 @@ transition:initial;
     .line{
         max-width:11.4rem;
     }
-    .restaurant-info{
+    .company-info{
         display:flex;
         align-items:center;
     }
@@ -654,13 +650,13 @@ transition:initial;
 padding-right{
     padding-right:8rem;
 }
-.restaurant-info>div{
+.company-info>div{
     flex:1;
 }
-.restaurant-description{
+.company-description{
     margin-bottom:3rem;
 }
-.restaurant-description p{
+.company-description p{
 line-height:1.6;
 margin-bottom:2.4rem;
 /* margin-right:2rem; */
