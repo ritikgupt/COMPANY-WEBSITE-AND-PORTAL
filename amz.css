@@ -41,8 +41,9 @@ html{
 section{
     padding:3.9rem 0;   
 }
+/*for about us part*/
 img{
-    width:100%;
+    width:70%;
     max-width:100%; /*  it prevents overflow for images anywhere in the webpage */
 
 }
@@ -144,6 +145,68 @@ z-index:1500; /* to keep it at top of everything all the time such a high value 
     margin-right:-2px;
     transition:color .5s;
 }
+.cards-list {
+  z-index: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.card1 {
+  margin: 30px auto;
+  width: 300px;
+  height: 300px;
+  border-radius: 40px;
+box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+.card1 .card_image {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+}
+
+.card1 .card_image img {
+  width: inherit;
+  height: inherit;
+  border-radius: 40px;
+  object-fit: cover;
+}
+
+.card1 .card_title {
+  text-align: center;
+  border-radius: 0px 0px 40px 40px;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 30px;
+  margin-top: -80px;
+  height: 40px;
+}
+
+.card1:hover {
+  transform: scale(0.9, 0.9);
+  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+    -5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+
+.title-white {
+  color: white;
+}
+
+.title-black {
+  color: black;
+}
+
+@media all and (max-width: 500px) {
+  .card-list {
+    /* On small screens, we are no longer using row direction but column */
+    flex-direction: column;
+  }
+}
+
 .nav-link:hover{
     color:green;
 }
@@ -276,20 +339,16 @@ justify-content:center;
     letter-spacing:-1px;
     line-height:.42;
 }
-.restaurant-info{
+.company-info{
     text-align:center;
 }
-.restaurant-description{
+.company-description{
     margin-bottom:3rem;
 }
-.restaurant-description p{
+.company-description p{
 line-height:1.6;
 margin-bottom:2.4rem;
 }
-/* .restaurant-info-img p{
-    line-height:1.6;
-margin-bottom:2.4rem;
-} */
 .as1{
     text-decoration: none;
   display: inline-block;
@@ -300,11 +359,11 @@ margin-bottom:2.4rem;
   position:absolute;
   top:25%;
 }
-.dropdown {
+.dropdown1 {
   float: left;
   overflow: hidden;
 }
-.dropdown .dropbtn {
+.dropdown1 .dropbtn {
   font-size: 18px;    
   border: none;
   outline: none;
@@ -314,8 +373,9 @@ margin-bottom:2.4rem;
   background-color: inherit;
   font-family: var(--body-font);
   margin: 0;
+  
 }
-.dropdown-content {
+.dropdown1-content {
     font-family: var(--body-font);
   display:none;
   position: absolute;
@@ -324,7 +384,7 @@ margin-bottom:2.4rem;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-.dropdown-content a {
+.dropdown1-content a {
     font-family: var(--body-font);
   float: none;
   color: black;
@@ -332,17 +392,24 @@ margin-bottom:2.4rem;
   text-decoration: none;
   display: block;
   text-align: left;
+   display:block;
+    color:rgb(7, 1, 1);
+    text-transform:uppercase;
+    font-size:1.3rem;
+    letter-spacing:2px;
+    margin-right:-2px;
+    transition:color .5s;
 }
-.topnav a:hover, .dropdown:hover .dropbtn {
+.topnav a:hover, .dropdown1:hover .dropbtn {
   background-color: rgb(85, 85, 85);
   color: white;
   font-family: var(--body-font);
 }
-.dropdown-content a:hover {
+.dropdown1-content a:hover {
   background-color: rgb(17, 5, 83);
   color: #fff;
 }
-.dropdown:hover .dropdown-content {
+.dropdown1:hover .dropdown1-content {
   display: block;
 }
 .as2{
@@ -466,7 +533,7 @@ margin-bottom:2.4rem;
   transform: scale(0.7);
 }
 .qw{
-   padding-top:15%;
+   padding-top:20%;
     padding-left:0;
     padding-right:0;
     padding-bottom:0;
@@ -639,10 +706,11 @@ transition:initial;
         font-size:4.7rem;
         letter-spacing:.8rem;
     }
+    
     .line{
         max-width:11.4rem;
     }
-    .restaurant-info{
+    .company-info{
         display:flex;
         align-items:center;
     }
@@ -654,13 +722,33 @@ transition:initial;
 padding-right{
     padding-right:8rem;
 }
-.restaurant-info>div{
+.company-info>div{
     flex:1;
 }
-.restaurant-description{
+.green {
+  color: #2ecc71;
+  border: 2px #2ecc71 solid;
+}
+.green:hover {
+  color: #fff;
+  background-color: #2ecc71;
+}
+.btn:hover {
+  cursor: url(http://cur.cursors-4u.net/symbols/sym-1/sym46.cur), auto;
+}
+
+.aaa{
+  font-size:3rem;
+  
+}
+.aa{
+  padding-top:10%;
+
+}
+.company-description{
     margin-bottom:3rem;
 }
-.restaurant-description p{
+.company-description p{
 line-height:1.6;
 margin-bottom:2.4rem;
 /* margin-right:2rem; */
@@ -670,7 +758,7 @@ margin-bottom:2.4rem;
 }
 
 .qw{
-    padding-top:6%;
+    padding-top:5%;
     padding-left:0;
     padding-right:0;
     padding-bottom:0;
@@ -685,22 +773,20 @@ margin-bottom:2.4rem;
   position:absolute;
   top:50%;
 }
-.dropdown {
+.dropdown1 {
   float: left;
   overflow: hidden;
 }
-.dropdown .dropbtn {
-  font-size: 14px;    
-  border: none;
-  outline: none;
-  color: white;
-  padding: 25px 16px;
-  padding-top:1px;
-  background-color: inherit;
-  font-family: var(--body-font);
-  margin: 0;
+.dropdown1 .dropbtn {
+   display:block;
+    color:rgb(236, 232, 232);
+    text-transform:uppercase;
+    font-size:1.3rem;
+    letter-spacing:2px;
+    margin-right:-2px;
+    transition:color .5s;
 }
-.dropdown-content {
+.dropdown1-content {
     font-family: var(--body-font);
   display: none;
   position: absolute;
@@ -709,25 +795,25 @@ margin-bottom:2.4rem;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
-.dropdown-content a {
-    font-family: var(--body-font);
-  float: none;
-  color: black;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
+.dropdown1-content a {
+     display:block;
+    color:rgb(7, 1, 1);
+    text-transform:uppercase;
+    font-size:1.3rem;
+    letter-spacing:2px;
+    margin-right:-2px;
+    transition:color .5s;
 }
-.topnav a:hover, .dropdown:hover .dropbtn {
+.topnav a:hover, .dropdown1:hover .dropbtn {
   background-color: rgb(85, 85, 85);
   color: white;
   font-family: var(--body-font);
 }
-.dropdown-content a:hover {
+.dropdown1-content a:hover {
   background-color: rgb(17, 5, 83);
   color: #fff;
 }
-.dropdown:hover .dropdown-content {
+.dropdown1:hover .dropdown1-content {
   display: block;
 }
 .as11{
@@ -926,7 +1012,7 @@ img{
   flex-wrap: wrap;
 }
 
-.card {
+/* .card {
   margin: 30px auto;
   width: 300px;
   height: 300px;
@@ -934,9 +1020,9 @@ img{
 box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22);
   cursor: pointer;
   transition: 0.4s;
-}
+} */
 
-.card .card_image {
+/* .card .card_image {
   width: inherit;
   height: inherit;
   border-radius: 40px;
@@ -963,7 +1049,7 @@ box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.2
   transform: scale(0.9, 0.9);
   box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
     -5px -5px 30px 15px rgba(0,0,0,0.22);
-}
+} */
 
 .title-white {
   color: white;
@@ -971,13 +1057,6 @@ box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.2
 
 .title-black {
   color: black;
-}
-
-@media all and (max-width: 500px) {
-  .card-list {
-    /* On small screens, we are no longer using row direction but column */
-    flex-direction: column;
-  }
 }
 
 
