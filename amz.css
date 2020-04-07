@@ -986,6 +986,12 @@ img{
   margin-bottom: 16px;
   padding: 3% 8px;
 }
+body  {
+  background-image: url("https://i.pinimg.com/originals/32/b8/77/32b877ed4aa7778cc7d43ebb7d95a6f1.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
 .our-team {
   padding: 30px 0 40px;
   margin-bottom: 30px;
