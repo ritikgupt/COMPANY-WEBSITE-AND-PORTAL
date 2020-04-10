@@ -6,10 +6,14 @@ var g=require("express-sanitizer");
 var passport=require("passport");
 var e=require("passport-local");
 var h=require("passport-local-mongoose");
+var async=require("async");
+var nodemailer=require("nodemailer");
+var crypto=require("crypto");
 var app=a(); 
-// var User=require("./models/user");
+var Student=require("./models/student");
+var Staff=require("./models/staff");
 app.use(b.urlencoded({ extended: true }));
-c.connect("mongodb://localhost:27017/amz_data", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
+c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
 app.set("view engine","ejs");
 app.use(a.static("public"));
 c.set('useCreateIndex', true);
@@ -34,6 +38,11 @@ app.use(require("express-session")
 app.get("/",function(req,res){
     res.render("amz");
 })
+// Student.create({
+//     username:"ritik",
+//     password:"123",
+//     email:"ritik.gupta2018@vitstudent.ac.in"
+// })
 app.get("/about",function(req,res){
     res.render("about");
 })
@@ -52,6 +61,10 @@ app.get("/electrical",function(req,res){
 app.get("/login",function(req,res){
     res.render("adminlogin");
 })
+app.post("/login",passport.authenticate("local",{
+    successRedirect:"/",
+    failureRedirect:"/shops/login"
+}))
 app.get("/adminlogin",function(req,res){
     res.render("adminlogin");
 })
@@ -73,9 +86,137 @@ app.get("/offline",function(req,res){
 app.get("/faculty",function(req,res){
     res.render("adminlogin");
 })
+
 app.get("/workshop",function(req,res){
     res.render("workshop");
 })
+app.get("/forgot",function(req,res){
+    res.render("forgot");
+})
+app.post("/forgot",function(req,res,next){
+    async.waterfall([
+        function(done){
+            crypto.randomBytes(20,function(err,buf){
+                var token=buf.toString('hex');
+                done(err,token);//token is that,which is to be send as the part of the url to the user's email address
+            });
+        },
+        function(token,done){
+            Student.findOne({email:req.body.email},function(err,student){
+                if(!student){
+                    // req.flash('error',"No account with that email address exists.");
+                    return res.redirect("/forgot");
+                }
+                student.resetPasswordToken=token;
+                student.resetPasswordExpires=Date.now()+360000;
+                student.save(function(err){
+                    done(err,token,student);
+                });
+            });
+        },
+        function(token,student,done){
+            var transporter=nodemailer.createTransport({
+                service:'gmail',
+                auth:{
+                    user:'sonu3gupta@gmail.com',
+                    pass:'7877773515'
+                }
+            });
+            var mailOptions={
+                to:student.email,
+                from:'sonu3gupta@gmail.com',
+                subject:'Password Reset AMZ',
+                text:'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+            };
+            transporter.sendMail(mailOptions, function(err) {
+                console.log('mail sent');
+                done(err, 'done');
+            });
+        }
+    ],
+    function(err) {
+        if (err) return next(err);
+        res.redirect('/forgot');
+    });
+});
+app.get('/reset/:token', function(req, res) {
+    User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, student) {
+      if (!student) {
+        // req.flash('error', 'Password reset token is invalid or has expired.');
+        return res.redirect('/forgot');
+      }
+      res.render('reset', {token: req.params.token});
+    });
+  });
+  
+  app.post('/reset/:token', function(req, res) {
+    async.waterfall([
+      function(done) {
+        Student.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, student) {
+          if (!student) {
+            req.flash('error', 'Password reset token is invalid or has expired.');
+            return res.redirect('back');
+          }
+          if(req.body.password === req.body.confirm) {
+            student.setPassword(req.body.password, function(err) {
+              user.resetPasswordToken = undefined;
+              user.resetPasswordExpires = undefined;
+  
+              user.save(function(err) {
+                req.logIn(user, function(err) {
+                  done(err, user);
+                });
+              });
+            })
+          } else {
+              req.flash("error", "Passwords do not match.");
+              return res.redirect('back');
+          }
+        });
+      },
+      function(user, done) {
+        var smtpTransport = nodemailer.createTransport({
+          service: 'Gmail', 
+          auth: {
+            user: 'learntocodeinfo@gmail.com',
+            pass: process.env.GMAILPW
+          }
+        });
+        var mailOptions = {
+          to: user.email,
+          from: 'learntocodeinfo@mail.com',
+          subject: 'Your password has been changed',
+          text: 'Hello,\n\n' +
+            'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        };
+        smtpTransport.sendMail(mailOptions, function(err) {
+          req.flash('success', 'Success! Your password has been changed.');
+          done(err);
+        });
+      }
+    ], function(err) {
+      res.redirect('/campgrounds');
+    });
+  });
+// app.get("/team",function(req,res){
+    //     res.render("create_team")
+    // })
+    // app.post("/team",function(req,res){
+    //     Team.create({ 
+    //         name:req.body.team.name,
+    //         designation:req.body.team.designation,
+    //         email:req.body.team.email,
+    //         linkedin:req.body.team.linkedin,
+    //         github:req.body.team.github,
+    //         number:req.body.team.number,
+    //         image:req.body.team.image,
+    //         type:req.body.team.type,
+    //     }) 
+    //     res.redirect("/");
+    // })
 // app.get("/123abcsecret",function(req,res){
 // res.render("adminlogin"); 
 // })
@@ -94,7 +235,7 @@ app.get("/workshop",function(req,res){
 //         type:req.body.team.type,
 //     }) 
 //     res.redirect("/");
-// })pp.get("/aspiring",function(req,res){
+// })
     
 // app.get("/ateam",function(req,res){
 //     Team.find({},function(err,teams){
