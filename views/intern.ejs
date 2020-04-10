@@ -1,12 +1,18 @@
-<%-include ('./partials/header') %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="/CSS/amz.css" rel="stylesheet" type="text/css">
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
+body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
 * {box-sizing: border-box;}
 
 .input-container {
@@ -14,6 +20,8 @@ body {font-family: Arial, Helvetica, sans-serif;}
   display: flex;
   width: 100%;
   margin-bottom: 15px;
+  margin-top:0%;
+
 }
 .select-container {
   display: -ms-flexbox; /* IE10 */
@@ -67,11 +75,102 @@ body {font-family: Arial, Helvetica, sans-serif;}
 #z{
         visibility:hidden;
     }
+    d{
+      position:flex;
+      float:left;
+    }
 </style>
 </head>
 <body>
-<form id="a1" action="/intern" style="max-width:500px;margin:auto" method="POST">
-  <h2> Internship Registration</h2>
+    <header>
+        <div class="container">
+            <nav class="nav">
+                <div class="menu menu-toggle">
+                   <i class="fas fa-bars"></i>
+    <i class="fas fa-times"></i>
+                </div>
+                <!-- <a href="amz.html" class="logo"><img src="images/logo-rosa.png" alt=""></a> -->
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <div class="dropdown1">
+                                <button class="dropbtn">About Us
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+                                <div class="dropdown1-content">
+                                    <a href="#">Our Advisory Team</a>
+                                    <a href="#">About AMZ</a>
+                                    <a href="#">Contact Us</a>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                        <div class="dropdown1">
+                            <button class="dropbtn">Internship Programs
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown1-content">
+                                <a href="#">Mechanical</a>
+                                <a href="#">Civil</a>
+                                <a href="#">Computer Science</a>
+                                <a href="#">Electrical And Electronics</a>
+                            </div>
+                        </div>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Workshop</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Aspiring Researchers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Faculty Login</a>
+                        </li>
+                        <li class="nav-item">
+                        <div class="dropdown1">
+                            <button class="dropbtn">Center Of Excellence
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown1-content">
+                                <a href="#">Quadbike</a>
+                                <a href="#">Electric Car</a>
+                                <a href="#">Hybrid Car</a>
+                                <a href="#">Robotics</a>
+                            </div>
+                        </div>
+                        </li>
+                    
+                </ul>
+            </nav>
+            </div>
+    </header>
+    <div class="w3-container">
+        <div class="w3-display-container">
+            <section class="discover-our-story">
+    
+                <h1 class="headline-dark ">
+                    <center>Registration Portal</center>
+                </h1>
+    
+                <div class="company-info ">
+                    <div class="company-description padding-right animate-left ">
+                        <div class="global-headline">
+                            <h2 class="sub-headline">
+                              
+                            </h2>
+                           
+                        </div>
+    
+                        <img class="d" src="https://www.opportunitiesforafricans.com/wp-content/uploads/2019/04/afdb-internships-2019.jpg">
+    
+    
+                    </div>
+                    <div class="company-description animate-right ">
+                        <center><strong class="aaa">Internship Registration</strong></center>
+                        <form id="a1" action="/intern" style="max-width:500px;margin:auto" method="POST">
+  
   <div class="input-container">
     <i class="fa fa-user icon"></i>
     <input class="input-field" type="text" placeholder="Full Name" name="intern[name]">
@@ -123,5 +222,14 @@ body {font-family: Arial, Helvetica, sans-serif;}
       </div>
 <button type="submit" class="btn">Register</button>
 </form>
+    
+                    </div>
+                </div>
+        </div>
+    
+    </div>
+    </section>
+ 
+
 </body>
 </html>

@@ -34,6 +34,42 @@ app.use(require("express-session")
 app.get("/",function(req,res){
     res.render("amz");
 })
+app.get("/about",function(req,res){
+    res.render("about");
+})
+app.get("/mechanical",function(req,res){
+    res.render("mechanical");
+})
+app.get("/computer",function(req,res){
+    res.render("computer");
+})
+app.get("/civil",function(req,res){
+    res.render("civil");
+})
+app.get("/electrical",function(req,res){
+    res.render("electrical");
+})
+app.get("/login",function(req,res){
+    res.render("adminlogin");
+})
+app.get("/adminlogin",function(req,res){
+    res.render("adminlogin");
+})
+app.get("/aspiring",function(req,res){
+    res.render("aspiring");
+})
+app.get("/staff",function(req,res){
+    res.render("staff");
+})
+app.get("/intern",function(req,res){
+    res.render("intern");
+})
+app.get("/online",function(req,res){
+    res.render("online");
+})
+app.get("/offline",function(req,res){
+    res.render("offline");
+})
 // app.get("/123abcsecret",function(req,res){
 // res.render("adminlogin"); 
 // })
@@ -52,7 +88,8 @@ app.get("/",function(req,res){
 //         type:req.body.team.type,
 //     }) 
 //     res.redirect("/");
-// })
+// })pp.get("/aspiring",function(req,res){
+    
 // app.get("/ateam",function(req,res){
 //     Team.find({},function(err,teams){
 //         if(err)
