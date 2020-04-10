@@ -70,6 +70,12 @@ app.get("/online",function(req,res){
 app.get("/offline",function(req,res){
     res.render("offline");
 })
+app.get("/faculty",function(req,res){
+    res.render("adminlogin");
+})
+app.get("/workshop",function(req,res){
+    res.render("workshop");
+})
 // app.get("/123abcsecret",function(req,res){
 // res.render("adminlogin"); 
 // })
