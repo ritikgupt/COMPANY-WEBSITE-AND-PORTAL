@@ -182,13 +182,7 @@ app.get('/reset/:token', function(req, res) {
                console.log(req.body.password)
                console.log(student.password)
                student.password=req.body.password;
-               Student.save({
-                 password:req.body.password
-               })
-               console.log(student.password)
-               res.redirect("/")
-
-              
+                done(err, student); 
               });
             })
           } else {
