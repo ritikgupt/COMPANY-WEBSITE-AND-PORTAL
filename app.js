@@ -49,10 +49,10 @@ app.use(passport.session());
 app.get("/",function(req,res){
     res.render("amz");
 })
-// Student.create({
-//     username:"ritik",
+// Staff.create({
+//     username:"r",
 //     password:"123",
-//     email:"ritik.gupta2018@vitstudent.ac.in"
+//     email:"ritikgupta89369@gmail.com"
 // })
 app.get("/about",function(req,res){
     res.render("about");
@@ -104,7 +104,7 @@ app.get("/faculty",function(req,res){
 })
 app.post("/faculty", passport.authenticate("local", {
     successRedirect: "/staff",
-    failureRedirect: "/"
+   failureRedirect:"/"
 })
 )
 app.get("/workshop",function(req,res){
@@ -190,6 +190,7 @@ app.get('/reset_staff/:token', function(req, res) {
                console.log(req.body.password)
                console.log(staff.password)
                staff.password=req.body.password;
+               console.log(staff.password)
                 done(err, staff); 
                 res.redirect("/faculty");
 
@@ -201,7 +202,7 @@ app.get('/reset_staff/:token', function(req, res) {
           }
         });
       },
-      function(student, done) {
+      function(staff, done) {
         var transporter = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
