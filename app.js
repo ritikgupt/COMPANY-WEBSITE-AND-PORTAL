@@ -72,10 +72,15 @@ app.get("/electrical",function(req,res){
 app.get("/login",function(req,res){
     res.render("adminlogin");
 })
-app.post("/login",passport.authenticate("local",{
-    successRedirect:"/",
-    failureRedirect:"/shops/login"
-}))
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/aspiring",
+    failureRedirect: "/"
+})
+)
+app.get("/shops/logout",function(req,res){
+    req.logout();
+    res.redirect("/");
+})
 app.get("/adminlogin",function(req,res){
     res.render("adminlogin");
 })
@@ -183,6 +188,8 @@ app.get('/reset/:token', function(req, res) {
                console.log(student.password)
                student.password=req.body.password;
                 done(err, student); 
+                res.redirect("/login");
+
               });
             })
           } else {
