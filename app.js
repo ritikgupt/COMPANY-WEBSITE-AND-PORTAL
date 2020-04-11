@@ -32,6 +32,17 @@ app.use(require("express-session")
   resave:false,
   saveUninitialized:false  
 }))
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new e(Staff.authenticate()));
+passport.serializeUser(Staff.serializeUser());
+passport.deserializeUser(Staff.deserializeUser());
+passport.use(new e(Student.authenticate()));
+passport.serializeUser(Student.serializeUser());
+passport.deserializeUser(Student.deserializeUser());
+app.use(passport.initialize());
+app.use(passport.session());
+
 // app.get("/header",function(req,res){
 //     res.render("header")
 // })
@@ -143,7 +154,7 @@ app.post("/forgot",function(req,res,next){
     });
 });
 app.get('/reset/:token', function(req, res) {
-    User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, student) {
+    Student.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, student) {
       if (!student) {
         // req.flash('error', 'Password reset token is invalid or has expired.');
         return res.redirect('/forgot');
@@ -157,48 +168,57 @@ app.get('/reset/:token', function(req, res) {
       function(done) {
         Student.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, student) {
           if (!student) {
-            req.flash('error', 'Password reset token is invalid or has expired.');
+           
             return res.redirect('back');
           }
           if(req.body.password === req.body.confirm) {
+            console.log(req.body.confirm)
             student.setPassword(req.body.password, function(err) {
-              user.resetPasswordToken = undefined;
-              user.resetPasswordExpires = undefined;
+              student.resetPasswordToken = undefined;
+              student.resetPasswordExpires = undefined;
   
-              user.save(function(err) {
-                req.logIn(user, function(err) {
-                  done(err, user);
-                });
+              student.save(function(err) {
+               console.log("Password Updated")
+               console.log(req.body.password)
+               console.log(student.password)
+               student.password=req.body.password;
+               Student.save({
+                 password:req.body.password
+               })
+               console.log(student.password)
+               res.redirect("/")
+
+              
               });
             })
           } else {
-              req.flash("error", "Passwords do not match.");
+              
               return res.redirect('back');
           }
         });
       },
-      function(user, done) {
-        var smtpTransport = nodemailer.createTransport({
+      function(student, done) {
+        var transporter = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
-            user: 'learntocodeinfo@gmail.com',
-            pass: process.env.GMAILPW
+            user: 'sonu3gupta@gmail.com',
+            pass: '7877773515'
           }
         });
         var mailOptions = {
-          to: user.email,
-          from: 'learntocodeinfo@mail.com',
+          to: student.email,
+          from: 'sonu3gupta@gmail.com',
           subject: 'Your password has been changed',
           text: 'Hello,\n\n' +
-            'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+            'This is a confirmation that the password for your account ' + student.email + ' has just been changed.\n'
         };
-        smtpTransport.sendMail(mailOptions, function(err) {
+       transporter.sendMail(mailOptions, function(err) {
           req.flash('success', 'Success! Your password has been changed.');
           done(err);
         });
       }
     ], function(err) {
-      res.redirect('/campgrounds');
+      res.redirect('/');
     });
   });
 // app.get("/team",function(req,res){
