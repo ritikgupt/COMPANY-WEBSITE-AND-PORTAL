@@ -17,14 +17,8 @@ passport.deserializeUser(Staff.deserializeUser());
 router.get("/faculty",function(req,res){
     res.render("faculty");
 })
-function isLoggedIn(req,res,next){
-  if(req.isAuthenticated("staff")){
-      return next();
-  }
-  else
-  res.redirect("/faculty");
-}
-router.get("/staff",isLoggedIn,function(req,res){
+
+router.get("/staff",function(req,res){
      console.log(req.user)
     res.render("staff",{currentStaff:req.user});
    }

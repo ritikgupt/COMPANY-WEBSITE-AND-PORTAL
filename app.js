@@ -103,15 +103,9 @@ app.get("/workshop",function(req,res){
 app.get("/forgot_admin",function(req,res){
     res.render("forgot_admin");
 })
-function isLoggedIn(req,res,next){
-    if(req.isAuthenticated("student")){
-        return next();
-    }
-    else
-    res.redirect("/login");
-  }
-  app.get("/aspiring",isLoggedIn,function(req,res){
-       console.log(req.user)
+
+  app.get("/aspiring",function(req,res){
+     
       res.render("aspiring",{currentStudent:req.user});
      }
     )
