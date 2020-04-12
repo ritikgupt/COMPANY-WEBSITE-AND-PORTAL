@@ -79,18 +79,13 @@ app.post("/login", passport.authenticate("student", {
 })
 )
 app.get("/logout",function(req,res){
-    req.logout();
+    req.logout("aspiring");
     res.redirect("/");
 })
 app.get("/adminlogin",function(req,res){
     res.render("adminlogin");
 })
-app.get("/aspiring",function(req,res){
-    res.render("aspiring");
-})
-app.get("/staff",function(req,res){
-    res.render("staff");
-})
+
 app.get("/intern",function(req,res){
     res.render("intern");
 })
@@ -108,6 +103,18 @@ app.get("/workshop",function(req,res){
 app.get("/forgot_admin",function(req,res){
     res.render("forgot_admin");
 })
+function isLoggedIn(req,res,next){
+    if(req.isAuthenticated("student")){
+        return next();
+    }
+    else
+    res.redirect("/login");
+  }
+  app.get("/aspiring",isLoggedIn,function(req,res){
+       console.log(req.user)
+      res.render("aspiring",{currentStudent:req.user});
+     }
+    )
 app.get("/forgot",function(req,res){
     res.render("forgot");
 })
@@ -341,6 +348,11 @@ app.get('/reset/:token', function(req, res) {
 //         }
 //     })
 // })
+app.get("/logout",function(req,res){
+    req.logout();
+    console.log(req.user)
+    res.redirect("/login");
+})
 app.use(staffRoutes);
 app.listen("3000",function(){
     console.log("Server has started.");

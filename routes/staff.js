@@ -1,9 +1,9 @@
 var a=require("express");
-var router=a.Router();
 var b=require("body-parser");
 var c=require("mongoose");
 var f=require("method-override");
 var g=require("express-sanitizer");
+var router=a.Router();
 var passport=require("passport");
 var e=require("passport-local");
 var h=require("passport-local-mongoose");
@@ -17,6 +17,18 @@ passport.deserializeUser(Staff.deserializeUser());
 router.get("/faculty",function(req,res){
     res.render("faculty");
 })
+function isLoggedIn(req,res,next){
+  if(req.isAuthenticated("staff")){
+      return next();
+  }
+  else
+  res.redirect("/faculty");
+}
+router.get("/staff",isLoggedIn,function(req,res){
+     console.log(req.user)
+    res.render("staff",{currentStaff:req.user});
+   }
+  )
 router.post("/faculty", passport.authenticate("staff", {
     successRedirect: "/staff",
    failureRedirect:"/"
@@ -138,4 +150,9 @@ router.get('/reset_staff/:token', function(req, res) {
       res.redirect('/');
     });
   });
+  router.get("/logout",function(req,res){
+    req.logout();
+    console.log(req.user)
+    res.redirect("/faculty");
+})
   module.exports=router;
