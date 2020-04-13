@@ -10,8 +10,8 @@ var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var app=a(); 
-var staffRoutes=require("./routes/staff");
 var Student=require("./models/student");
+var Detail=require("./models/detail");
 var Staff=require("./models/staff");
 app.use(b.urlencoded({ extended: true }));
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
@@ -20,13 +20,6 @@ app.use(a.static("public"));
 c.set('useCreateIndex', true);
 app.use(g());
 app.use(f("_method"));
-app.use(function(req,res,next){
-    res.locals.currentUser=req.user;
-    //the above function will help to add currentUser variable to routes
-    next();
-    //without next() we won't be able to add currentUser to all the routes,it will add to one route and then stop
-    //nothing will happen after that so to avoid this next() is used.
-});
 app.use(require("express-session")
 ({
   secret:"Let your work make the noise not your mouth.",
@@ -38,22 +31,22 @@ app.use(passport.session());
 // passport.use(new e(Staff.authenticate()));
 // passport.serializeUser(Staff.serializeUser());
 // passport.deserializeUser(Staff.deserializeUser());
-passport.use( 'student',new e(Student.authenticate()));
-passport.serializeUser(Student.serializeUser());
-passport.deserializeUser(Student.deserializeUser());
-app.use(passport.initialize());
-app.use(passport.session());
+passport.use( new e(Detail.authenticate()));
+passport.serializeUser(Detail.serializeUser());
+passport.deserializeUser(Detail.deserializeUser());
 
 // app.get("/header",function(req,res){
 //     res.render("header")
 // })
 app.get("/",function(req,res){
     res.render("amz");
+
 })
-// Staff.create({
+// Detail.create({
 //     username:"r",
 //     password:"123",
-//     email:"ritikgupta89369@gmail.com"
+//     email:"ritikgupta89369@gmail.com",
+//     type:"Staff"
 // })
 app.get("/about",function(req,res){
     res.render("about");
@@ -71,21 +64,23 @@ app.get("/electrical",function(req,res){
     res.render("electrical");
 })
 app.get("/login",function(req,res){
-    res.render("student");
+    res.render("login");
 })
-app.post("/login", passport.authenticate("student", {
-    successRedirect: "/aspiring",
-    failureRedirect: "/"
+app.post("/login",passport.authenticate("local",{
+  successRedirect:"/dashboard",
+  failureRedirect:"/login"
+}))
+app.get("/dashboard",function(req,res){
+  console.log(req.user);
+  if(req.user.type=="Staff")
+  res.render("staff");
+  else
+  res.render("aspiring");
 })
-)
 app.get("/logout",function(req,res){
     req.logout("aspiring");
     res.redirect("/");
 })
-app.get("/adminlogin",function(req,res){
-    res.render("adminlogin");
-})
-
 app.get("/intern",function(req,res){
     res.render("intern");
 })
@@ -99,14 +94,9 @@ app.get("/offline",function(req,res){
 app.get("/workshop",function(req,res){
     res.render("workshop");
 })
-
-app.get("/forgot_admin",function(req,res){
-    res.render("forgot_admin");
-})
-
   app.get("/aspiring",function(req,res){
      
-      res.render("aspiring",{currentStudent:req.user});
+      res.render("aspiring");
      }
     )
 app.get("/forgot",function(req,res){
@@ -121,19 +111,19 @@ app.post("/forgot",function(req,res,next){
             });
         },
         function(token,done){
-            Student.findOne({email:req.body.email},function(err,student){
-                if(!student){
+            Detail.findOne({email:req.body.email},function(err,detail){
+                if(!detail){
                     // req.flash('error',"No account with that email address exists.");
                     return res.redirect("/forgot");
                 }
-                student.resetPasswordToken=token;
-                student.resetPasswordExpires=Date.now()+360000;
-                student.save(function(err){
-                    done(err,token,student);
+                detail.resetPasswordToken=token;
+                detail.resetPasswordExpires=Date.now()+360000;
+                detail.save(function(err){
+                    done(err,token,detail);
                 });
             });
         },
-        function(token,student,done){
+        function(token,detail,done){
             var transporter=nodemailer.createTransport({
                 service:'gmail',
                 auth:{
@@ -142,7 +132,7 @@ app.post("/forgot",function(req,res,next){
                 }
             });
             var mailOptions={
-                to:student.email,
+                to:detail.email,
                 from:'sonu3gupta@gmail.com',
                 subject:'Password Reset AMZ',
                 text:'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
@@ -162,8 +152,8 @@ app.post("/forgot",function(req,res,next){
     });
 });
 app.get('/reset/:token', function(req, res) {
-    Student.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, student) {
-      if (!student) {
+    Detail.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, detail) {
+      if (!detail) {
         // req.flash('error', 'Password reset token is invalid or has expired.');
         return res.redirect('/forgot');
       }
@@ -174,23 +164,23 @@ app.get('/reset/:token', function(req, res) {
   app.post('/reset/:token', function(req, res) {
     async.waterfall([
       function(done) {
-        Student.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, student) {
-          if (!student) {
+        Detail.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, detail) {
+          if (!detail) {
            
             return res.redirect('back');
           }
           if(req.body.password === req.body.confirm) {
             console.log(req.body.confirm)
-            student.setPassword(req.body.password, function(err) {
-              student.resetPasswordToken = undefined;
-              student.resetPasswordExpires = undefined;
+            detail.setPassword(req.body.password, function(err) {
+              detail.resetPasswordToken = undefined;
+              detail.resetPasswordExpires = undefined;
   
-              student.save(function(err) {
+              detail.save(function(err) {
                console.log("Password Updated")
                console.log(req.body.password)
-               console.log(student.password)
-               student.password=req.body.password;
-                done(err, student); 
+               console.log(detail.password)
+               detail.password=req.body.password;
+                done(err, detail); 
                 res.redirect("/login");
 
               });
@@ -201,7 +191,7 @@ app.get('/reset/:token', function(req, res) {
           }
         });
       },
-      function(student, done) {
+      function(detail, done) {
         var transporter = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
@@ -210,11 +200,11 @@ app.get('/reset/:token', function(req, res) {
           }
         });
         var mailOptions = {
-          to: student.email,
+          to: detail.email,
           from: 'sonu3gupta@gmail.com',
           subject: 'Your password has been changed',
           text: 'Hello,\n\n' +
-            'This is a confirmation that the password for your account ' + student.email + ' has just been changed.\n'
+            'This is a confirmation that the password for your account ' + detail.email + ' has just been changed.\n'
         };
        transporter.sendMail(mailOptions, function(err) {
           req.flash('success', 'Success! Your password has been changed.');
@@ -225,130 +215,11 @@ app.get('/reset/:token', function(req, res) {
       res.redirect('/');
     });
   });
-// app.get("/team",function(req,res){
-    //     res.render("create_team")
-    // })
-    // app.post("/team",function(req,res){
-    //     Team.create({ 
-    //         name:req.body.team.name,
-    //         designation:req.body.team.designation,
-    //         email:req.body.team.email,
-    //         linkedin:req.body.team.linkedin,
-    //         github:req.body.team.github,
-    //         number:req.body.team.number,
-    //         image:req.body.team.image,
-    //         type:req.body.team.type,
-    //     }) 
-    //     res.redirect("/");
-    // })
-// app.get("/123abcsecret",function(req,res){
-// res.render("adminlogin"); 
-// })
-// app.get("/team",function(req,res){
-//     res.render("create_team")
-// })
-// app.post("/team",function(req,res){
-//     Team.create({ 
-//         name:req.body.team.name,
-//         designation:req.body.team.designation,
-//         email:req.body.team.email,
-//         linkedin:req.body.team.linkedin,
-//         github:req.body.team.github,
-//         number:req.body.team.number,
-//         image:req.body.team.image,
-//         type:req.body.team.type,
-//     }) 
-//     res.redirect("/");
-// })
-    
-// app.get("/ateam",function(req,res){
-//     Team.find({},function(err,teams){
-//         if(err)
-//         console.log("error");
-//     else
-//     {
-//        res.render("ateam",{teams:teams})
-//     }
-// })
-// })
-// app.get("/tteam",function(req,res){
-//     Team.find({},function(err,teams){
-//         if(err)
-//         console.log("error");
-//     else
-//     {
-//        res.render("tteam",{teams:teams})
-//     }
-// })
-
-// })
-// app.get("/register_course",function(req,res){
-//     res.render("register_course")
-// })
-// app.get("/intern",function(req,res){
-//     res.render("intern");
-// })
-// app.post("/intern",function(req,res){
-//     Intern.create({
-//         name:req.body.intern.name,
-//         email:req.body.intern.email,
-//         phone:req.body.intern.phone,
-//         college:req.body.intern.college,
-//         branch:req.body.intern.branch,
-//         course:req.body.intern.course,
-//         venue:req.body.intern.venue,
-//         referal:req.body.intern.referal
-//     })
-//     res.redirect("/");
-// })
-// app.get("/:id",function(req,res){
-//     Team.findById(req.params.id,function(err,foundTeam){
-//         if(err){
-//             res.redirect("/");
-//         }
-//         else{
-//             res.render("show",{team:foundTeam});
-//         }
-//     })
-
-// })
-// app.delete("/:id",function(req,res){
-//     Team.findByIdAndRemove(req.params.id,function(err){
-//         if(err){
-//             res.redirect("/ateam")
-//         }
-//         else{
-//             res.redirect("/")
-//         }
-//     })
-// })
-// app.get("/:id/edit",function(req,res){
-//     Team.findById(req.params.id,function(err,foundTeam){
-//         if(err){
-//             console.log("Error");
-//         }
-//         else{
-//             res.render("edit_team",{team:foundTeam})
-//         }
-//     })
-// })    
-// app.post("/:id",function(req,res){
-//     Team.findByIdAndUpdate(req.params.id,req.body.team,function(err,updatedTeam){
-//         if(err){
-//             res.redirect("/");
-//         }
-//         else{
-//             res.redirect("/"+req.params.id);
-//         }
-//     })
-// })
 app.get("/logout",function(req,res){
     req.logout();
     console.log(req.user)
     res.redirect("/login");
 })
-app.use(staffRoutes);
 app.listen("3000",function(){
     console.log("Server has started.");
 });
-
