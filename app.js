@@ -9,10 +9,14 @@ var h=require("passport-local-mongoose");
 var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
+var multer=require("multer");
+var upload=multer({dest:"uploads/"});
 var app=a(); 
+//body parser only parses url encoded bodies or json bodies
 var Student=require("./models/student");
 var Detail=require("./models/detail");
 var Staff=require("./models/staff");
+var Request=require("./models/request");
 app.use(b.urlencoded({ extended: true }));
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
 app.set("view engine","ejs");
@@ -83,6 +87,20 @@ app.get("/dashboard",isLoggedIn,function(req,res){
   res.render("staff",{currentStaff:req.user});
   else
   res.render("aspiring",{currentStudent:req.user});
+})
+app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
+  console.log(req.file)
+  console.log(req.body.request.desc);
+  console.log(Date.now())
+  Request.create(
+    {
+        desc:req.body.request.desc,
+        recep:req.body.request.recep,
+        stu_id:req.user.id,
+        date:Date.now()
+    }
+)
+  res.redirect("/dashboard")
 })
 app.get("/logout",function(req,res){
     req.logout();

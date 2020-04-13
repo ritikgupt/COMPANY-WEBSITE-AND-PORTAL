@@ -79,7 +79,7 @@
                         <tbody>
                             <tr>
                                 <td>Name</td>
-                                <td>Ritik Gupta</td>
+                                <td><%=currentStudent.Name%></td>
                             </tr>
                             <tr>
                                 <td>College</td>
@@ -110,12 +110,12 @@
                 </h1>
         <div class="container1">
             <div class="carousel">
-                <a class="item a" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Research Paper</a>
-                <a class="item b"data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Patent Consult</a>
-                <a class="item c"data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Startup Idea</a>
-                <a class="item d"data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Innovative Idea</a>
-                <a class="item e"data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Complaints</a>
-                <a class="item f"data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" href="#">Startup Consult</a>
+                <a class="item a" data-toggle="modal" data-target="#exampleModal" data-whatever="Research Paper Request" href="#">Research Paper</a>
+                <a class="item b"data-toggle="modal" data-target="#exampleModal" data-whatever="Patent Consult" href="#">Patent Consult</a>
+                <a class="item c"data-toggle="modal" data-target="#exampleModal" data-whatever="Startup Idea" href="#">Startup Idea</a>
+                <a class="item d"data-toggle="modal" data-target="#exampleModal" data-whatever="Innovative Idea" href="#">Innovative Idea</a>
+                <a class="item e"data-toggle="modal" data-target="#exampleModal" data-whatever="Complaints" href="#">Complaints</a>
+                <a class="item f"data-toggle="modal" data-target="#exampleModal" data-whatever="Startup Consult" href="#">Startup Consult</a>
             </div>
         </div>
         <button class="next">Next</button>
@@ -174,24 +174,27 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data">
+                <form action="/dashboard" method="POST" enctype="multipart/form-data">
+                    
                     <div class="form-group">
                         <label for="recipient-name" class="col-form-label">Recipient:</label>
-                        <input type="text" class="form-control" id="recipient-name">
+                        <input type="text" name="request[recep]"class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="message-text" class="col-form-label">Description</label>
-                        <textarea class="form-control" id="message-text"></textarea>
+                        <textarea class="form-control" name="request[desc]"></textarea>
                     </div>
-                   
-                </form>
+                    <div class="form group">
+                        <input type="text" id="ac"  name="request[stu_id]" value="<%=currentStudent._id%>">
+                    </div>
+               
             </div>
             <div class="modal-footer">
-                <form>
-                <input type="file"></form>
+               
+                <input type="file" name="request[req_file]">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Send message</button>
-
+                <button type="submit" class="btn btn-primary">Send message</button>
+            </form>
             </div>
         </div>
     </div>
@@ -395,6 +398,9 @@ width:13%;
             .table{
                 font-size: 2rem;
             }
+            #ac{
+        visibility:hidden;
+    }
         </style>
         <script>
             var coll = document.getElementsByClassName("collapsible");
@@ -437,7 +443,7 @@ width:13%;
                         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
                         var modal = $(this)
-                        modal.find('.modal-title').text('New message to ' + recipient)
+                        modal.find('.modal-title').text('New Request to ' + recipient)
                         modal.find('.modal-body input').val(recipient)
                     })
         </script>
