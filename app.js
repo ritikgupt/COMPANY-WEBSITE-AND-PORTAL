@@ -73,12 +73,12 @@ app.post("/login",passport.authenticate("local",{
 app.get("/dashboard",function(req,res){
   console.log(req.user);
   if(req.user.type=="Staff")
-  res.render("staff");
+  res.render("staff",{currentStaff:req.user});
   else
-  res.render("aspiring");
+  res.render("aspiring",{currentStudent:req.user});
 })
 app.get("/logout",function(req,res){
-    req.logout("aspiring");
+    req.logout();
     res.redirect("/");
 })
 app.get("/intern",function(req,res){
