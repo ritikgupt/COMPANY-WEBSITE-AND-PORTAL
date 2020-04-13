@@ -183,7 +183,7 @@ app.get('/reset/:token', function(req, res) {
                console.log(detail.password)
                detail.password=req.body.password;
                 done(err, detail); 
-                res.redirect("/login");
+                res.redirect("/logout");
 
               });
             })
