@@ -48,6 +48,13 @@ app.get("/",function(req,res){
 //     email:"ritikgupta89369@gmail.com",
 //     type:"Staff"
 // })
+function isLoggedIn(req,res,next){
+  if(req.isAuthenticated()){
+      return next();
+  }
+  else
+  res.redirect("/login");
+}
 app.get("/about",function(req,res){
     res.render("about");
 })
@@ -70,7 +77,7 @@ app.post("/login",passport.authenticate("local",{
   successRedirect:"/dashboard",
   failureRedirect:"/login"
 }))
-app.get("/dashboard",function(req,res){
+app.get("/dashboard",isLoggedIn,function(req,res){
   console.log(req.user);
   if(req.user.type=="Staff")
   res.render("staff",{currentStaff:req.user});
@@ -79,7 +86,7 @@ app.get("/dashboard",function(req,res){
 })
 app.get("/logout",function(req,res){
     req.logout();
-    res.redirect("/");
+    res.redirect("/login");
 })
 app.get("/intern",function(req,res){
     res.render("intern");
@@ -94,11 +101,6 @@ app.get("/offline",function(req,res){
 app.get("/workshop",function(req,res){
     res.render("workshop");
 })
-  app.get("/aspiring",function(req,res){
-     
-      res.render("aspiring");
-     }
-    )
 app.get("/forgot",function(req,res){
     res.render("forgot");
 })
