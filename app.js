@@ -10,7 +10,18 @@ var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var multer=require("multer");
-var upload=multer({dest:"uploads/"});
+var storage=multer.diskStorage({
+  destination:function(req,file,cb){
+    cb(null,'./uploads/');
+  },
+  filename:function(req,file,cb){
+    cb(null,new Date().toISOString()+file.originalname);
+  }
+});
+// var filefilter=(req,file,cb)=>{
+//   if(file.mimetype===)
+// }
+var upload=multer({storage:storage});
 var app=a(); 
 //body parser only parses url encoded bodies or json bodies
 var Student=require("./models/student");
@@ -21,6 +32,7 @@ app.use(b.urlencoded({ extended: true }));
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
 app.set("view engine","ejs");
 app.use(a.static("public"));
+// app.use(a.static('uploads'));
 c.set('useCreateIndex', true);
 app.use(g());
 app.use(f("_method"));
@@ -97,6 +109,7 @@ app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
         desc:req.body.request.desc,
         recep:req.body.request.recep,
         stu_id:req.user.id,
+        req_file:req.file.path,
         date:Date.now()
     }
 )
