@@ -9,6 +9,9 @@ var h=require("passport-local-mongoose");
 var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
+var pdfdocument=require("pdfkit");
+var fs=require("fs");
+// const vfsFonts = require('./pdfmake/vfs_fonts');
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -28,6 +31,7 @@ var Student=require("./models/student");
 var Detail=require("./models/detail");
 var Staff=require("./models/staff");
 var Request=require("./models/request");
+var Request_staff=require("./models/request_staff");
 app.use(b.urlencoded({ extended: true }));
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
 app.set("view engine","ejs");
@@ -104,6 +108,8 @@ app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
   console.log(req.file)
   console.log(req.body.request.desc);
   console.log(Date.now())
+  if(req.user.type=="Student")
+  {
   Request.create(
     {
         desc:req.body.request.desc,
@@ -113,7 +119,12 @@ app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
         date:Date.now()
     }
 )
-  res.redirect("/dashboard")
+  res.redirect("/dashboard")}
+  else{
+// var doc=new pdfdocument();
+// doc.pipe(fs.createWriteStream(Date.now()));
+// doc.fontSize(25).text(req.body.)
+  }
 })
 app.get("/logout",function(req,res){
     req.logout();
