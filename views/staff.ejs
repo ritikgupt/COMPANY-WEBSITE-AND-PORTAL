@@ -212,36 +212,34 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form enctype="multipart/form-data">
+                    <form action="/dashboard" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Date</label>
-                            <input type="date" class="form-control" id="recipient-name">
+                            <input type="date"  name="request_staff[date]" class="form-control" id="recipient-name">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Credited From</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text" class="form-control" name="request_staff[credit]" id="recipient-name">
                         </div>
                         <div class="form-group">
                             <label for="recipient-name" class="col-form-label">Recipient:</label>
-                            <input type="text" class="form-control" id="recipient-name">
+                            <input type="text" class="form-control" name="request_staff[credit]" id="recipient-name">
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Purpose</label>
-                            <textarea class="form-control" id="message-text"></textarea>
+                            <textarea class="form-control" name="request_staff[purpose]" id="message-text"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="message-text" class="col-form-label">Expenditure Details</label>
-                            <textarea class="form-control" id="message-text"></textarea>
+                            <textarea class="form-control" name="request_staff[desc]" id="message-text"></textarea>
                         </div>
 
-                    </form>
+                    
                 </div>
                 <div class="modal-footer">
-                    <form>
-                        <input type="file"></form>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Send message</button>
-
+                    <button type="submit" class="btn btn-secondary">Send message</button>
+                </form>
                 </div>
             </div>
         </div>

@@ -105,9 +105,6 @@ app.get("/dashboard",isLoggedIn,function(req,res){
   res.render("aspiring",{currentStudent:req.user});
 })
 app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
-  console.log(req.file)
-  console.log(req.body.request.desc);
-  console.log(Date.now())
   if(req.user.type=="Student")
   {
   Request.create(
@@ -121,9 +118,13 @@ app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
 )
   res.redirect("/dashboard")}
   else{
+    Request_staff.create({
+      desc:req.body.request_staff.desc
+    })
 // var doc=new pdfdocument();
 // doc.pipe(fs.createWriteStream(Date.now()));
 // doc.fontSize(25).text(req.body.)
+res.redirect("/dashboard");
   }
 })
 app.get("/logout",function(req,res){
