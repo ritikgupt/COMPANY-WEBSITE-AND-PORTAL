@@ -105,16 +105,12 @@
         </div>
 </header>
 <div id="carouselExampleInterval" class="carousel slide asd" data-ride="carousel">
+        <%for( var i=0;i<slider.length;i++){%>
     <div class="carousel-inner min-vh-2200">
         <div class="carousel-item active " data-interval="10000" >
-            <img class="i" src="./banner1.png" class="d-block w-100" alt="...">
+            <img class="i" src="<%=slider[i].file%>" class="d-block w-100" alt="...">
         </div>
-        <div class="carousel-item" data-interval="2000">
-            <img class="i" src="./banner3.png" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img class="i" src="./banner1.png" class="d-block w-100" alt="...">
-        </div>
+    <%}%>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -171,32 +167,17 @@
                 </h1>
 
 <div class="card-deck">
+    <%for(var i=0;i<news.length;i++){%>
     <div class="card">
-        <img src="./images/banner3.png" class="card-img-top" alt="...">
+        <%=console.log(news[i].file)%>
+        <img src="<%=news[i].file%>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <h5 class="card-title"><%=news[i].title%></h5>
+            <p class="card-text"><%=news[i].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[i].time%></small></p>
         </div>
     </div>
-    <div class="card">
-        <img src="./images/banner1.png" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>
-    <div class="card">
-        <img src="./images/banner1.png" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This card has even longer content than the first to show that equal height action.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-        </div>
-    </div>
+<%}%>
 </div>
                         </section>
                     </div>
