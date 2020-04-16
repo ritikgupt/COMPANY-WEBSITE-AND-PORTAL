@@ -105,12 +105,22 @@
         </div>
 </header>
 <div id="carouselExampleInterval" class="carousel slide asd" data-ride="carousel">
-        <%for( var i=0;i<slider.length;i++){%>
-    <div class="carousel-inner min-vh-2200">
-        <div class="carousel-item active " data-interval="10000" >
-            <img class="i" src="<%=slider[i].file%>" class="d-block w-100" alt="...">
+    <div class="carousel-inner">
+            <%for( var i=0;i<slider.length;i++){%>
+                <%if(i==0){%>
+        <div class="carousel-item active " data-interval="20000" >
+                
+            <img class="i" src="<%=slider[i].file%>" class="d-block w-100" alt="..."> 
         </div>
-    <%}%>
+        <%}%>
+       
+            <div class="carousel-item" data-interval="20000" >
+                
+                    <img class="i" src="<%=slider[i].file%>" class="d-block w-100" alt="...">
+                  
+                </div>
+              
+        <%}%>
     </div>
     <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
