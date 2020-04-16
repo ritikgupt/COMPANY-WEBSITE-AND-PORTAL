@@ -9,9 +9,23 @@ var h=require("passport-local-mongoose");
 var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
-var pdfdocument=require("pdfkit");
-var fs=require("fs");
-// const vfsFonts = require('./pdfmake/vfs_fonts');
+var pdf=require("pdf").pdf
+var fs=require("fs")
+var doc=new pdf()
+doc.text(20,30,"This is the first page text")
+doc.text(20,40,"this is more text in the pdf on the first page")
+doc.addPage()
+doc.text(20,20,"This is the second page of the pdf document.") 
+doc.setProperties({
+  title:"Basic pdf file",
+  subject:"Expense Sheet",
+  creator:"Ritik Gupta",
+  keywords:"AMZ"
+})
+var filename="output.pdf"
+fs.writeFile(filename,doc.output(),function(err,data){
+  console.log("Pdf file created");
+})
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
