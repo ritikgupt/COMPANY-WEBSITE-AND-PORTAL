@@ -7,19 +7,16 @@
             </div>
                 <div class="field">
                     <label>Description</label>
-                    <textarea name="shop[body]"></textarea>
+                    <textarea name="news[desc]"></textarea>
                 </div>
             <div class="field">
                     <label>Posted By</label>
-                    <input type="text" name="shop[username]" value="<%=currentUser.username%>">
+                    <input type="date" name="news[time]">
                 </div>
                 <div class="field">
                         <label>Upload Image</label>
-                        <input type="file" name="shop[image]">
+                        <input type="file" name="news[file]">
                     </div>    
-            <div class="field">
-                <input type="text" id="ac" name="shop[id]" value="<%=currentUser.id%>">
-            </div>
             <button class="ui button" type="submit">Submit</button>
             </div>
         </form>
@@ -31,7 +28,4 @@
         background-size:cover;
         background-repeat:no-repeat;
     }
-    #ac{
-            visibility:hidden;
-        }
     </style>

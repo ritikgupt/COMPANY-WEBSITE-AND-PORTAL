@@ -12,6 +12,7 @@ var crypto=require("crypto");
 var pdf=require("pdf").pdf
 var fs=require("fs")
 var Slider=require("./models/slider");
+var News=require("./models/news");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -66,18 +67,27 @@ app.get("/",async(req,res,next)=>{
    console.log("err")
    else
    {
-     console.log(sliders.length)
    for(var i=0;i<sliders.length;i++)
    {
 slider.push(sliders[i])
    }}
   
  });
- await News.find({},function(err,news){
-   
+ await News.find({},function(err,newss){
+   if(err)
+   console.log("err")
+   else{
+     for(var i=0;i<newss.length;i++)
+   {
+     news.push(newss[i])
+   }
+   }
+
  })
  console.log(slider.length)
  console.log(slider)
+ console.log(news.length)
+ console.log(news)
  res.render("amz");
 
 })
@@ -94,6 +104,18 @@ function isLoggedIn(req,res,next){
   else
   res.redirect("/login");
 }
+app.get("/newnews",function(req,res){
+  res.render("newnews");
+})
+app.post("/newnews",upload.single('news[file]'),function(req,res){
+  News.create({
+    title:req.body.news.title,
+    file:req.file.path,
+    desc:req.body.news.desc,
+    time:Date.now()
+  })
+  res.redirect("/")
+})
 app.get("/about",function(req,res){
     res.render("about");
 })
