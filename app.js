@@ -11,21 +11,7 @@ var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var pdf=require("pdf").pdf
 var fs=require("fs")
-var doc=new pdf()
-doc.text(20,30,"This is the first page text")
-doc.text(20,40,"this is more text in the pdf on the first page")
-doc.addPage()
-doc.text(20,20,"This is the second page of the pdf document.") 
-doc.setProperties({
-  title:"Basic pdf file",
-  subject:"Expense Sheet",
-  creator:"Ritik Gupta",
-  keywords:"AMZ"
-})
-var filename="output.pdf"
-fs.writeFile(filename,doc.output(),function(err,data){
-  console.log("Pdf file created");
-})
+var Slider=require("./models/slider");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -72,8 +58,27 @@ passport.deserializeUser(Detail.deserializeUser());
 // app.get("/header",function(req,res){
 //     res.render("header")
 // })
-app.get("/",function(req,res){
-    res.render("amz");
+app.get("/",async(req,res,next)=>{
+  var slider=[]
+  var news=[]
+ await Slider.find({},function(err,sliders){
+   if(err)
+   console.log("err")
+   else
+   {
+     console.log(sliders.length)
+   for(var i=0;i<sliders.length;i++)
+   {
+slider.push(sliders[i])
+   }}
+  
+ });
+ await News.find({},function(err,news){
+   
+ })
+ console.log(slider.length)
+ console.log(slider)
+ res.render("amz");
 
 })
 // Detail.create({
@@ -132,9 +137,24 @@ app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
 )
   res.redirect("/dashboard")}
   else{
-    Request_staff.create({
-      desc:req.body.request_staff.desc
-    })
+//     var doc=new pdf()
+// doc.text(20,30,"This is the first page text")
+// doc.text(20,40,"this is more text in the pdf on the first page")
+// doc.addPage()
+// doc.text(20,20,"This is the second page of the pdf document.") 
+// doc.setProperties({
+//   title:"Basic pdf file",
+//   subject:"Expense Sheet",
+//   creator:"Ritik Gupta",
+//   keywords:"AMZ"
+// })
+// var filename="output.pdf"
+// fs.writeFile(filename,doc.output('./uploads'),function(err,data){
+//   console.log("Pdf file created");
+// })
+    // Request_staff.create({
+    //   desc:req.body.request_staff.desc
+    // })
 // var doc=new pdfdocument();
 // doc.pipe(fs.createWriteStream(Date.now()));
 // doc.fontSize(25).text(req.body.)
@@ -157,6 +177,15 @@ app.get("/offline",function(req,res){
 
 app.get("/workshop",function(req,res){
     res.render("workshop");
+})
+app.get("/newslider",function(req,res){
+  res.render("newslider");
+})
+app.post("/newslider",upload.single('slider[file]'),function(req,res){
+  Slider.create({
+file:req.file.path
+  })
+  res.redirect("/");
 })
 app.get("/forgot",function(req,res){
     res.render("forgot");
