@@ -165,21 +165,16 @@
     </div>
     </div>
 </section>
-
-
-            
+<h1 class="headline-dark">
+        <center> Recent News</center>
+    </h1>
+    <section class="discover-our-story">
+<%for(var i=0;i<news.length;i++){%>
+        <%if(i%3==0){%>
 <div class="w3-container">
 
     <div class="w3-content w3-display-container">
-            <%for(var i=0;i<news.length;i++){%>
-                    <%if(i%3==0){%>
-                        <%console.log(i)%>
         <div class="w3-display-container mySlides">
-            <section class="discover-our-story">
-                <h1 class="headline-dark">
-                    <center> Recent News</center>
-                </h1>
-
 <div class="card-deck">
      <%}%> 
     <div class="card">
@@ -190,18 +185,14 @@
             <p class="card-text"><%=news[i].desc%></p>
             <p class="card-text"><small class="text-muted">Last updated on <%=news[i].time%></small></p>
         </div>
-
-</div>
-<%}%>                        </section>
-                      
-                    </div>
-                   
-                </div>   
-                
-        </div>
-      
     </div>
-   
+<%}%>
+</div>
+                        </section>
+                    </div>
+                </div>   
+        </div>
+
 <style>
 .card{
 cursor: pointer;
