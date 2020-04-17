@@ -167,9 +167,13 @@
 </section>
 
 
+            
 <div class="w3-container">
 
     <div class="w3-content w3-display-container">
+            <%for(var i=0;i<news.length;i++){%>
+                    <%if(i%3==0){%>
+                        <%console.log(i)%>
         <div class="w3-display-container mySlides">
             <section class="discover-our-story">
                 <h1 class="headline-dark">
@@ -177,7 +181,7 @@
                 </h1>
 
 <div class="card-deck">
-    <%for(var i=0;i<news.length;i++){%>
+     <%}%> 
     <div class="card">
         <%=console.log(news[i].file)%>
         <img src="<%=news[i].file%>" class="card-img-top" alt="...">
@@ -186,197 +190,18 @@
             <p class="card-text"><%=news[i].desc%></p>
             <p class="card-text"><small class="text-muted">Last updated on <%=news[i].time%></small></p>
         </div>
-    </div>
-<%}%>
+
 </div>
-                        </section>
+<%}%>                        </section>
+                      
                     </div>
+                   
                 </div>   
+                
         </div>
-
-<div class="w3-container">
-
-    <div class="w3-content w3-display-container">
-        <div class="w3-display-container mySlides">
-            <section class="discover-our-story">
-                <h1 class="headline-dark">
-                    <center> Recent News</center>
-                </h1>
-
-                <div class="card-deck">
-                    <div class="card">
-                        <img src="./images/banner3.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional
-                                content. This card has even longer content than the first to show that equal height
-                                action.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+      
     </div>
-</div>
-
-<div class="w3-container">
-
-    <div class="w3-content w3-display-container">
-        <div class="w3-display-container mySlides">
-            <section class="discover-our-story">
-                <h1 class="headline-dark">
-                    <center> Recent News</center>
-                </h1>
-
-                <div class="card-deck">
-                    <div class="card">
-                        <img src="./images/banner3.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional
-                                content. This card has even longer content than the first to show that equal height
-                                action.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
-
-<div class="w3-container">
-
-    <div class="w3-content w3-display-container">
-        <div class="w3-display-container mySlides">
-            <section class="discover-our-story">
-                <h1 class="headline-dark">
-                    <center> Recent News</center>
-                </h1>
-
-                <div class="card-deck">
-                    <div class="card">
-                        <img src="./images/banner3.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional
-                                content. This card has even longer content than the first to show that equal height
-                                action.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
-
-<div class="w3-container">
-
-    <div class="w3-content w3-display-container">
-        <div class="w3-display-container mySlides">
-            <section class="discover-our-story">
-                <h1 class="headline-dark">
-                    <center> Recent News</center>
-                </h1>
-
-                <div class="card-deck">
-                    <div class="card">
-                        <img src="./images/banner3.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in
-                                to additional
-                                content. This content is a little bit longer.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This card has supporting text below as a natural lead-in to additional
-                                content.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <img src="./images/banner1.png" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to
-                                additional
-                                content. This card has even longer content than the first to show that equal height
-                                action.</p>
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-</div>
+   
 <style>
 .card{
 cursor: pointer;
@@ -396,8 +221,8 @@ box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
 color:black;
 }
 </style>
-<a href="#recent" class="as3" onclick="plusDivs(-1)">&#10094;</a>
-<a href="#recent"class="as4" onclick="plusDivs(1)">&#10095;</a>
+<button class="as3" onclick="plusDivs(-1)">&#10094;</button>
+<button class="as4" onclick="plusDivs(1)">&#10095;</button>
     </div>
     </section>
 
