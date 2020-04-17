@@ -16,7 +16,7 @@ var News=require("./models/news");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
-    cb(null,'./public/uploads/');
+    cb(null,'uploads/');
   },
   filename:function(req,file,cb){
     cb(null,new Date().toISOString()+file.originalname);
@@ -37,7 +37,7 @@ app.use(b.urlencoded({ extended: true }));
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
 app.set("view engine","ejs");
 app.use(a.static("public"));
-app.use(a.static("uploads"));
+app.use('/uploads',a.static("uploads"));
 // app.use(a.static('uploads'));
 c.set('useCreateIndex', true);
 app.use(g());
