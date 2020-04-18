@@ -12,6 +12,7 @@ var crypto=require("crypto");
 var pdf=require("pdf").pdf
 var fs=require("fs")
 var Slider=require("./models/slider");
+var Sponsor=require("./models/sponsor");
 var News=require("./models/news");
 var multer=require("multer");
 var storage=multer.diskStorage({
@@ -206,6 +207,15 @@ app.get("/newslider",function(req,res){
 })
 app.post("/newslider",upload.single('slider[file]'),function(req,res){
   Slider.create({
+file:req.file.path
+  })
+  res.redirect("/");
+})
+app.get("/newsponsor",function(req,res){
+  res.render("newsponsor");
+})
+app.post("/newsponsor",upload.single('sponsor[file]'),function(req,res){
+  Sponsor.create({
 file:req.file.path
   })
   res.redirect("/");
