@@ -1,7 +1,5 @@
-
 <!doctype html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <link href="/CSS/amz.css" rel="stylesheet" type="text/css">
@@ -27,8 +25,6 @@
     
 </head>
 <style>
-
-
     .asd{
         padding-top:3.8%;
         margin-bottom: 0%;
@@ -169,30 +165,52 @@
         <center> Recent News</center>
     </h1>
     <section class="discover-our-story">
-<%for(var i=0;i<news.length;i++){%>
-        <%if(i%3==0){%>
-<div class="w3-container">
-
-    <div class="w3-content w3-display-container">
+            <div class="w3-container">
+                    <div class="w3-content w3-display-container">
+<%for(var i=0;i<2;i++){%>
         <div class="w3-display-container mySlides">
+               
 <div class="card-deck">
-     <%}%> 
+   <% if (news[i*3+0]!=undefined){%>
     <div class="card">
-        <%=console.log(news[i].file)%>
-        <img src="<%=news[i].file%>" class="card-img-top" alt="...">
+        <%=console.log(news[i*3+0].file)%>
+        <img src="<%=news[i*3+0].file%>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title"><%=news[i].title%></h5>
-            <p class="card-text"><%=news[i].desc%></p>
-            <p class="card-text"><small class="text-muted">Last updated on <%=news[i].time%></small></p>
+            <h5 class="card-title"><%=news[i*3+0].title%></h5>
+            <p class="card-text"><%=news[i*3+0].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[i*3+0].time%></small></p>
+        </div>
+    </div>
+<%}%>
+<% if (news[i*3+1]!=undefined){%>
+    <div class="card">
+        <%=console.log(news[i*3+1].file)%>
+        <img src="<%=news[i*3+1].file%>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%=news[i*3+1].title%></h5>
+            <p class="card-text"><%=news[i*3+1].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[i*3+1].time%></small></p>
+        </div>
+    </div>
+<%}%>
+<% if (news[i*3+2]!=undefined){%>
+    <div class="card">
+        <%=console.log(news[i*3+2].file)%>
+        <img src="<%=news[i*3+2].file%>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%=news[i*3+2].title%></h5>
+            <p class="card-text"><%=news[i*3+2].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[i*3+2].time%></small></p>
         </div>
     </div>
 <%}%>
 </div>
-                        </section>
+                       
                     </div>
                 </div>   
         </div>
-
+<%}%>
+</section>
 <style>
 .card{
 cursor: pointer;
@@ -287,25 +305,21 @@ color:black;
         <div class="row">
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
@@ -313,32 +327,26 @@ color:black;
         <div class="row">
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
         </div>
-
     
-
 </div>
 </div>
     <div class="container">
@@ -347,25 +355,21 @@ color:black;
         <div class="row">
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
@@ -373,25 +377,21 @@ color:black;
         <div class="row">
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
             <div class="column">
                 <h2>Rounded Images</h2>
-
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSpnAmpdYj7uYBLpRBj0xuEC0zApfsGqihfuIw7NpIG_5WBcVay"
                     alt="Avatar" style="width:200px">
             </div>
@@ -743,7 +743,6 @@ let body = selectElement('body');
 menuToggler.addEventListener('click',function() {
     body.classList.toggle('open');
 });  
-
 window.sr=ScrollReveal();
 sr.reveal(".animate-left",{
     origin:"left",
@@ -759,11 +758,9 @@ sr.reveal(".animate-right", {
 });
 var si = 1;
 showDivs(si);
-
 function plusDivs(n) {
     showDivs(si += n);
 }
-
 function showDivs(n) {
     var i;
     var x = document.getElementsByClassName("mySlides");
@@ -776,11 +773,9 @@ function showDivs(n) {
 }
 var slideIndex = 1;
 showDivison(slideIndex);
-
 function plusDivison(n) {
     showDivison(slideIndex += n);
 }
-
 function showDivison(n) {
     var i;
     var x = document.getElementsByClassName("ms");
@@ -793,11 +788,9 @@ function showDivison(n) {
 }
 var s = 1;
 showDi(s);
-
 function plusDi(n) {
     showDi(s += n);
 }
-
 function showDi(n) {
     var i;
     var x = document.getElementsByClassName("m");
