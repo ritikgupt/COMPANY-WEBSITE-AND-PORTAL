@@ -64,6 +64,7 @@ passport.deserializeUser(Detail.deserializeUser());
 app.get("/",async(req,res,next)=>{
   var slider=[]
   var news=[]
+  var sponsor=[]
  await Slider.find({},function(err,sliders){
    if(err)
    console.log("err")
@@ -85,12 +86,19 @@ slider.push(sliders[i])
    }
    }
 
- })
- console.log(slider.length)
- console.log(slider)
- console.log(news.length)
- console.log(news)
- res.render("amz",{news:news,slider:slider});
+ });
+ await Sponsor.find({},function(err,sponsors){
+  if(err)
+  console.log("err")
+  else
+  {
+  for(var i=0;i<sponsors.length;i++)
+  {
+sponsor.push(sponsors[i])
+  }}
+});
+console.log(sponsor);
+ res.render("amz",{news:news,slider:slider,sponsor:sponsor});
 
 })
 // Detail.create({

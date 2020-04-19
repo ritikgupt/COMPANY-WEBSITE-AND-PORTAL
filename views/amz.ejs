@@ -167,42 +167,43 @@
     <section class="discover-our-story">
             <div class="w3-container">
                     <div class="w3-content w3-display-container">
-<% var z=((news.length)/3)%>
+<% var z=((news.length))%>
+<%var n=((news.length))%>
 <%console.log(z)%>
 <%for(var i=0;i<z;i++){%>
         <div class="w3-display-container mySlides">
                
 <div class="card-deck">
-   <% if (news[i*3+0]!=undefined){%>
+   <% if (news[(i)%n]!=undefined){%>
     <div class="card">
-        <%=console.log(news[i*3+0].file)%>
-        <img src="<%=news[i*3+0].file%>" class="card-img-top" alt="...">
+        <%=console.log(news[i%n].file)%>
+        <img src="<%=news[i%n].file%>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title"><%=news[i*3+0].title%></h5>
-            <p class="card-text"><%=news[i*3+0].desc%></p>
-            <p class="card-text"><small class="text-muted">Last updated on <%=news[i*3+0].time%></small></p>
+            <h5 class="card-title"><%=news[i%n].title%></h5>
+            <p class="card-text"><%=news[i%n].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[i%n].time%></small></p>
         </div>
     </div>
 <%}%>
-<% if (news[i*3+1]!=undefined){%>
+<% if (news[(i+1)%n]!=undefined){%>
     <div class="card">
-        <%=console.log(news[i*3+1].file)%>
-        <img src="<%=news[i*3+1].file%>" class="card-img-top" alt="...">
+        <%=console.log(news[(i+1)%n].file)%>
+        <img src="<%=news[(i+1)%n].file%>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title"><%=news[i*3+1].title%></h5>
-            <p class="card-text"><%=news[i*3+1].desc%></p>
-            <p class="card-text"><small class="text-muted">Last updated on <%=news[i*3+1].time%></small></p>
+            <h5 class="card-title"><%=news[(i+1)%n].title%></h5>
+            <p class="card-text"><%=news[(i+1)%n].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[(i+1)%n].time%></small></p>
         </div>
     </div>
 <%}%>
-<% if (news[i*3+2]!=undefined){%>
+<% if (news[(i+2)%n]!=undefined){%>
     <div class="card">
-        <%=console.log(news[i*3+2].file)%>
-        <img src="<%=news[i*3+2].file%>" class="card-img-top" alt="...">
+        <%=console.log(news[(i+2)%n].file)%>
+        <img src="<%=news[(i+2)%n].file%>" class="card-img-top" alt="...">
         <div class="card-body">
-            <h5 class="card-title"><%=news[i*3+2].title%></h5>
-            <p class="card-text"><%=news[i*3+2].desc%></p>
-            <p class="card-text"><small class="text-muted">Last updated on <%=news[i*3+2].time%></small></p>
+            <h5 class="card-title"><%=news[(i+2)%n].title%></h5>
+            <p class="card-text"><%=news[(i+2)%n].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[(i+2)%n].time%></small></p>
         </div>
     </div>
 <%}%>
