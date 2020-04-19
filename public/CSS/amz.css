@@ -455,10 +455,8 @@ margin-bottom:2.4rem;
     position:relative;
 }
  .column {
-  float: left;
-  width: 70%;
-  
-  
+  float: left; 
+  margin-bottom:5%;
 } 
  .column1 {
   float: left;
@@ -982,10 +980,11 @@ img{
   
   padding-left:5%;
 }
+.ms{
+  height:80%;
+}
 .round{
-  
-
-  height:50%;
+  height:80%;
 }
 .column1{
  float:left;
@@ -1160,6 +1159,7 @@ box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.2
 
 }
 .mySlides {display:none;}
+.m{display:none;}
 /*animations*/
 @keyframes fadeUp{
     0%{
