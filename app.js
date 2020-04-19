@@ -68,6 +68,18 @@ app.get("/",async(req,res,next)=>{
   var news=[]
   var sponsor=[]
   var image=[]
+  var member=[]
+  await Member.find({},function(err,members){
+    if(err)
+    console.log("err")
+    else
+    {
+    for(var i=0;i<members.length;i++)
+    {
+ member.push(members[i])
+    }}
+   
+  });
  await Slider.find({},function(err,sliders){
    if(err)
    console.log("err")
@@ -111,9 +123,21 @@ image.push(images[i])
   }}
  
 });
-console.log(image);
- res.render("amz",{news:news,slider:slider,sponsor:sponsor,image:image});
+console.log(member);
+ res.render("amz",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
+})
+app.get("/newmember",function(req,res){
+  res.render("newmember");
+})
+app.post("/newmember",upload.single('member[file]'),function(req,res){
+  Member.create({
+    file:req.file.path,
+    name:req.body.member.name,
+    designation:req.body.member.designation,
+    linkedIn:req.body.member.linkedIn
 
+  })
+  res.redirect("/")
 })
 // Detail.create({
 //     username:"r",
