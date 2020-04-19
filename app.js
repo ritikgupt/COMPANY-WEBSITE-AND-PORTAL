@@ -13,6 +13,7 @@ var pdf=require("pdf").pdf
 var fs=require("fs")
 var Slider=require("./models/slider");
 var Sponsor=require("./models/sponsor");
+var Member=require("./models/member")
 var News=require("./models/news");
 var multer=require("multer");
 var storage=multer.diskStorage({
