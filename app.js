@@ -33,6 +33,7 @@ var Student=require("./models/student");
 var Detail=require("./models/detail");
 var Staff=require("./models/staff");
 var Request=require("./models/request");
+var Image=require("./models/image");
 var Request_staff=require("./models/request_staff");
 app.use(b.urlencoded({ extended: true }));
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
@@ -65,6 +66,7 @@ app.get("/",async(req,res,next)=>{
   var slider=[]
   var news=[]
   var sponsor=[]
+  var image=[]
  await Slider.find({},function(err,sliders){
    if(err)
    console.log("err")
@@ -97,8 +99,19 @@ slider.push(sliders[i])
 sponsor.push(sponsors[i])
   }}
 });
-console.log(sponsor);
- res.render("amz",{news:news,slider:slider,sponsor:sponsor});
+await Image.find({},function(err,images){
+  if(err)
+  console.log("err")
+  else
+  {
+  for(var i=0;i<images.length;i++)
+  {
+image.push(images[i])
+  }}
+ 
+});
+console.log(image);
+ res.render("amz",{news:news,slider:slider,sponsor:sponsor,image:image});
 
 })
 // Detail.create({
@@ -123,6 +136,15 @@ app.post("/newnews",upload.single('news[file]'),function(req,res){
     file:req.file.path,
     desc:req.body.news.desc,
     time:Date.now()
+  })
+  res.redirect("/")
+})
+app.get("/image",function(req,res){
+  res.render("image");
+})
+app.post("/image",upload.single('image[file]'),function(req,res){
+  Image.create({
+    file:req.file.path
   })
   res.redirect("/")
 })

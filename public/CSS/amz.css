@@ -424,6 +424,7 @@ margin-bottom:2.4rem;
 }
 .z{
     height:200px;
+   
 }
 .as3{
     text-decoration: none;
@@ -972,6 +973,8 @@ img{
 }
 .z{
     height:200px;
+    width:200%;
+   margin-left:60%;
 }
 .column {
   float:left;
