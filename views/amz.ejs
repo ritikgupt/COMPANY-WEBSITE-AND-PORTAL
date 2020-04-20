@@ -127,7 +127,19 @@
         <span class="sr-only">Next</span>
     </a>
 </div>
-
+<style>
+#a1{
+    background-image: url('https://5.imimg.com/data5/JJ/SD/MY-6420141/solid-color-aluminium-composite-panel-212-dark-blue-500x500.jpg');
+  height: 100%; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#a2{
+    color:white;
+}
+    </style>
 <section class="discover-our-story">
     <h1 class="headline-dark">
         <center> Our Courses</center>
@@ -161,10 +173,11 @@
     </div>
     </div>
 </section>
-<h1 class="headline-dark">
-        <center> Recent News</center>
-    </h1>
-    <section class="discover-our-story">
+
+    <section class="discover-our-story"  id="a1">
+            <h1 class="headline-dark" id="a2">
+                    <center> Recent News</center>
+                </h1>
             <div class="w3-container">
                     <div class="w3-content w3-display-container">
 <% var z=((news.length))%>
@@ -220,6 +233,7 @@
         text-align: center;
         font-size:2rem;
         padding-bottom:3%;
+        color:white;
     }
 .card{
 cursor: pointer;
@@ -522,8 +536,8 @@ color:black;
     </section>
     </div>
     
-   
-        <h1 class="headline-dark">
+   <section id="a1">
+        <h1 class="headline-dark" id="a2">
             <center> Images</center>
         </h1>
             <div class="row animate-left">
@@ -567,7 +581,7 @@ color:black;
             </div>
             
             <center><button class="btn green">View more!</button></center>
-     
+   </section>
     <section class="discover-our-story" id="cu">
         <h1 class="headline-dark">
             <center> Contact US</center>
