@@ -16,6 +16,7 @@ var Sponsor=require("./models/sponsor");
 var Member=require("./models/member")
 var News=require("./models/news");
 var Intern=require("./models/intern");
+var Program=require("./models/program");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -134,16 +135,22 @@ app.post("/newmember",upload.single('member[file]'),function(req,res){
     name:req.body.member.name,
     designation:req.body.member.designation,
     linkedIn:req.body.member.linkedIn
-
   })
   res.redirect("/")
 })
-// Detail.create({
-//     username:"r",
-//     password:"123",
-//     email:"ritikgupta89369@gmail.com",
-//     type:"Staff"
-// })
+app.get("/newprogram",function(req,res){
+  res.render("program");
+})
+app.post("/newprogram",function(req,res){
+  Program.create({
+    about:req.body.program.about,
+    eligibility:req.body.program.eligibility,
+    certificate:req.body.program.certificate,
+    fee:req.body.program.fee,
+    type:req.body.program.type,
+  })
+  res.redirect("/")
+})
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated()){
       return next();

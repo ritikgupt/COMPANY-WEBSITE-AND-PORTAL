@@ -1,0 +1,41 @@
+<div class="ui main text container segment">
+        <div class="ui huge header">New News</div>
+        <form class="ui form" action="/newprogram" method="POST">
+            <div class="field">
+                <label>About The Course</label>
+                <textarea name="program[about]"></textarea>
+            </div>
+                <div class="field">
+                    <label>Eligibility And Duration</label>
+                    <textarea name="program[eligibility]"></textarea>
+                </div>
+                <div class="field">
+                        <label>Certificate And Benefits</label>
+                        <textarea name="program[certificate]"></textarea>
+                    </div>
+                    <div class="field">
+                            <label>Fees And Accomodation</label>
+                            <textarea name="program[fee]"></textarea>
+                        </div>
+                        <div class="field">
+                                <label>Type</label>
+                                <select class="input-field" id="country" name="program[type]">
+                                        <option value="#">Select Type</option>
+                                        <option value="Mechanical">Mechanical Engineering</option>
+                                        <option value="Civil">Civil Engineering</option>
+                                        <option value="Electrical">Electrical Engineering</option>
+                                        <option value="Computer">Computer Science And Engineering</option>
+                                      </select> 
+                              </div>
+            <button class="ui button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <style>
+    body{
+        background-image:url(https://st.depositphotos.com/3008028/3751/i/950/depositphotos_37516417-stock-photo-black-and-white-background.jpg);
+        background-size:cover;
+        background-repeat:no-repeat;
+    }
+    </style>
