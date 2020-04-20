@@ -80,108 +80,149 @@
 <h1 class="headline-dark ">
     <center>Workshops</center>
 </h1>
-<div class="conatiner">
-<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
-    <div class="carousel-inner">
-        <div class="carousel-item active" data-interval="10000">
-        <div class="card-deck">
-            <div class="card">
-                <img src="./images/banner3.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/banner1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/banner1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                        content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </div>
-        </div>
-        <div class="carousel-item" data-interval="2000">
-            <div class="card-deck">
-                <div class="card">
-                    <img src="./images/banner3.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                            content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/banner1.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/banner1.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                            content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
-        <div class="card-deck">
-            <div class="card">
-                <img src="./images/banner3.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
-                        content. This content is a little bit longer.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/banner1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="./images/banner1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Card title</h5>
-                    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                        content. This card has even longer content than the first to show that equal height action.</p>
-                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                </div>
-            </div>
-        </div>
-        </div>
+<section class="discover-our-story">
+        <div class="w3-container">
+                <div class="w3-content w3-display-container">
+<% var z=((workshop.length))%>
+<%var n=((workshop.length))%>
+<%for(var i=0;i<z;i++){%>
+        <div class="container">
+    <div class="w3-display-container mySlides ">
+           
+<div class="card-deck">
+<% if (workshop[(2*i)%n]!=undefined){%>
+<div class="card">
+
+    <img src="<%=workshop[(2*i)%n].file%>" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"><%=workshop[(2*i)%n].title%></h5>
+        <p class="card-text"><%=workshop[(2*i)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i)%n].time%></small></p>
+    </div>  
+</div>
+<%}%>
+<% if (workshop[(2*i+2)%n]!=undefined){%>
+<div class="card">
+    
+    <img src="<%=workshop[(2*i+2)%n].file%>" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"><%=workshop[(2*i+2)%n].title%></h5>
+        <p class="card-text"><%=workshop[(2*i+2)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+2)%n].time%></small></p>
     </div>
-    <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-    </a>
+</div>
+<%}%>
+<% if (workshop[(2*i+4)%n]!=undefined){%>
+<div class="card">
+    
+    <img src="<%=workshop[(2*i+4)%n].file%>" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"><%=workshop[(2*i+4)%n].title%></h5>
+        <p class="card-text"><%=workshop[(2*i+4)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+4)%n].time%></small></p>
+    </div>
+</div>
+
+<%}%>
+</div>
+                   
+                </div>
+            </div> 
+            <%}%>  
+    </div>
+</section>
+</div>
+<section class="discover-our-story">
+        <div class="w3-container">
+                <div class="w3-content w3-display-container">
+<% var z=((workshop.length))%>
+<%var n=((workshop.length))%>
+
+<%for(var i=0;i<z;i++){%>
+        <div class="container">
+    <div class="w3-display-container ms ">
+           
+<div class="card-deck">
+<% if (workshop[(2*i+1)%n]!=undefined){%>
+<div class="card">
+
+    <img src="<%=workshop[(2*i+1)%n].file%>" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"><%=workshop[(2*i+1)%n].title%></h5>
+        <p class="card-text"><%=workshop[(2*i+1)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+1)%n].time%></small></p>
+    </div>
+</div>
+<%}%>
+<% if (workshop[(2*i+3)%n]!=undefined){%>
+<div class="card">
+    
+    <img src="<%=workshop[(2*i+3)%n].file%>" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"><%=workshop[(2*i+3)%n].title%></h5>
+        <p class="card-text"><%=workshop[(2*i+3)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+3)%n].time%></small></p>
+    </div>
+</div>
+<%}%>
+<% if (workshop[(2*i+5)%n]!=undefined){%>
+<div class="card">
+    
+    <img src="<%=workshop[(2*i+5)%n].file%>" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"><%=workshop[(2*i+5)%n].title%></h5>
+        <p class="card-text"><%=workshop[(2*i+5)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+5)%n].time%></small></p>
+    </div>
+</div>
+<%}%>
+</div>
+                   
+                </div>
+            </div>   
+    </div>
+<%}%>
+</section>
+</div>
+<style>
+    #asdf{
+position:Absolute;
+margin-top:0%;
+margin-right:0%;
+width:100%;
+    }
+ .btn{
+    width:10%;
+    height:1rem;
+    text-align: center;
+    font-size:2rem;
+    padding-bottom:3%;
+}
+
+.card{
+cursor: pointer;
+transition: 0.4s;
+/* box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22); */
+margin: 2px auto;
+width: 300px;
+height: 300px;
+border-radius: 40px;
+}
+.card:hover {
+transform: scale(0.9, 0.9);
+box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
+-5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+.sr-only{
+color:black;
+}
+</style>
+<button class="as13" onclick="plusDivs(-1)">&#10094;</button>
+<button class="as14" onclick="plusDivs(1)">&#10095;</button>
+<button class="as15" onclick="plusDivison(-1)">&#10094;</button>
+<button class="as16" onclick="plusDivison(1)">&#10095;</button>
+</div>
+</section>
 </div>
 </div>
 <footer id="asdf">
@@ -245,32 +286,79 @@
 </footer>
 
 <style>
-    #asdf{
-        position:absolute;
-        top:100%;
-        width:100%;
-    }
-    .card{
-        bottom:5%;
-        cursor: pointer;
-  transition: 0.4s;
-        /* box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22); */
-        margin: 30px auto;
-  width: 300px;
-  height: 300px;
-  border-radius: 40px;
-    }
-    .card:hover {
-  transform: scale(0.9, 0.9);
-  box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
-    -5px -5px 30px 15px rgba(0,0,0,0.22);
-}
     .headline-dark{
         
-        padding-top:8%;
-        padding-bottom:6% ;
+        padding-top:5%;
+        
     }
     .sr-only{
         color:black;
     }
 </style>
+ <script>
+        const selectElement=function(element){
+    return document.querySelector(element);
+    };
+    let menuToggler = selectElement('.menu-toggle');
+    let body = selectElement('body');
+    menuToggler.addEventListener('click',function() {
+        body.classList.toggle('open');
+    });  
+    window.sr=ScrollReveal();
+    sr.reveal(".animate-left",{
+        origin:"left",
+        duration:1500,//duration is in milliseconds
+        distance:'25rem',
+        delay:300
+    });
+    sr.reveal(".animate-right", {
+        origin: "right",
+        duration: 1500,//duration is in milliseconds
+        distance: '25rem',
+        delay: 300
+    });
+    var si = 1;
+    showDivs(si);
+    function plusDivs(n) {
+        showDivs(si += n);
+    }
+    function showDivs(n) {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        if (n > x.length) { si = 1 }
+        if (n < 1) { si = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[si - 1].style.display = "block";
+    }
+    var slideIndex = 1;
+    showDivison(slideIndex);
+    function plusDivison(n) {
+        showDivison(slideIndex += n);
+    }
+    function showDivison(n) {
+        var i;
+        var x = document.getElementsByClassName("ms");
+        if (n > x.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[slideIndex - 1].style.display = "block";
+    }
+    var s = 1;
+    showDi(s);
+    function plusDi(f) {
+        showDi(s += f);
+    }
+    function showDi(f) {
+        var i;
+        var x = document.getElementsByClassName("m");
+        if (f > x.length) { s = 1 }
+        if (f < 1) { s = x.length }
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        x[s - 1].style.display = "block";
+    }</script>

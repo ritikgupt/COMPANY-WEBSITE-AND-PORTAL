@@ -1,0 +1,27 @@
+<div class="ui main text container segment">
+        <div class="ui huge header">New News</div>
+        <form class="ui form" action="/newworkshop" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label>Title</label>
+                <input type="text" name="workshop[title]" placeholder="title">
+            </div>
+                <div class="field">
+                    <label>Description</label>
+                    <textarea name="workshop[desc]"></textarea>
+                </div>
+            <div class="field">
+                    <label>Posted By</label>
+                    <input type="date" name="workshop[time]">
+                </div>
+                <div class="field">
+                        <label>Upload Image</label>
+                        <input type="file" name="workshop[file]">
+                    </div>    
+            <button class="ui button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <style>
+  
+    </style>

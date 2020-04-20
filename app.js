@@ -17,6 +17,7 @@ var Member=require("./models/member")
 var News=require("./models/news");
 var Intern=require("./models/intern");
 var Program=require("./models/program");
+var Workshop=require("./models/workshop");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -273,9 +274,33 @@ app.get("/online",function(req,res){
 app.get("/offline",function(req,res){
     res.render("offline");
 })
-
-app.get("/workshop",function(req,res){
-    res.render("workshop");
+app.get("/newworkshop",function(req,res){
+  res.render("newworkshop");
+})
+app.get("/workshop",async(req,res,next)=>{
+  var workshop=[]
+    await Workshop.find({},function(err,workshops){
+    if(err)
+    console.log(err)
+    else{
+for(i=0;i<workshops.length;i++){
+  workshop.push(workshops[i])
+}
+    }
+        
+      })
+      console.log(workshop)
+      res.render("workshop",{workshop:workshop})
+    }
+)
+app.post("/newworkshop",upload.single('workshop[file]'),function(req,res){
+  Workshop.create({
+    title:req.body.workshop.title,
+    file:req.file.path,
+    desc:req.body.workshop.desc,
+    time:Date.now()
+  })
+  res.redirect("/workshop");
 })
 app.get("/newslider",function(req,res){
   res.render("newslider");
