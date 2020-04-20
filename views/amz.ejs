@@ -169,14 +169,13 @@
                     <div class="w3-content w3-display-container">
 <% var z=((news.length))%>
 <%var n=((news.length))%>
-<%console.log(z)%>
 <%for(var i=0;i<z;i++){%>
         <div class="w3-display-container mySlides ">
                
 <div class="card-deck">
    <% if (news[(i)%n]!=undefined){%>
     <div class="card">
-        <%=console.log(news[i%n].file)%>
+
         <img src="<%=news[i%n].file%>" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title"><%=news[i%n].title%></h5>
@@ -187,7 +186,7 @@
 <%}%>
 <% if (news[(i+1)%n]!=undefined){%>
     <div class="card">
-        <%=console.log(news[(i+1)%n].file)%>
+        
         <img src="<%=news[(i+1)%n].file%>" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title"><%=news[(i+1)%n].title%></h5>
@@ -198,7 +197,7 @@
 <%}%>
 <% if (news[(i+2)%n]!=undefined){%>
     <div class="card">
-        <%=console.log(news[(i+2)%n].file)%>
+        
         <img src="<%=news[(i+2)%n].file%>" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title"><%=news[(i+2)%n].title%></h5>

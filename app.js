@@ -15,6 +15,7 @@ var Slider=require("./models/slider");
 var Sponsor=require("./models/sponsor");
 var Member=require("./models/member")
 var News=require("./models/news");
+var Intern=require("./models/intern");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -121,9 +122,7 @@ await Image.find({},function(err,images){
   {
 image.push(images[i])
   }}
- 
 });
-console.log(member);
  res.render("amz",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
 })
 app.get("/newmember",function(req,res){
@@ -246,6 +245,20 @@ app.get("/logout",function(req,res){
 })
 app.get("/intern",function(req,res){
     res.render("intern");
+})
+app.post("/intern",function(req,res){
+  Intern.create({
+    name:req.body.intern.name,
+    college:req.body.intern.college,
+    phone:req.body.intern.phone,
+    email:req.body.intern.email,
+    branch:req.body.intern.branch,
+    course:req.body.intern.course,
+    venue:req.body.intern.venue,
+    referal:req.body.intern.referal,
+    internship:req.body.intern.internship,
+  })
+  res.redirect("/");
 })
 app.get("/online",function(req,res){
     res.render("online");
