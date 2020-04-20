@@ -34,9 +34,32 @@
         height:900px;
         width:100%;
     }
+    .icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display:inline-block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  background-color: #000;
+  font-size: 20px;
+  writing-mode:vertical-rl;
+}
+
+
 </style>
 <body>
-<header>
+        <div class="icon-bar">
+                <a href="/intern">Verify Certificate</a> 
+        </div>
+<header id="header">
     <div class="container">
         <nav class="nav">
             <div class="menu menu-toggle">
@@ -744,7 +767,18 @@ function showDi(f) {
         x[i].style.display = "none";
     }
     x[s - 1].style.display = "block";
-}</script>
+}
+// When the user scrolls down 50px from the top of the document, resize the header's font size
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    document.getElementById("header").style.fontSize = "30px";
+  } else {
+    document.getElementById("header").style.fontSize = "90px";
+  }
+}
+</script>
 </body>
 
 </html>
