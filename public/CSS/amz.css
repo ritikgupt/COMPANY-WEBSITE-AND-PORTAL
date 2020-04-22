@@ -32,6 +32,15 @@ html{
     max-width:100%;
 
 }
+.asd{
+  padding-top:30%;
+  margin-bottom: 0%;
+  background-size:cover;
+}
+.i{
+  height:800px;
+  width:100%;
+}
 .about{
     width:50%;
 }
@@ -65,12 +74,13 @@ p{
     font-size:550%;
 }
 header{
-    width:100%;
-    position:fixed;
-    top:0;
-    left:0;
-    z-index:1;/*this will keep it always a top*/ 
-    background-image:linear-gradient(to bottom,rgba(0,0,0,.5),#000);
+  width:100%;
+  position:fixed;
+  top:0;
+  left:0;
+  height:150px;
+  z-index:1;/*this will keep it always a top*/ 
+  background-image:linear-gradient(to bottom,rgba(245, 245, 245, 0.863),rgba(245, 245, 245, 0.863));
 }
 .nav{
 height:7.2rem;
@@ -138,7 +148,7 @@ z-index:1500; /* to keep it at top of everything all the time such a high value 
 }
 .nav-link{
     display:block;
-    color:#fff;
+    color:#000;
     text-transform:uppercase;
     font-size:1.6rem;
     letter-spacing:2px;
@@ -368,7 +378,7 @@ margin-bottom:2.4rem;
   border: none;
   outline: none;
   color: white;
-  padding: 25px 16px;
+  padding: 25px 20px;
   padding-top:1px;
   background-color: inherit;
   font-family: var(--body-font);
@@ -720,8 +730,10 @@ transform:initial;
 transition:initial;
     }
     .nav-item{
-        margin:0 2.4rem;
+        margin-top:5%;
+        margin-right:2%;
         border:none;
+        
     }
     .nav-item:last-child{
         margin-right:0;
@@ -731,13 +743,14 @@ transition:initial;
     }
     .active{
         position:relative;
+        
     }
     .active::before{
         content:" ";
         position:absolute;
         width:100%;
         height:2px;
-        background-color:#fff;
+        background-color:#000;
         left:0;
         bottom:-3px;
     }
@@ -816,15 +829,7 @@ margin-bottom:2.4rem;
   float: left;
   overflow: hidden;
 }
-.dropdown1 .dropbtn {
-   display:block;
-    color:rgb(236, 232, 232);
-    text-transform:uppercase;
-    font-size:1.3rem;
-    letter-spacing:2px;
-    margin-right:-2px;
-    transition:color .5s;
-}
+
 .dropdown1-content {
     font-family: var(--body-font);
   display: none;
@@ -915,7 +920,16 @@ padding: 8px 16px;
 background-color:#000;
 color:#fff;
 position:absolute;
-top:40%;
+top:45%;
+}
+.asd{
+  padding-top:8%;
+  margin-bottom: 0%;
+  background-size:cover;
+}
+.i{
+  height:800px;
+  width:100%;
 }
 .as14{
   text-decoration: none;
@@ -924,7 +938,7 @@ padding: 8px 16px;
 background-color:#000;
 color:#fff;
 position:absolute;
-top:40%;
+top:45%;
 left:97%;
 }
 .as15{
@@ -935,7 +949,7 @@ padding: 8px 16px;
 background-color:#000;
 color:#fff;
 position:absolute;
-top:90%;
+top:95%;
 }
 .as16{
   text-decoration: none;
@@ -944,7 +958,7 @@ padding: 8px 16px;
 background-color:#000;
 color:#fff;
 position:absolute;
-top:90%;
+top:95%;
 left:97%;
 }
 
