@@ -380,10 +380,10 @@ file:req.file.path
   res.redirect("/");
 })
 app.post("/:id/edituser",function(req,res){
-  req.body.shop.body=req.sanitize(req.body.shop.body)
- detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
+ console.log(req.body.detail)
+ Detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
       if(err){
-          res.redirect("home");
+          res.redirect("/adminhome");
       }
       else{
           res.redirect("/"+req.params.id);
