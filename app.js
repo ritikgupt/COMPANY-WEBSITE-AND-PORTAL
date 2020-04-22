@@ -190,6 +190,55 @@ Detail.create({
 })
 res.redirect("/login");
 })
+app.get("/students",function(req,res){
+  Detail.find({},function(err,details){
+    if(err)
+    console.log(err)
+    else
+    res.render("students",{details:details})
+  })
+  
+})
+app.get("/employee",function(req,res){
+  Detail.find({},function(err,details){
+    if(err)
+    console.log(err)
+    else
+    res.render("employee",{details:details})
+  })
+  
+})
+app.get("/:id",function(req,res){
+  Detail.findById(req.params.id,function(err,foundDetail){
+      if(err){
+          res.redirect("/");
+      }
+      else{
+          res.render("show",{detail:foundDetail});
+      }
+  })
+})
+app.delete("/:id",function(req,res){
+  Detail.findByIdAndRemove(req.params.id,function(err){
+      if(err){
+          res.redirect("/")
+      }
+      else{
+          res.redirect("/students")
+      }
+  })
+})
+app.get("/:id/edituser",function(req,res){
+  Detail.findById(req.params.id,function(err,foundDetail){
+      if(err){
+          console.log("Error");
+      }
+      else{
+          res.render("edituser",{detail:foundDetail})
+      }
+  })
+})    
+
 app.get("/image",function(req,res){
   res.render("image");
 })
@@ -329,6 +378,17 @@ app.post("/newslider",upload.single('slider[file]'),function(req,res){
 file:req.file.path
   })
   res.redirect("/");
+})
+app.post("/:id/edituser",function(req,res){
+  req.body.shop.body=req.sanitize(req.body.shop.body)
+ detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
+      if(err){
+          res.redirect("home");
+      }
+      else{
+          res.redirect("/"+req.params.id);
+      }
+  })
 })
 app.get("/newsponsor",function(req,res){
   res.render("newsponsor");

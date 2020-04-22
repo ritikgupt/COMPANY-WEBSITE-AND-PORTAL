@@ -1,0 +1,45 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+<div class="ui main text container segment" id="a">
+        <div class="ui huge header">Edit Details</div>
+        <form class="ui form" action="/<%=detail.id%>/edituser" method="POST" enctype="multipart/form-data">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="detail[name]" value="<%=detail.name%>">
+            </div>
+                <div class="field">
+                    <label>E_id/Stu_id</label>
+                    <input type="text" name="detail[username]" value="<%=detail.username%>">
+                </div>
+                <div class="field">
+                    <label>Mobile Number</label>
+                    <input type="text" name="detail[mobile]" value="<%=detail.mobile%>">
+                </div>
+                <div class="field">
+                    <label>Department/Branch</label>
+                    <input type="text" name="detail[dept]" value="<%=detail.dept%>">
+                </div>
+                <div class="field">
+                    <label>College</label>
+                    <input type="text" name="detail[college]" value="<%=detail.college%>">
+                </div>
+            <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="detail[email]" value="<%=detail.email%>">
+                </div>
+            <button class="ui button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <style>
+   body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+#a{
+    margin-top:3%;
+}
+    </style>
