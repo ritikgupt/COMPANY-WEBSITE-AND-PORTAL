@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/CSS/amz.css" rel="stylesheet" type="text/css">
+    <!-- <script src="/amz.js"></script> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <title>AMZ Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+</head>
+<style>
+    .asd{
+        padding-top:3.8%;
+        margin-bottom: 0%;
+        background-size:cover;
+    }
+    .i{
+        height:900px;
+        width:100%;
+    }
+    .icon-bar {
+  position: fixed;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.icon-bar a {
+  display:inline-block;
+  text-align: center;
+  padding: 16px;
+  transition: all 0.3s ease;
+  color: white;
+  background-color: #000;
+  font-size: 20px;
+  writing-mode:vertical-rl;
+}
+
+
+</style>
+<body>
+        <div class="icon-bar">
+                <a href="/intern">Verify Certificate</a> 
+        </div>
+<header id="header">
+    <div class="container">
+        <nav class="nav">
+            <div class="menu menu-toggle">
+               <i class="fas fa-bars"></i>
+<i class="fas fa-times"></i>
+            </div>
+            <!-- <a href="amz.html" class="logo"><img src="images/logo-rosa.png" alt=""></a> -->
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <div class="dropdown1">
+                            <button class="dropbtn">Add New Items
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="dropdown1-content">
+                                <a href="/newslider">New Slide</a>
+                                <a href="/newnews">New News</a>
+                                <a href="/newsponsor">New Sponsor</a>
+                                <a href="/image">New Image</a>
+                                <a href="/newmember">New Team Member</a>
+                                <a href="#cu">New Student</a>
+                                <a href="#cu">New Employee</a>
+                                <a href="/newworkshop">New Workshop</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                    <div class="dropdown1">
+                        <button class="dropbtn"> Student Requests
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown1-content">
+                            <a href="/mechanical">Patent Request</a>
+                            <a href="/civil">Research Paper</a>
+                            <a href="/computer">Startup Idea</a>
+                            <a href="/electrical">Innovative Idea</a>
+                            <a href="/electrical">Complaints</a>
+                        </div>
+                    </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/workshop" class="nav-link">Enrolled Students</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login" class="nav-link">Employees</a>
+                    </li>
+                    <li class="nav-item">
+                    <div class="dropdown1">
+                        <button class="dropbtn">Message
+                            <i class="fa fa-caret-down"></i>
+                        </button>
+                        <div class="dropdown1-content">
+                            <a href="#">Message to students</a>
+                            <a href="#">Message to Employee</a>
+                        </div>
+                    </div>
+                    </li>
+                
+            </ul>
+        </nav>
+        </div>
+</header>
+<div id="carouselExampleInterval" class="carousel slide asd" data-ride="carousel">
+    <div class="carousel-inner">
+            <%for( var i=0;i<slider.length;i++){%>
+                <%if(i==0){%>
+        <div class="carousel-item active " data-interval="2000" >
+                
+            <img class="i" src="<%=slider[i].file%>" class="d-block w-100" alt="..."> 
+        </div>
+        <%}%>
+       
+            <div class="carousel-item" data-interval="5000" >
+                
+                    <img class="i" src="<%=slider[i].file%>" class="d-block w-100" alt="...">
+                  
+                </div>
+              
+        <%}%>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<style>
+#a1{
+    background-image: url('https://5.imimg.com/data5/JJ/SD/MY-6420141/solid-color-aluminium-composite-panel-212-dark-blue-500x500.jpg');
+  height: 100%; 
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#a2{
+    color:white;
+}
+    </style>
+<section class="discover-our-story">
+    <h1 class="headline-dark">
+        <center> Our Courses</center>
+    </h1>
+    <div class="container">
+      
+        <div class="company-info">
+            <div class="cards-list animate-left">
+            
+                <div class="card1 1">
+                    <div class="card_image"> <img src="https://www.datachangers.com/wp-content/uploads/2017/09/Offline-courses.gif" /> </div>
+                    <div class="card_title title-white">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="container ">
+            
+                <div class="company-info">
+                    <div class="cards-list animate-right">
+            
+                        <div class="card1 1">
+                            <div class="card_image"> <img src="https://www.networkcomputing.com/sites/default/files/styles/flexslider_full/public/1online-courses_0.jpg?itok=AugZIPNb" /> </div>
+                            <div class="card_title title-white">
+                                
+                            </div>
+                        </div>
+                    </div>
+        </div>
+    </div>
+    </div>
+    </div>
+</section>
+
+    <section class="discover-our-story"  id="a1">
+            <h1 class="headline-dark" id="a2">
+                    <center> Recent News</center>
+                </h1>
+            <div class="w3-container">
+                    <div class="w3-content w3-display-container">
+<% var z=((news.length))%>
+<%var n=((news.length))%>
+<%for(var i=0;i<z;i++){%>
+        <div class="w3-display-container mySlides ">
+               
+<div class="card-deck">
+   <% if (news[(i)%n]!=undefined){%>
+    <div class="card">
+
+        <img src="<%=news[i%n].file%>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%=news[i%n].title%></h5>
+            <p class="card-text"><%=news[i%n].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[i%n].time%></small></p>
+        </div>
+    </div>
+<%}%>
+<% if (news[(i+1)%n]!=undefined){%>
+    <div class="card">
+        
+        <img src="<%=news[(i+1)%n].file%>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%=news[(i+1)%n].title%></h5>
+            <p class="card-text"><%=news[(i+1)%n].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[(i+1)%n].time%></small></p>
+        </div>
+    </div>
+<%}%>
+<% if (news[(i+2)%n]!=undefined){%>
+    <div class="card">
+        
+        <img src="<%=news[(i+2)%n].file%>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title"><%=news[(i+2)%n].title%></h5>
+            <p class="card-text"><%=news[(i+2)%n].desc%></p>
+            <p class="card-text"><small class="text-muted">Last updated on <%=news[(i+2)%n].time%></small></p>
+        </div>
+    </div>
+<%}%>
+</div>
+                       
+                    </div>
+                </div>   
+        </div>
+<%}%>
+</section>
+<style>
+     .btn{
+        width:10%;
+        height:1rem;
+        text-align: center;
+        font-size:2rem;
+        padding-bottom:3%;
+        color:white;
+    }
+.card{
+cursor: pointer;
+transition: 0.4s;
+/* box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22); */
+margin: 30px auto;
+width: 300px;
+height: 300px;
+border-radius: 40px;
+}
+.card:hover {
+transform: scale(0.9, 0.9);
+box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
+-5px -5px 30px 15px rgba(0,0,0,0.22);
+}
+.sr-only{
+color:black;
+}
+</style>
+<button class="as3" onclick="plusDivs(-1)">&#10094;</button>
+<button class="as4" onclick="plusDivs(1)">&#10095;</button>
+    </div>
+    </section>
+
+    <h1 class="headline-dark">
+        <center> Our Partners</center>
+    </h1>
+    <section>
+        <%var n=sponsor.length%>
+    <%for(var i=0;i<((sponsor.length/3));i++){%>
+    <div class="container">
+        <div class="ms">
+        <div class="row">
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+3)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+6)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+9)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+12)%n].file%>"
+                                    alt="Avatar" style="width:200px">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+1)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+4)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+7)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+10)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+13)%n].file%>"
+                                    alt="Avatar" style="width:200px">
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+2)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+5)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+8)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+11)%n].file%>"
+                    alt="Avatar" style="width:200px">
+            </div>
+            <div class="column">
+                <h2>Rounded Images</h2>
+                <img class="round"  src="<%=sponsor[(3*i+14)%n].file%>"
+                                    alt="Avatar" style="width:200px">
+            </div>
+        </div>
+       
+    </div>
+</div>
+<%}%>
+    </section>
+<button class="as11" onclick="plusDivison(-1)">&#10094;</button>
+<button class="as12" onclick="plusDivison(1)">&#10095;</button>
+    
+    <div class="abc" id="ad">
+<section class="discover-our-story">
+    <h1 class="headline-dark">
+        <center> Advisory Committee</center>
+    </h1>
+<div class="container">
+    <div class="row animate-left">
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Michele Miller</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                    <li><a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-google"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=839">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Patricia Knott</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-github"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-google"></i></a>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=856">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Justin Ramos</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                    <li><a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-google"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=836">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Mary Huntley</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-github"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-google"></i></a>
+                </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="row animate-right">
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=1027">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Michele Miller</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                <li><a href="#"><i class="fab fa-twitter"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-github"></i></a>
+                </li>
+                <li><a href="#"><i class="fab fa-google"></i></a>
+                </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=839">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Patricia Knott</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                    <li><a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-google"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=856">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Justin Ramos</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                    <li><a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-google"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="column1">
+            <div class="our-team">
+                <div class="picture">
+                    <img class="img-fluid" src="https://picsum.photos/130/130?image=836">
+                </div>
+                <div class="team-content">
+                    <h3 class="name">Mary Huntley</h3>
+                    <h4 class="title">Web Developer</h4>
+                </div>
+                <ul class="social">
+                    <li><a href="#"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-github"></i></a>
+                    </li>
+                    <li><a href="#"><i class="fab fa-google"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    </section>
+    </div>
+    
+   <section id="a1">
+        <h1 class="headline-dark" id="a2">
+            <center> Images</center>
+        </h1>
+            <div class="row animate-left">
+                <div class="column">
+                    <a target="_blank" href="https://images.pexels.com/photos/1172064/pexels-photo-1172064.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500">
+                    <img class="z" src="<%=image[0].file%>" alt="Avatar"></a>
+                </div>
+                <div class="column">
+                    
+    
+                        <img class="z" src="<%=image[1].file%>" alt="Avatar"></a>
+                </div>
+                <div class="column">
+                   
+    
+                        <img class="z" src="<%=image[2].file%>" alt="Avatar"></a>
+                </div>
+                <div class="column">
+                    
+                        <img class="z" src="<%=image[3].file%>" alt="Avatar"></a>
+                </div>
+            </div>
+            <div class="row animate-right">
+                <div class="column">
+                        <img class="z" src="<%=image[4].file%>" alt="Avatar"></a>
+                </div>
+                <div class="column">
+                    
+    
+                        <img class="z" src="<%=image[5].file%>" alt="Avatar"></a>
+                </div>
+                <div class="column">
+                  
+                        <img class="z" src="<%=image[6].file%>" alt="Avatar"></a>
+                </div>
+                <div class="column">
+                   
+    
+                        <img class="z" src="<%=image[7].file%>" alt="Avatar"></a>
+                </div>
+            </div>
+            
+            <center><button class="btn green">View more!</button></center>
+   </section>
+    <section class="discover-our-story" id="cu">
+        <h1 class="headline-dark">
+            <center> Contact US</center>
+        </h1>
+        <div class="container">
+    
+            <div class="company-info">
+                <div class="company-description padding-right animate-left">
+                    <div class="global-headline">
+                        <h2 class="sub-headline">
+    
+                        </h2>
+    
+                    </div>
+                    <img class="about" src="./images/download.png">
+                   
+                </div>
+                <div class="company-description animate-right">
+                    <p class="ac">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                        industry's standard
+                        dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to
+                        make a type specimen
+                        book. It has survived not only five centuries, but also the leap into electronic typesetting,
+                        remaining essentially
+                        unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem
+                        Ipsum passages, and more
+                        recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    </p>
+                 
+                </div>
+            </div>
+        </div>
+    </section>
+
+<footer>
+    <div class="container">
+        <div class="back-to-top">
+            <a href="a1"><i class="fas fa-chevron-up"></i></a>
+        </div>
+        <div class="footer-content">
+            <div class="footer-content-about animate-up">
+                <h4>About AMZ</h4>
+               
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                    has been the
+                    industry's standard
+                    dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                    scrambled it to
+                    make a type specimen
+                    book. It has survived not only five centuries, but also the leap into electronic
+                    typesetting,
+                    remaining essentially
+                    unchanged. It was popularised in the 1960s with the release of Letraset sheets
+                    containing Lorem
+                    Ipsum passages, and more
+                    recently with desktop publishing software like Aldus PageMaker including versions of
+                    Lorem Ipsum.
+                </p>
+            </div>
+
+            <div class="footer-content-divider animate-bottom">
+                <div class="social-media">
+                    <h4>Follow Us On</h4>
+                    <ul class="social-icons">
+                        <li>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-facebook-square"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fab fa-github"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="newsletter-container">
+                    <h4>Newsletter</h4>
+                    <form action="#" class="newsletter-form">
+                        <input type="text" class="newsletter-input" placeholder="your email">
+                        <button class="newsletter-btn" type="submit">
+                            <i class="fas fa-envelope"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+    <script>
+    const selectElement=function(element){
+return document.querySelector(element);
+};
+let menuToggler = selectElement('.menu-toggle');
+let body = selectElement('body');
+menuToggler.addEventListener('click',function() {
+    body.classList.toggle('open');
+});  
+window.sr=ScrollReveal();
+sr.reveal(".animate-left",{
+    origin:"left",
+    duration:1500,//duration is in milliseconds
+    distance:'25rem',
+    delay:300
+});
+sr.reveal(".animate-right", {
+    origin: "right",
+    duration: 1500,//duration is in milliseconds
+    distance: '25rem',
+    delay: 300
+});
+var si = 1;
+showDivs(si);
+function plusDivs(n) {
+    showDivs(si += n);
+}
+function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) { si = 1 }
+    if (n < 1) { si = x.length }
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[si - 1].style.display = "block";
+}
+var slideIndex = 1;
+showDivison(slideIndex);
+function plusDivison(n) {
+    showDivison(slideIndex += n);
+}
+function showDivison(n) {
+    var i;
+    var x = document.getElementsByClassName("ms");
+    if (n > x.length) { slideIndex = 1 }
+    if (n < 1) { slideIndex = x.length }
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[slideIndex - 1].style.display = "block";
+}
+var s = 1;
+showDi(s);
+function plusDi(f) {
+    showDi(s += f);
+}
+function showDi(f) {
+    var i;
+    var x = document.getElementsByClassName("m");
+    if (f > x.length) { s = 1 }
+    if (f < 1) { s = x.length }
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    x[s - 1].style.display = "block";
+}
+// When the user scrolls down 50px from the top of the document, resize the header's font size
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+    document.getElementById("header").style.fontSize = "30px";
+  } else {
+    document.getElementById("header").style.fontSize = "90px";
+  }
+}
+</script>
+</body>
+
+</html>

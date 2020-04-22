@@ -10,6 +10,7 @@ var DetailSchema=new c.Schema({
     type:String,
     resetPasswordToken:String,
     resetPasswordExpires:Date,
+    image:String,
 })
 DetailSchema.plugin(h)
 module.exports=c.model("Detail",DetailSchema)

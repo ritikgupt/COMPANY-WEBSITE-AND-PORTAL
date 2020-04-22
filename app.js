@@ -137,7 +137,7 @@ app.post("/newmember",upload.single('member[file]'),function(req,res){
     designation:req.body.member.designation,
     linkedIn:req.body.member.linkedIn
   })
-  res.redirect("/")
+  res.redirect("/adminhome")
 })
 app.get("/newprogram",function(req,res){
   res.render("program");
@@ -169,7 +169,7 @@ app.post("/newnews",upload.single('news[file]'),function(req,res){
     desc:req.body.news.desc,
     time:Date.now()
   })
-  res.redirect("/")
+  res.redirect("/adminhome")
 })
 app.get("/image",function(req,res){
   res.render("image");
@@ -178,7 +178,7 @@ app.post("/image",upload.single('image[file]'),function(req,res){
   Image.create({
     file:req.file.path
   })
-  res.redirect("/")
+  res.redirect("/adminhome")
 })
 app.get("/about",function(req,res){
     res.render("about");
@@ -318,7 +318,7 @@ app.post("/newsponsor",upload.single('sponsor[file]'),function(req,res){
   Sponsor.create({
 file:req.file.path
   })
-  res.redirect("/");
+  res.redirect("/adminhome");
 })
 app.get("/forgot",function(req,res){
     res.render("forgot");
@@ -441,6 +441,68 @@ app.get("/logout",function(req,res){
     console.log(req.user)
     res.redirect("/login");
 })
+app.get("/adminhome",async(req,res,next)=>{
+  var slider=[]
+  var news=[]
+  var sponsor=[]
+  var image=[]
+  var member=[]
+  await Member.find({},function(err,members){
+    if(err)
+    console.log("err")
+    else
+    {
+    for(var i=0;i<members.length;i++)
+    {
+ member.push(members[i])
+    }}
+   
+  });
+ await Slider.find({},function(err,sliders){
+   if(err)
+   console.log("err")
+   else
+   {
+   for(var i=0;i<sliders.length;i++)
+   {
+slider.push(sliders[i])
+   }}
+  
+ });
+ await News.find({},function(err,newss){
+   if(err)
+   console.log("err")
+   else{
+     for(var i=0;i<newss.length;i++)
+   {
+     news.push(newss[i])
+   }
+   }
+
+ });
+ await Sponsor.find({},function(err,sponsors){
+  if(err)
+  console.log("err")
+  else
+  {
+  for(var i=0;i<sponsors.length;i++)
+  {
+sponsor.push(sponsors[i])
+  }}
+});
+await Image.find({},function(err,images){
+  if(err)
+  console.log("err")
+  else
+  {
+  for(var i=0;i<images.length;i++)
+  {
+image.push(images[i])
+  }}
+});
+ res.render("adminhome",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
+})
+
 app.listen("3000",function(){
     console.log("Server has started.");
 });
