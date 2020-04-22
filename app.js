@@ -171,6 +171,25 @@ app.post("/newnews",upload.single('news[file]'),function(req,res){
   })
   res.redirect("/adminhome")
 })
+app.get("/newuser",function(req,res){
+  res.render("newuser");
+})
+app.post("/newuser",upload.single("detail[file]"),function(req,res){
+  console.log(req.file)
+Detail.create({
+  name:req.body.detail.name,
+  username:req.body.detail.username,
+  password:req.body.detail.password,
+  email:req.body.detail.email,
+  mobile:req.body.detail.mobile,
+  dept:req.body.detail.dept,
+  type:req.body.detail.type,
+  image:req.body.detail.image,
+  file:req.file.path,
+  college:req.body.detail.college
+})
+res.redirect("/login");
+})
 app.get("/image",function(req,res){
   res.render("image");
 })
@@ -204,7 +223,7 @@ app.post("/login",passport.authenticate("local",{
 }))
 app.get("/dashboard",isLoggedIn,function(req,res){
   console.log(req.user);
-  if(req.user.type=="Staff")
+  if(req.user.type=="Employee")
   res.render("staff",{currentStaff:req.user});
   else
   res.render("aspiring",{currentStudent:req.user});

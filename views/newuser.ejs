@@ -2,22 +2,46 @@
 
 <div class="ui main text container segment" id="a">
         <div class="ui huge header">New User</div>
-        <form class="ui form" action="/newnews" method="POST" enctype="multipart/form-data">
+        <form class="ui form" action="/newuser" method="POST" enctype="multipart/form-data">
             <div class="field">
-                <label>Title</label>
-                <input type="text" name="news[title]" placeholder="title">
+                <label>Name</label>
+                <input type="text" name="detail[name]" placeholder="title">
             </div>
                 <div class="field">
-                    <label>Description</label>
-                    <textarea name="news[desc]"></textarea>
-                </div>
-            <div class="field">
-                    <label>Posted By</label>
-                    <input type="date" name="news[time]">
+                    <label>E_id/Stu_id</label>
+                    <input type="text" name="detail[username]">
                 </div>
                 <div class="field">
-                        <label>Upload Image</label>
-                        <input type="file" name="news[file]">
+                    <label>Mobile Number</label>
+                    <input type="text" name="detail[mobile]">
+                </div>
+                <div class="field">
+                    <label>Department/Branch</label>
+                    <input type="text" name="detail[dept]">
+                </div>
+                <div class="field">
+                    <label>College</label>
+                    <input type="text" name="detail[college]">
+                </div>
+                <div class="field">
+                    <label>Password</label>
+                    <input type="password" name="detail[password]">
+                </div>
+                <div class="field">
+                    <label>Item_Type</label>
+                    <select class="ui search dropdown" name="detail[type]">
+                      <option value="Student">Student</option>
+                      <option value="Admin">Admin</option>
+                      <option value="Employee">Employee</option>
+                      </select>
+                </div>
+            <div class="field">
+                    <label>Email</label>
+                    <input type="email" name="detail[email]">
+                </div>
+                <div class="field">
+                        <label>Image</label>
+                        <input type="file" name="detail[file]">
                     </div>    
             <button class="ui button" type="submit">Submit</button>
             </div>
@@ -32,6 +56,6 @@
   background-size:cover
 }
 #a{
-    margin-top:10%;
+    margin-top:3%;
 }
     </style>
