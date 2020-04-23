@@ -139,106 +139,6 @@ app.post("/newmember",upload.single('member[file]'),function(req,res){
   })
   res.redirect("/adminhome")
 })
-app.get("/newprogram",function(req,res){
-  res.render("program");
-})
-app.post("/newprogram",function(req,res){
-  Program.create({
-    about:req.body.program.about,
-    eligibility:req.body.program.eligibility,
-    certificate:req.body.program.certificate,
-    fee:req.body.program.fee,
-    type:req.body.program.type,
-  })
-  res.redirect("/")
-})
-function isLoggedIn(req,res,next){
-  if(req.isAuthenticated()){
-      return next();
-  }
-  else
-  res.redirect("/login");
-}
-app.get("/newnews",function(req,res){
-  res.render("newnews");
-})
-app.post("/newnews",upload.single('news[file]'),function(req,res){
-  News.create({
-    title:req.body.news.title,
-    file:req.file.path,
-    desc:req.body.news.desc,
-    time:Date.now()
-  })
-  res.redirect("/adminhome")
-})
-app.get("/newuser",function(req,res){
-  res.render("newuser");
-})
-app.post("/newuser",upload.single("detail[file]"),function(req,res){
-  console.log(req.file)
-Detail.create({
-  name:req.body.detail.name,
-  username:req.body.detail.username,
-  password:req.body.detail.password,
-  email:req.body.detail.email,
-  mobile:req.body.detail.mobile,
-  dept:req.body.detail.dept,
-  type:req.body.detail.type,
-  image:req.body.detail.image,
-  file:req.file.path,
-  college:req.body.detail.college
-})
-res.redirect("/login");
-})
-app.get("/students",function(req,res){
-  Detail.find({},function(err,details){
-    if(err)
-    console.log(err)
-    else
-    res.render("students",{details:details})
-  })
-  
-})
-app.get("/employee",function(req,res){
-  Detail.find({},function(err,details){
-    if(err)
-    console.log(err)
-    else
-    res.render("employee",{details:details})
-  })
-  
-})
-app.get("/:id",function(req,res){
-  Detail.findById(req.params.id,function(err,foundDetail){
-      if(err){
-          res.redirect("/");
-      }
-      else{
-          res.render("show",{detail:foundDetail});
-      }
-  })
-})
-app.delete("/:id",function(req,res){
-  Detail.findByIdAndRemove(req.params.id,function(err){
-      if(err){
-          res.redirect("/")
-      }
-      else{
-          res.redirect("/students")
-      }
-  })
-})
-app.get("/:id/edituser",function(req,res){
-  Detail.findById(req.params.id,function(err,foundDetail){
-      if(err){
-          console.log("Error");
-      }
-      else{
-          res.render("edituser",{detail:foundDetail})
-      }
-  })
-})    
-
 app.get("/image",function(req,res){
   res.render("image");
 })
@@ -390,6 +290,85 @@ app.post("/:id/edituser",function(req,res){
       }
   })
 })
+app.get("/:id/changeuserphoto",function(req,res){
+  Detail.findById(req.params.id,function(err,foundDetail){
+      if(err){
+          console.log("Error");
+      }
+      else{
+          res.render("changeuserphoto",{detail:foundDetail})
+      }
+  }) 
+})
+app.get("/newprogram",function(req,res){
+  res.render("program");
+})
+app.post("/newprogram",function(req,res){
+  Program.create({
+    about:req.body.program.about,
+    eligibility:req.body.program.eligibility,
+    certificate:req.body.program.certificate,
+    fee:req.body.program.fee,
+    type:req.body.program.type,
+  })
+  res.redirect("/")
+})
+function isLoggedIn(req,res,next){
+  if(req.isAuthenticated()){
+      return next();
+  }
+  else
+  res.redirect("/login");
+}
+app.get("/newnews",function(req,res){
+  res.render("newnews");
+})
+app.post("/newnews",upload.single('news[file]'),function(req,res){
+  News.create({
+    title:req.body.news.title,
+    file:req.file.path,
+    desc:req.body.news.desc,
+    time:Date.now()
+  })
+  res.redirect("/adminhome")
+})
+app.get("/newuser",function(req,res){
+  res.render("newuser");
+})
+app.post("/newuser",upload.single("detail[file]"),function(req,res){
+  console.log(req.file)
+Detail.create({
+  name:req.body.detail.name,
+  username:req.body.detail.username,
+  password:req.body.detail.password,
+  email:req.body.detail.email,
+  mobile:req.body.detail.mobile,
+  dept:req.body.detail.dept,
+  type:req.body.detail.type,
+  image:req.body.detail.image,
+  file:req.file.path,
+  college:req.body.detail.college
+})
+res.redirect("/login");
+})
+app.get("/students",function(req,res){
+  Detail.find({},function(err,details){
+    if(err)
+    console.log(err)
+    else
+    res.render("students",{details:details})
+  })
+  
+})
+app.get("/employee",function(req,res){
+  Detail.find({},function(err,details){
+    if(err)
+    console.log(err)
+    else
+    res.render("employee",{details:details})
+  })
+  
+})
 app.get("/newsponsor",function(req,res){
   res.render("newsponsor");
 })
@@ -402,6 +381,7 @@ file:req.file.path
 app.get("/forgot",function(req,res){
     res.render("forgot");
 })
+
 app.post("/forgot",function(req,res,next){
     async.waterfall([
         function(done){
@@ -581,6 +561,52 @@ image.push(images[i])
 });
  res.render("adminhome",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
 })
+app.delete("/:id",function(req,res){
+  Detail.findByIdAndRemove(req.params.id,function(err){
+      if(err){
+          res.redirect("/")
+      }
+      else{
+          res.redirect("/students")
+      }
+  })
+})
+app.get("/:id",function(req,res){
+  Detail.findById(req.params.id,function(err,foundDetail){
+      if(err){
+          res.redirect("/");
+      }
+      else{
+          res.render("show",{detail:foundDetail});
+      }
+  })
+})
+
+app.get("/:id/edituser",function(req,res){
+  Detail.findById(req.params.id,function(err,foundDetail){
+      if(err){
+          console.log("Error");
+      }
+      else{
+          res.render("edituser",{detail:foundDetail})
+      }
+  })
+})    
+
+
+// app.post("/:id/change",upload.single("detail[file]",{overwrite:true}),function(req,res){
+//   console.log(req.file.path);
+//   cloudinary.v2.uploader.upload(req.file.path,function(err,result){
+//       Shop.findByIdAndUpdate(req.params.id,{image:result.secure_url},function(err,updatedShop){
+//           if(err){
+//               res.redirect("home");
+//           }
+//           else{
+//               res.redirect("/"+req.params.id);
+//           }
+//       })
+//   })
+// })
 
 app.listen("3000",function(){
     console.log("Server has started.");

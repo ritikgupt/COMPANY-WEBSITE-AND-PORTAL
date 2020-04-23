@@ -5,16 +5,17 @@
         <div class="ui attached">
             <div class="item">
                 <img class="ui centered rounded image" src="<%=detail.file%>">
-                <%console.log(detail.file)%>
+                
                 <div class="description">
-                    <p><%=detail.username%></p>
+                    <h3>ID:<%=detail.username%></h3>
                     <h3><%=detail.dept%></h3>
                     <h3><%=detail.college%></h3>
-                    <h3><%=detail.email%></h3>
-                    <h3><%=detail.mobile%></h3>
+                    <h3>Email:<%=detail.email%></h3>
+                    <h3>Mobile Number:<%=detail.mobile%></h3>
                 </div>
                     <a class="ui blue basic button"href="/<%=detail._id%>/edituser">Edit details</a>
-                    <a class="ui blue basic button"href="/<%=detail._id%>/change">Change Photo</a>
+                    <a class="ui blue basic button"href="/<%=detail._id%>/changeuserphoto">Change Photo</a>
+                    <br><br>
                     <form action="/<%=detail._id%>?_method=Delete" method="POST">
                         <button class="ui red basic button">Remove</button>
                     </form>      
@@ -32,4 +33,5 @@
 .a{
     margin-top:2%;
 }
+
     </style>
