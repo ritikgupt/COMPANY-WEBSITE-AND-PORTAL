@@ -569,6 +569,30 @@ app.post("/adminhome",function(req,res){
   })
   res.redirect("/adminhome")
 })
+app.get("/message/:id",async(req,res,next)=>{
+var message=[]
+var detail=[]
+await Message.find({},function(err,messages){
+  if(err)
+  console.log("err")
+  else
+  {
+    for(var i=0;i<messages.length;i++)
+    {
+      message.push(messages[i])
+    }
+  }
+})
+req.params.id=req.user.id
+ await Detail.findById(req.params.id,function(err,foundDetail){
+    if(err)
+    console.log("err")
+    else
+    detail.push(foundDetail)
+  })
+res.render("message",{message:message,detail:detail})
+
+})
 app.get("/patent",function(req,res){
   Request.find({},function(err,requests){
     if(err)

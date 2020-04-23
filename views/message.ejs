@@ -1,0 +1,31 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<div class="ui main text container segment a">
+    <div class="ui huge header">Messages</div>
+<div class="ui compact message">
+        <% var a=detail[0].username%>
+        <ul class="list">
+          <%for(var i=0;i<message.length;i++){%>
+            <%if(detail[0].type=='Student'){%>
+            <%if(message[i].recep=='Student'|| message[i].recep==a){%>
+         <li><%=message[i].desc%></li><%}}%>
+              <%if(detail[0].type=='Employee'){%>
+                <%if(message[i].recep=='Employee'||message[i].recep==a){%>
+                  <li><%=message[i].desc%></li><%}}%>
+               <% }%>
+             
+              
+            </div>
+          <br>
+            <a class="ui red basic button"href="/dashboard">Back</a>
+          </div>
+            <style>
+             body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+.a{
+    margin-top:3%;
+}
+            </style>
