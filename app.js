@@ -11,6 +11,7 @@ var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var pdf=require("pdf").pdf
 var fs=require("fs")
+var Message=require("./models/message");
 var Slider=require("./models/slider");
 var Sponsor=require("./models/sponsor");
 var Member=require("./models/member")
@@ -561,7 +562,61 @@ image.push(images[i])
 });
  res.render("adminhome",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
 })
-
+app.post("/adminhome",function(req,res){
+  Message.create({
+    recep:req.body.message.recep,
+    desc:req.body.message.desc
+  })
+  res.redirect("/adminhome")
+})
+app.get("/patent",function(req,res){
+  Request.find({},function(err,requests){
+    if(err)
+    console.log("err")
+    else
+    res.render("patent",{requests:requests});
+    })
+  })
+app.get("/research",function(req,res){
+  Request.find({},function(err,requests){
+  if(err)
+  console.log("err")
+  else
+  res.render("research",{requests:requests});
+  })
+})
+app.get("/startupidea",function(req,res){
+  Request.find({},function(err,requests){
+    if(err)
+    console.log("err")
+    else
+    res.render("startupidea",{requests:requests});
+  })
+})
+app.get("/startupconsult",function(req,res){
+  Request.find({},function(err,requests){
+    if(err)
+    console.log("err")
+    else
+    res.render("startupconsult",{requests:requests});
+})
+})
+app.get("/innovative",function(req,res){
+  Request.find({},function(err,requests){
+    if(err)
+    console.log("err")
+    else
+    res.render("innovative",{requests:requests});
+  })
+})
+app.get("/complaints",function(req,res){
+  Request.find({},function(err,requests){
+    if(err)
+    console.log("err")
+    else
+    res.render("complaints",{requests:requests});
+  })
+})
 app.get("/:id/",function(req,res){
   Detail.findById(req.params.id,function(err,foundDetail){
       if(err){
