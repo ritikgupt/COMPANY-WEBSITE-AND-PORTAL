@@ -561,17 +561,8 @@ image.push(images[i])
 });
  res.render("adminhome",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
 })
-app.delete("/:id",function(req,res){
-  Detail.findByIdAndRemove(req.params.id,function(err){
-      if(err){
-          res.redirect("/")
-      }
-      else{
-          res.redirect("/students")
-      }
-  })
-})
-app.get("/:id",function(req,res){
+
+app.get("/:id/",function(req,res){
   Detail.findById(req.params.id,function(err,foundDetail){
       if(err){
           res.redirect("/");
@@ -592,21 +583,28 @@ app.get("/:id/edituser",function(req,res){
       }
   })
 })    
+app.delete("/:id/",function(req,res){
+  Detail.findByIdAndRemove(req.params.id,function(err){
+      if(err){
+          res.redirect("/")
+      }
+      else{
+          res.redirect("/students")
+      }
+  })
+})
 
-
-// app.post("/:id/change",upload.single("detail[file]",{overwrite:true}),function(req,res){
-//   console.log(req.file.path);
-//   cloudinary.v2.uploader.upload(req.file.path,function(err,result){
-//       Shop.findByIdAndUpdate(req.params.id,{image:result.secure_url},function(err,updatedShop){
-//           if(err){
-//               res.redirect("home");
-//           }
-//           else{
-//               res.redirect("/"+req.params.id);
-//           }
-//       })
-//   })
-// })
+app.post("/:id/changeuserphoto",upload.single("detail[file]",{overwrite:true}),function(req,res){
+  console.log(req.file.path)
+       Detail.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err,updatedDetail){
+          if(err){
+              res.redirect("/adminhome");
+          }
+          else{
+              res.redirect("/"+req.params.id);
+          }
+      })
+  })
 
 app.listen("3000",function(){
     console.log("Server has started.");

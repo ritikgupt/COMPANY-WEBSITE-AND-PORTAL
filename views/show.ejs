@@ -4,8 +4,8 @@
         <div class="ui huge header"><%=detail.name%></div>
         <div class="ui attached">
             <div class="item">
+             
                 <img class="ui centered rounded image" src="<%=detail.file%>">
-                
                 <div class="description">
                     <h3>ID:<%=detail.username%></h3>
                     <h3><%=detail.dept%></h3>
@@ -19,6 +19,11 @@
                     <form action="/<%=detail._id%>?_method=Delete" method="POST">
                         <button class="ui red basic button">Remove</button>
                     </form>      
+                  <%console.log(detail.type)%>
+                  <%if(detail.type=='Employee'){%>
+                  <a class="ui red basic button"href="/employee">Back</a><%}%>
+                  <%if(detail.type=='Student'){%>
+                  <a class="ui red basic button"href="/students">Back</a><%}%>
             </div>
     </div>
     
