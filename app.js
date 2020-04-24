@@ -593,53 +593,155 @@ req.params.id=req.user.id
 res.render("message",{message:message,detail:detail})
 
 })
-app.get("/patent",function(req,res){
-  Request.find({},function(err,requests){
+app.get("/patent",async(req,res,next)=>{
+  var request=[]
+  var detail=[]
+  await Request.find({},function(err,requests){
     if(err)
     console.log("err")
     else
-    res.render("patent",{requests:requests});
+   {for(var i=0;i<requests.length;i++){
+     if(requests[i].recep=="Patent")
+     request.push(requests[i])
+   }
+    }})
+    await Detail.find({},function(err,details){
+      if(err)
+      console.log()
+      else
+      {
+        for(var i=0;i<details.length;i++)
+        {
+          detail.push(details[i])
+        }
+      }
     })
+    res.render("patent",{detail:detail,request:request})
   })
-app.get("/research",function(req,res){
-  Request.find({},function(err,requests){
-  if(err)
-  console.log("err")
-  else
-  res.render("research",{requests:requests});
-  })
-})
-app.get("/startupidea",function(req,res){
-  Request.find({},function(err,requests){
+app.get("/research",async(req,res)=>{
+  var request=[]
+  var detail=[]
+  await Request.find({},function(err,requests){
     if(err)
     console.log("err")
     else
-    res.render("startupidea",{requests:requests});
-  })
+   {for(var i=0;i<requests.length;i++){
+     if(requests[i].recep=="Research")
+     request.push(requests[i])
+   }
+    }})
+    await Detail.find({},function(err,details){
+      if(err)
+      console.log()
+      else
+      {
+        for(var i=0;i<details.length;i++)
+        {
+          detail.push(details[i])
+        }
+      }
+    })
+    res.render("research",{detail:detail,request:request})
 })
-app.get("/startupconsult",function(req,res){
-  Request.find({},function(err,requests){
+app.get("/startupidea",async(req,res,next)=>{
+  var request=[]
+  var detail=[]
+  await Request.find({},function(err,requests){
     if(err)
     console.log("err")
     else
-    res.render("startupconsult",{requests:requests});
+   {for(var i=0;i<requests.length;i++){
+     if(requests[i].recep=="startupIdea")
+     request.push(requests[i])
+   }
+    }})
+    await Detail.find({},function(err,details){
+      if(err)
+      console.log()
+      else
+      {
+        for(var i=0;i<details.length;i++)
+        {
+          detail.push(details[i])
+        }
+      }
+    })
+    res.render("startupidea",{detail:detail,request:request})
 })
-})
-app.get("/innovative",function(req,res){
-  Request.find({},function(err,requests){
+app.get("/startupconsult",async(req,res,next)=>{
+  var request=[]
+  var detail=[]
+  await Request.find({},function(err,requests){
     if(err)
     console.log("err")
     else
-    res.render("innovative",{requests:requests});
-  })
+   {for(var i=0;i<requests.length;i++){
+     if(requests[i].recep=="StartupConsult")
+     request.push(requests[i])
+   }
+    }})
+    await Detail.find({},function(err,details){
+      if(err)
+      console.log()
+      else
+      {
+        for(var i=0;i<details.length;i++)
+        {
+          detail.push(details[i])
+        }
+      }
+    })
+    res.render("startupconsult",{detail:detail,request:request})
 })
-app.get("/complaints",function(req,res){
-  Request.find({},function(err,requests){
+app.get("/innovative",async(req,res)=>{
+  var request=[]
+  var detail=[]
+  await Request.find({},function(err,requests){
     if(err)
     console.log("err")
     else
-    res.render("complaints",{requests:requests});
-  })
+   {for(var i=0;i<requests.length;i++){
+     if(requests[i].recep=="InnovativeIdea")
+     request.push(requests[i])
+   }
+    }})
+    await Detail.find({},function(err,details){
+      if(err)
+      console.log()
+      else
+      {
+        for(var i=0;i<details.length;i++)
+        {
+          detail.push(details[i])
+        }
+      }
+    })
+    res.render("innovative",{detail:detail,request:request})
+})
+app.get("/complaints",async(req,res)=>{
+  var request=[]
+  var detail=[]
+  await Request.find({},function(err,requests){
+    if(err)
+    console.log("err")
+    else
+   {for(var i=0;i<requests.length;i++){
+     if(requests[i].recep=="Complaints")
+     request.push(requests[i])
+   }
+    }})
+    await Detail.find({},function(err,details){
+      if(err)
+      console.log()
+      else
+      {
+        for(var i=0;i<details.length;i++)
+        {
+          detail.push(details[i])
+        }
+      }
+    })
+    res.render("complaints",{detail:detail,request:request})
 })
 app.get("/:id/",function(req,res){
   Detail.findById(req.params.id,function(err,foundDetail){

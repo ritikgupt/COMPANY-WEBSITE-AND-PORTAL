@@ -71,7 +71,7 @@
                     </li>
                     <li class="nav-item">
                     <div class="dropdown1">
-                        <a class="nav-link"> Student Requests
+                        <a class="nav-link"> Student request
                             </a>
                         <div class="dropdown1-content">
                             <a href="/mechanical">Patent Request</a>
@@ -104,27 +104,33 @@
         </div>
 </header>
 <div class="ui main text container a">
-    <div class=" ui huge header">Enrolled Student requests</div>
+    <div class=" ui huge header">Enrolled Student request</div>
     <div class="ui top attached segment">
         <div class="ui divided items">
-            <%for(var i=0;i<requests.length;i++){%>
-                <%if(requests[i].type=="Student"){%>
+            <%for(var i=0;i<request.length;i++){%>
+                <%if(request[i].recep=="Patent"){%>
+                    <%console.log(request[i])%>
+                    <%console.log(request[i].stu_id)%>
+                    <%for(var j=0;j<detail.length;j++){%>
+                        <%console.log(detail[j].id)%>
+                        <%if(detail[j].id==request[i].stu_id){%>
+                            <%console.log(detail[j])%>
             <div class="item">
                 <div class="image">
-                    <img src="<%=requests[i].file%>">
+                    <img src="<%=detail[j].file%>">
                 </div>
                 <div class="content">
-                    <a class="header" href="/requests/<%=requests[i]._id %>"><%=requests[i].username%></a>
+                    <a class="header" href="/request/<%=request[i]._id %>"><%=detail[i].username%></a>
                     <div class="description">
-                        <p><%=requests[i].college%></p>
+                        <p><%=detail[i].college%></p>
                     </div>
                     <div class="extra">
-                        <a class="ui floated basic violet button b" href="/<%=requests[i]._id %>">Read More
+                        <a class="ui floated basic violet button b" href="/<%=request[i]._id %>">Read More
                             <i class="right chevron icon"></i></a>
                     </div>
                 </div>
             </div>
-            <%}}%> 
+            <%}}}}%> 
         </div>
     </div>
 </div>
