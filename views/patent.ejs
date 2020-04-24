@@ -108,9 +108,6 @@
     <div class="ui top attached segment">
         <div class="ui divided items">
             <%for(var i=0;i<request.length;i++){%>
-                <%if(request[i].recep=="Patent"){%>
-                    <%console.log(request[i])%>
-                    <%console.log(request[i].stu_id)%>
                     <%for(var j=0;j<detail.length;j++){%>
                         <%console.log(detail[j].id)%>
                         <%if(detail[j].id==request[i].stu_id){%>
@@ -130,7 +127,7 @@
                     </div>
                 </div>
             </div>
-            <%}}}}%> 
+            <%}}}%> 
         </div>
     </div>
 </div>

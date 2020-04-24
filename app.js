@@ -651,7 +651,7 @@ app.get("/startupidea",async(req,res,next)=>{
     console.log("err")
     else
    {for(var i=0;i<requests.length;i++){
-     if(requests[i].recep=="startupIdea")
+     if(requests[i].recep=="StartupIdea")
      request.push(requests[i])
    }
     }})
