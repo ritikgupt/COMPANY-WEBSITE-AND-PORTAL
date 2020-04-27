@@ -52,8 +52,19 @@
   font-size: 20px;
   writing-mode:vertical-rl;
 }
-
-
+#ad{
+    background:url(https://v8floorcoatings.com/wp-content/uploads/2018/12/Oxford-Gray.jpg)
+}
+/* 
+.amz{
+    width:10%;
+    height:60%;
+    position:Absolute;
+    margin-left:0rem;
+    padding-left:0%;
+    padding-top:0%;
+    margin:0%;
+} */
 </style>
 <body>
         <div class="icon-bar">
@@ -66,7 +77,7 @@
                <i class="fas fa-bars"></i>
 <i class="fas fa-times"></i>
             </div>
-            <!-- <a href="amz.html" class="logo"><img src="images/logo-rosa.png" alt=""></a> -->
+            <!-- <a href="amz.html" class="logo"><img class="amz" src="./download.png" alt=""></a> -->
             <ul class="nav-list">
                 <li class="nav-item">
                     <a href="#" class="nav-link active">Home</a>
@@ -326,10 +337,11 @@ color:black;
     </div>
     </section>
 
-    <h1 class="headline-dark">
-        <center> Our Partners</center>
-    </h1>
-    <section>
+   
+    <section id="ad">
+            <h1 class="headline-dark">
+                    <center> Our Partners</center>
+                </h1>
         <%var n=sponsor.length%>
     <%for(var i=0;i<((sponsor.length/3));i++){%>
     <div class="container">
@@ -423,7 +435,7 @@ color:black;
 <button class="as11" onclick="plusDivison(-1)">&#10094;</button>
 <button class="as12" onclick="plusDivison(1)">&#10095;</button>
     
-    <div class="abc" id="ad">
+    <div class="abc" id="ade">
 <section class="discover-our-story">
     <h1 class="headline-dark">
         <center> Advisory Committee</center>

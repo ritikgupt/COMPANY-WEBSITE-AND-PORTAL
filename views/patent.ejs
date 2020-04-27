@@ -109,9 +109,9 @@
         <div class="ui divided items">
             <%for(var i=0;i<request.length;i++){%>
                     <%for(var j=0;j<detail.length;j++){%>
-                        <%console.log(detail[j].id)%>
+                       
                         <%if(detail[j].id==request[i].stu_id){%>
-                            <%console.log(detail[j])%>
+                          
             <div class="item">
                 <div class="image">
                     <img src="<%=detail[j].file%>">
@@ -122,7 +122,7 @@
                         <p><%=detail[i].college%></p>
                     </div>
                     <div class="extra">
-                        <a class="ui floated basic violet button b" href="/<%=request[i]._id %>">Read More
+                        <a class="ui floated basic violet button b" href="/patent/<%=request[i]._id %>/show">Read More
                             <i class="right chevron icon"></i></a>
                     </div>
                 </div>

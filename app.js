@@ -607,7 +607,7 @@ app.get("/patent",async(req,res,next)=>{
     }})
     await Detail.find({},function(err,details){
       if(err)
-      console.log()
+      console.log("err")
       else
       {
         for(var i=0;i<details.length;i++)
@@ -618,6 +618,25 @@ app.get("/patent",async(req,res,next)=>{
     })
     res.render("patent",{detail:detail,request:request})
   })
+  app.get("/patent/:id/show",async(req,res,next)=>{
+    var request=[]
+    var detail=[]
+    await Request.findById(req.params.id,function(err,foundRequest){
+      if(err)
+      console.log("err")
+      else
+      request.push(foundRequest)
+      })
+      await Detail.findById(request[0].stu_id,function(err,foundDetail){
+        if(err)
+        console.log("err")
+        else
+        {
+         detail.push(foundDetail)
+        }
+      })
+      res.render("patentshow",{detail:detail,request:request})
+    })
 app.get("/research",async(req,res)=>{
   var request=[]
   var detail=[]

@@ -1090,7 +1090,7 @@ img{
   padding: 3% 8px;
 }
 body  {
-  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  /* background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg); */
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size:cover
