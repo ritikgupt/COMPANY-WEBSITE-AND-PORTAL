@@ -743,6 +743,40 @@ app.get("/complaints",async(req,res)=>{
     })
     res.render("complaints",{detail:detail,request:request})
 })
+app.get("/editslider",function(req,res){
+  Slider.find({},function(err,sliders){
+    if(err)
+    console.log(err)
+    else
+    res.render("editslider",{sliders:sliders})
+  })
+})
+app.delete("/:id/editslider",function(req,res){
+  Slider.findByIdAndRemove(req.params.id,function(err){
+    console.log(req.params.id);
+      if(err){
+          res.redirect("/editslider")
+      }
+      else{
+          res.redirect("/editslider")
+      }
+  })
+})
+app.get("/editnews",function(req,res){
+  res.render("editnews")
+})
+app.get("/editsponsor",function(req,res){
+  res.render("editsponsor")
+})
+app.get("/editimage",function(req,res){
+  res.render("editimage")
+})
+app.get("/editmember",function(req,res){
+  res.render("editmember")
+})
+app.get("/editworkshop",function(req,res){
+  res.render("editworkshop")
+})
 app.get("/:id/",function(req,res){
   Detail.findById(req.params.id,function(err,foundDetail){
       if(err){
