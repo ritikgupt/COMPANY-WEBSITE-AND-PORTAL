@@ -1,0 +1,38 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<div class="ui main text container a">
+<div class="ui main text container segment">
+        <div class="ui huge header"><%=news.name%></div>
+        <div class="ui attached">
+            <div class="item">
+             
+                <img class="ui centered rounded image" src="/<%=news.file%>">
+                <div class="description">
+                    <h3>Title:<%=news.title%></h3>
+                    <h4><%=news.desc%></h4>
+                    <p><%=news.time%></p>
+                </div>
+                    <a class="ui blue basic button"href="/<%=news._id%>/edituser">Edit news</a>
+                    <a class="ui blue basic button"href="/<%=news._id%>/changeuserphoto">Change Photo</a>
+                    <br><br>
+                    <form action="/<%=news._id%>?_method=Delete" method="POST">
+                        <button class="ui red basic button">Remove</button>
+                    </form>      
+                 
+                  <a class="ui red basic button"href="/editnews">Back</a>
+                 
+            </div>
+    </div>
+    
+    </div>
+    <style>
+ body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+.a{
+    margin-top:2%;
+}
+
+    </style>

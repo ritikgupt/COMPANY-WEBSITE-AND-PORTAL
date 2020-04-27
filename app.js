@@ -763,13 +763,61 @@ app.delete("/:id/editslider",function(req,res){
   })
 })
 app.get("/editnews",function(req,res){
-  res.render("editnews")
+  News.find({},function(err,newss){
+    if(err)
+    console.log("err")
+    else
+    res.render("editnews",{newss:newss})
+  })
+})
+app.get("/:id/editnews",function(req,res){
+  News.findById(req.params.id,function(err,foundNews){
+    console.log(req.params.id);
+    if(err){
+        res.redirect("/");
+    }
+    else{
+        res.render("shownews",{news:foundNews});
+    }
+})
 })
 app.get("/editsponsor",function(req,res){
-  res.render("editsponsor")
+  Sponsor.find({},function(err,sponsors){
+    if(err)
+    console.log("err")
+    else
+    res.render("editsponsor",{sponsors:sponsors})
+  })
+})
+app.delete("/:id/editsponsor",function(req,res){
+  Sponsor.findByIdAndRemove(req.params.id,function(err){
+    console.log(req.params.id);
+      if(err){
+          res.redirect("/editsponsor")
+      }
+      else{
+          res.redirect("/editsponsor")
+      }
+  })
 })
 app.get("/editimage",function(req,res){
-  res.render("editimage")
+  Image.find({},function(err,images){
+    if(err)
+    console.log("err")
+    else
+    res.render("editimage",{images:images})
+  })
+})
+app.delete("/:id/editimage",function(req,res){
+  Image.findByIdAndRemove(req.params.id,function(err){
+    console.log(req.params.id);
+      if(err){
+          res.redirect("/editimage")
+      }
+      else{
+          res.redirect("/editimage")
+      }
+  })
 })
 app.get("/editmember",function(req,res){
   res.render("editmember")
