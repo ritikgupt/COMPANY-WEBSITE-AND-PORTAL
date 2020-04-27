@@ -1,0 +1,24 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+<div class="ui main text container segment a">
+    <div class="ui huge header">Change Photo</div>
+<form class="ui form" action="/<%=news._id%>/changephotonews" method="POST"  enctype="multipart/form-data">
+<div class="field">
+    <label>Image</label>
+    <input type="file" name="news[file]">
+    </div>
+    <button class="ui button" type="submit">Submit</button>
+</form>
+</div>
+<style>
+    body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+.a{
+    margin-top:3%;
+}
+   
+    </style>

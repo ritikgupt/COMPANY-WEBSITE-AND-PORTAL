@@ -792,6 +792,27 @@ app.delete("/:id/editnews",function(req,res){
       }
   })
 })
+app.get("/:id/changephotonews",function(req,res){
+  News.findById(req.params.id,function(err,foundNews){
+      if(err){
+          console.log("Error");
+      }
+      else{
+          res.render("changephotonews",{news:foundNews})
+      }
+  }) 
+})
+app.post("/:id/changephotonews",upload.single("news[file]",{overwrite:true}),function(req,res){
+  console.log(req.file.path)
+       News.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
+          if(err){
+              res.redirect("/adminhome");
+          }
+          else{
+              res.redirect("/editnews");
+          }
+      })
+  })
 app.get("/editsponsor",function(req,res){
   Sponsor.find({},function(err,sponsors){
     if(err)
@@ -860,6 +881,27 @@ app.delete("/:id/editmember",function(req,res){
       }
   })
 })
+app.get("/:id/changephotomember",function(req,res){
+  Member.findById(req.params.id,function(err,foundMember){
+      if(err){
+          console.log("Error");
+      }
+      else{
+          res.render("changephotomember",{member:foundMember})
+      }
+  }) 
+})
+app.post("/:id/changephotomember",upload.single("member[file]",{overwrite:true}),function(req,res){
+  console.log(req.file.path)
+       Member.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
+          if(err){
+              res.redirect("/adminhome");
+          }
+          else{
+              res.redirect("/editmember");
+          }
+      })
+  })
 app.get("/editworkshop",function(req,res){
   Workshop.find({},function(err,workshops){
     if(err)
@@ -890,6 +932,27 @@ app.delete("/:id/editworkshop",function(req,res){
       }
   })
 })
+app.get("/:id/changephotoworkshop",function(req,res){
+  Workshop.findById(req.params.id,function(err,foundWorkshop){
+      if(err){
+          console.log("Error");
+      }
+      else{
+          res.render("changephotoworkshop",{workshop:foundWorkshop})
+      }
+  }) 
+})
+app.post("/:id/changephotoworkshop",upload.single("workshop[file]",{overwrite:true}),function(req,res){
+  console.log(req.file.path)
+       Workshop.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
+          if(err){
+              res.redirect("/adminhome");
+          }
+          else{
+              res.redirect("/editworkshop");
+          }
+      })
+  })
 app.get("/:id/",function(req,res){
   Detail.findById(req.params.id,function(err,foundDetail){
       if(err){
