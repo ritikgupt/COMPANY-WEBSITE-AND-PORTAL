@@ -1,24 +1,24 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <div class="ui main text container a">
 <div class="ui main text container segment">
-        <div class="ui huge header"><%=news.title%></div>
+        <div class="ui huge header"><%=workshop.title%></div>
         <div class="ui attached">
             <div class="item">
              
-                <img class="ui centered rounded image" src="/<%=news.file%>">
+                <img class="ui centered rounded image" src="/<%=workshop.file%>">
                 <div class="description">
-                  
-                    <h4><%=news.desc%></h4>
-                    <p><%=news.time%></p>
+                   
+                    <h4><%=workshop.desc%></h4>
+                    <p><%=workshop.time%></p>
                 </div>
-                    <a class="ui blue basic button"href="/<%=news._id%>/edituser">Edit news</a>
-                    <a class="ui blue basic button"href="/<%=news._id%>/changeuserphoto">Change Photo</a>
+                    <a class="ui blue basic button"href="/<%=workshop._id%>/edituser">Edit workshop</a>
+                    <a class="ui blue basic button"href="/<%=workshop._id%>/changeuserphoto">Change Photo</a>
                     <br><br>
-                    <form action="/<%=news._id%>/editnews?_method=Delete" method="POST">
+                    <form action="/<%=workshop._id%>/editworkshop?_method=Delete" method="POST">
                         <button class="ui red basic button">Remove</button>
                     </form>      
                  
-                  <a class="ui red basic button"href="/editnews">Back</a>
+                  <a class="ui red basic button"href="/editworkshop">Back</a>
                  
             </div>
     </div>

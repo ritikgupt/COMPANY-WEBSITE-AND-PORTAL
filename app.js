@@ -781,6 +781,17 @@ app.get("/:id/editnews",function(req,res){
     }
 })
 })
+app.delete("/:id/editnews",function(req,res){
+  News.findByIdAndRemove(req.params.id,function(err){
+    console.log(req.params.id);
+      if(err){
+          res.redirect("/editnews")
+      }
+      else{
+          res.redirect("/editnews")
+      }
+  })
+})
 app.get("/editsponsor",function(req,res){
   Sponsor.find({},function(err,sponsors){
     if(err)
@@ -820,10 +831,64 @@ app.delete("/:id/editimage",function(req,res){
   })
 })
 app.get("/editmember",function(req,res){
-  res.render("editmember")
+  Member.find({},function(err,members){
+    if(err)
+    console.log("err")
+    else
+    res.render("editmember",{members:members})
+  })
+})
+app.get("/:id/editmember",function(req,res){
+  Member.findById(req.params.id,function(err,foundMember){
+    console.log(req.params.id);
+    if(err){
+        res.redirect("/");
+    }
+    else{
+        res.render("showmember",{member:foundMember});
+    }
+})
+})
+app.delete("/:id/editmember",function(req,res){
+  Member.findByIdAndRemove(req.params.id,function(err){
+    console.log(req.params.id);
+      if(err){
+          res.redirect("/editmember")
+      }
+      else{
+          res.redirect("/editmember")
+      }
+  })
 })
 app.get("/editworkshop",function(req,res){
-  res.render("editworkshop")
+  Workshop.find({},function(err,workshops){
+    if(err)
+    console.log("err")
+    else
+    res.render("editworkshop",{workshops:workshops})
+  })
+})
+app.get("/:id/editworkshop",function(req,res){
+  Workshop.findById(req.params.id,function(err,foundWorkshop){
+    console.log(req.params.id);
+    if(err){
+        res.redirect("/");
+    }
+    else{
+        res.render("showworkshop",{workshop:foundWorkshop});
+    }
+})
+})
+app.delete("/:id/editworkshop",function(req,res){
+  Workshop.findByIdAndRemove(req.params.id,function(err){
+    console.log(req.params.id);
+      if(err){
+          res.redirect("/editworkshop")
+      }
+      else{
+          res.redirect("/editworkshop")
+      }
+  })
 })
 app.get("/:id/",function(req,res){
   Detail.findById(req.params.id,function(err,foundDetail){
