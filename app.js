@@ -813,6 +813,26 @@ app.post("/:id/changephotonews",upload.single("news[file]",{overwrite:true}),fun
           }
       })
   })
+  app.get("/:id/editnewsform",function(req,res){
+    News.findById(req.params.id,function(err,foundNews){
+      if(err){
+        console.log("err")
+      }
+      else{
+        res.render("editnewsform",{news:foundNews})
+      }
+    })
+  })
+  app.post("/:id/editnewsform",function(req,res){
+    News.findByIdAndUpdate(req.params.id,req.body.news,function(err){
+         if(err){
+             res.redirect("/adminhome");
+         }
+         else{
+             res.redirect("/editnews");
+         }
+     })
+   })
 app.get("/editsponsor",function(req,res){
   Sponsor.find({},function(err,sponsors){
     if(err)
@@ -902,6 +922,26 @@ app.post("/:id/changephotomember",upload.single("member[file]",{overwrite:true})
           }
       })
   })
+  app.get("/:id/editmemberform",function(req,res){
+    Member.findById(req.params.id,function(err,foundMember){
+      if(err){
+        console.log("err")
+      }
+      else{
+        res.render("editmemberform",{member:foundMember})
+      }
+    })
+  })
+  app.post("/:id/editmemberform",function(req,res){
+    Member.findByIdAndUpdate(req.params.id,req.body.member,function(err){
+         if(err){
+             res.redirect("/adminhome");
+         }
+         else{
+             res.redirect("/editmember");
+         }
+     })
+   })
 app.get("/editworkshop",function(req,res){
   Workshop.find({},function(err,workshops){
     if(err)
@@ -953,6 +993,26 @@ app.post("/:id/changephotoworkshop",upload.single("workshop[file]",{overwrite:tr
           }
       })
   })
+  app.get("/:id/editworkshopform",function(req,res){
+    Workshop.findById(req.params.id,function(err,foundWorkshop){
+      if(err){
+        console.log("err")
+      }
+      else{
+        res.render("editworkshopform",{workshop:foundWorkshop})
+      }
+    })
+  })
+  app.post("/:id/editworkshopform",function(req,res){
+    Workshop.findByIdAndUpdate(req.params.id,req.body.workshop,function(err){
+         if(err){
+             res.redirect("/adminhome");
+         }
+         else{
+             res.redirect("/editworkshop");
+         }
+     })
+   })
 app.get("/:id/",function(req,res){
   Detail.findById(req.params.id,function(err,foundDetail){
       if(err){

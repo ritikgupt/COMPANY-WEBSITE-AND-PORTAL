@@ -1,0 +1,33 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<div class="ui main text container segment" id="a">
+        <div class="ui huge header">Edit Team Member</div>
+        <form class="ui form" action="/<%=member.id%>/editmemberform" method="POST"> 
+                    <div class="field">
+                            <label>Name</label>
+                            <input type="text" name="member[name]" value="<%=member.name%>">
+                        </div>    
+                        <div class="field">
+                                <label>Designation</label>
+                                <input type="text" name="member[designation]" value="<%=member.designation%>">
+                            </div>    
+                            <div class="field">
+                                    <label>LinkedIn Id</label>
+                                    <input type="text" name="member[linkedIn]" value="<%=member.linkedIn%>">
+                                </div>    
+            <button class="ui button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <style>
+    body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+#a{
+    margin-top:10%;
+}
+    </style>
+    

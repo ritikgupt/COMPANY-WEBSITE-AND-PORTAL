@@ -11,7 +11,7 @@
                     <h4><%=member.designation%></h4>
                     <p>LinkedIn Profile:<%=member.linkedIn%></p>
                 </div>
-                    <a class="ui blue basic button"href="/<%=member._id%>/edituser">Edit member</a>
+                    <a class="ui blue basic button"href="/<%=member._id%>/editmemberform">Edit member</a>
                     <a class="ui blue basic button"href="/<%=member._id%>/changephotomember">Change Photo</a>
                     <br><br>
                     <form action="/<%=member._id%>/editmember?_method=Delete" method="POST">

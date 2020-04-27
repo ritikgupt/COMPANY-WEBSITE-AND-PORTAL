@@ -1,0 +1,36 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+
+<div class="ui main text container segment" id="a">
+        <div class="ui huge header">Edit newss</div>
+        <form class="ui form" action="/<%=news.id%>/editnewsform" method="POST">
+            <div class="field">
+                <label>Name</label>
+                <input type="text" name="news[title]" value="<%=news.title%>">
+            </div>
+               
+                
+                <div class="field">
+                    <label>Description</label>
+                    <textarea name="news[desc]" value="<%=news.desc%>"></textarea>
+                </div>
+                <div class="field">
+                    <label>Time</label>
+                    <input type="text" name="news[time]" value="<%=news.time%>">
+                </div>
+            
+            <button class="ui button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    </div>
+    <style>
+   body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+#a{
+    margin-top:3%;
+}
+    </style>
