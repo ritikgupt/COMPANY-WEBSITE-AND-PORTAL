@@ -197,7 +197,7 @@ app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
       credit:req.body.request_staff.credit,
       purpose:req.body.request_staff.purpose,
       empid:req.user.id,
-      date:Date.now()
+      date:req.body.request_staff.date
     })
 res.redirect("/dashboard");
   }
@@ -1057,16 +1057,7 @@ app.post("/:id/changephotoworkshop",upload.single("workshop[file]",{overwrite:tr
 app.get("/:id/",async(req,res)=>{
 request=[]
 detail=[]
- await Request_staff.find({},function(err,request_staffs){
-  if(err)
-  console.log(err)
-  else
-  {
-for(var i=0;i<request_staffs.length;i++)
-{
-  request.push(request_staffs[i])
-}
-}})
+
  await  Detail.findById(req.params.id,function(err,foundDetail){
       if(err){
           res.redirect("/");
@@ -1075,6 +1066,20 @@ for(var i=0;i<request_staffs.length;i++)
           detail.push(foundDetail)
       }
   })
+  var a=detail[0].id
+  await Request_staff.find({},function(err,request_staffs){
+    if(err)
+    console.log(err)
+    else
+    {
+  for(var i=0;i<request_staffs.length;i++)
+  {
+    if(request_staffs[i].empid==a)
+    {
+    request.push(request_staffs[i])
+    }
+  }
+  }})
   res.render("show",{detail:detail,request:request})
 })
 

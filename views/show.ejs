@@ -25,6 +25,7 @@
                   <%if(detail[0].type=='Employee'){%>
                     <button onclick="setDocumentMetadata()" class="ui green basic button">Expenditure Report</button>
                   <a class="ui red basic button"href="/employee">Back</a><%}%>
+                  <!-- <a class="ui purple basic button"href="/employee">Today's Schedule</a> -->
                   <%if(detail[0].type=='Student'){%>
                   <a class="ui red basic button"href="/students">Back</a><%}%>
             </div>
@@ -55,19 +56,19 @@
       const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
 
       // Add a page and draw some text on it
-      const page = pdfDoc.addPage([500, 600])
-      const page1 = pdfDoc.addPage([500, 600])
+      const page = pdfDoc.addPage([500, 10000])
+      // const page1 = pdfDoc.addPage([500, 600])
 
       page.setFont(timesRomanFont)
-      page.drawText('Expense report of <%=detail[0].name%>', { x: 30, y: 550, size: 30 })
+      page.drawText('Expense report of <%=detail[0].name%>', { x: 30, y: 9950, size: 30 })
      
-      {s=0}
+      {s=9900}
       <%for(var i=0;i<request.length;i++){%>
-      {s=s+60}
+      {s=s-60}
         page.drawText('date: <%=request[i].date%>',{ x:10, y: s, size: 10 })
-        page.drawText('amount: <%=request[i].credit%>',{ x:10, y: s+10, size: 10 })
-        page.drawText('Purpose: <%=request[i].purpose%>',{ x:10, y: s+20, size: 10 })
-        page.drawText('Description: <%=request[i].desc%>',{ x:10, y: s+30, size: 10 })
+        page.drawText('amount: <%=request[i].credit%>',{ x:10, y: s-10, size: 10 })
+        page.drawText('Purpose: <%=request[i].purpose%>',{ x:10, y: s-20, size: 10 })
+        page.drawText('Description: <%=request[i].desc%>',{ x:10, y: s-30, size: 10 })
       <%}%>
 
       // Set all available metadata fields on the PDFDocument. Note that these fields
