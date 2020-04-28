@@ -18,6 +18,8 @@ var Intern=require("./models/intern");
 var Program=require("./models/program");
 var Workshop=require("./models/workshop");
 var homeRoutes=require("./routes/home");
+var adminhomeRoutes=require("./routes/adminhome");
+
 var multer=require("multer");
 const fs = require('fs');
 const download = require('download-file');
@@ -34,6 +36,7 @@ var storage=multer.diskStorage({
 // }
 var upload=multer({storage:storage});
 var app=a(); 
+app.use(adminhomeRoutes);
 //body parser only parses url encoded bodies or json bodies
 var Student=require("./models/student");
 var Detail=require("./models/detail");
@@ -429,74 +432,8 @@ app.get("/logout",function(req,res){
     console.log(req.user)
     res.redirect("/login");
 })
-app.get("/adminhome",async(req,res,next)=>{
-  var slider=[]
-  var news=[]
-  var sponsor=[]
-  var image=[]
-  var member=[]
-  await Member.find({},function(err,members){
-    if(err)
-    console.log("err")
-    else
-    {
-    for(var i=0;i<members.length;i++)
-    {
- member.push(members[i])
-    }}
-   
-  });
- await Slider.find({},function(err,sliders){
-   if(err)
-   console.log("err")
-   else
-   {
-   for(var i=0;i<sliders.length;i++)
-   {
-slider.push(sliders[i])
-   }}
-  
- });
- await News.find({},function(err,newss){
-   if(err)
-   console.log("err")
-   else{
-     for(var i=0;i<newss.length;i++)
-   {
-     news.push(newss[i])
-   }
-   }
 
- });
- await Sponsor.find({},function(err,sponsors){
-  if(err)
-  console.log("err")
-  else
-  {
-  for(var i=0;i<sponsors.length;i++)
-  {
-sponsor.push(sponsors[i])
-  }}
-});
-await Image.find({},function(err,images){
-  if(err)
-  console.log("err")
-  else
-  {
-  for(var i=0;i<images.length;i++)
-  {
-image.push(images[i])
-  }}
-});
- res.render("adminhome",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
-})
-app.post("/adminhome",function(req,res){
-  Message.create({
-    recep:req.body.message.recep,
-    desc:req.body.message.desc
-  })
-  res.redirect("/adminhome")
-})
+
 app.get("/message/:id",async(req,res,next)=>{
 var message=[]
 var detail=[]
@@ -1057,6 +994,7 @@ app.post("/:id/changeuserphoto",upload.single("detail[file]",{overwrite:true}),f
       })
   })
 app.use(homeRoutes);
+
 app.listen("3000",function(){
     console.log("Server has started.");
 });
