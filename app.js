@@ -10,16 +10,17 @@ var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var Message=require("./models/message");
-
 var Sponsor=require("./models/sponsor");
 var Member=require("./models/member")
 var News=require("./models/news");
+
 var Intern=require("./models/intern");
 var Program=require("./models/program");
 var Workshop=require("./models/workshop");
 var homeRoutes=require("./routes/home");
 var adminhomeRoutes=require("./routes/adminhome");
 var sliderRoutes=require("./routes/slider");
+var newsRoutes=require("./routes/news");
 var multer=require("multer");
 const download = require('download-file');
 var storage=multer.diskStorage({
@@ -37,6 +38,7 @@ var upload=multer({storage:storage});
 var app=a(); 
 app.use(adminhomeRoutes);
 app.use(sliderRoutes);
+app.use(newsRoutes);
 //body parser only parses url encoded bodies or json bodies
 var Detail=require("./models/detail");
 var Request=require("./models/request");
@@ -242,18 +244,6 @@ function isLoggedIn(req,res,next){
   else
   res.redirect("/login");
 }
-app.get("/newnews",function(req,res){
-  res.render("newnews");
-})
-app.post("/newnews",upload.single('news[file]'),function(req,res){
-  News.create({
-    title:req.body.news.title,
-    file:req.file.path,
-    desc:req.body.news.desc,
-    time:Date.now()
-  })
-  res.redirect("/adminhome")
-})
 app.get("/newuser",function(req,res){
   res.render("newuser");
 })
@@ -641,77 +631,7 @@ app.get("/complaints",async(req,res)=>{
     res.render("complaints",{detail:detail,request:request})
 })
 
-app.get("/editnews",function(req,res){
-  News.find({},function(err,newss){
-    if(err)
-    console.log("err")
-    else
-    res.render("editnews",{newss:newss})
-  })
-})
-app.get("/:id/editnews",function(req,res){
-  News.findById(req.params.id,function(err,foundNews){
-    console.log(req.params.id);
-    if(err){
-        res.redirect("/");
-    }
-    else{
-        res.render("shownews",{news:foundNews});
-    }
-})
-})
-app.delete("/:id/editnews",function(req,res){
-  News.findByIdAndRemove(req.params.id,function(err){
-    console.log(req.params.id);
-      if(err){
-          res.redirect("/editnews")
-      }
-      else{
-          res.redirect("/editnews")
-      }
-  })
-})
-app.get("/:id/changephotonews",function(req,res){
-  News.findById(req.params.id,function(err,foundNews){
-      if(err){
-          console.log("Error");
-      }
-      else{
-          res.render("changephotonews",{news:foundNews})
-      }
-  }) 
-})
-app.post("/:id/changephotonews",upload.single("news[file]",{overwrite:true}),function(req,res){
-  console.log(req.file.path)
-       News.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
-          if(err){
-              res.redirect("/adminhome");
-          }
-          else{
-              res.redirect("/editnews");
-          }
-      })
-  })
-  app.get("/:id/editnewsform",function(req,res){
-    News.findById(req.params.id,function(err,foundNews){
-      if(err){
-        console.log("err")
-      }
-      else{
-        res.render("editnewsform",{news:foundNews})
-      }
-    })
-  })
-  app.post("/:id/editnewsform",function(req,res){
-    News.findByIdAndUpdate(req.params.id,req.body.news,function(err){
-         if(err){
-             res.redirect("/adminhome");
-         }
-         else{
-             res.redirect("/editnews");
-         }
-     })
-   })
+
 app.get("/editsponsor",function(req,res){
   Sponsor.find({},function(err,sponsors){
     if(err)

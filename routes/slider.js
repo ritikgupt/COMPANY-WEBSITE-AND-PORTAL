@@ -2,7 +2,6 @@ var express=require("express");
 var router=express.Router();
 var Slider=require("../models/slider");
 var multer=require("multer");
-const download = require('download-file');
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
     cb(null,'uploads/');
