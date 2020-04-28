@@ -9,7 +9,6 @@ var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var Message=require("./models/message");
-var Member=require("./models/member")
 var Intern=require("./models/intern");
 var Program=require("./models/program");
 var Workshop=require("./models/workshop");
@@ -18,6 +17,7 @@ var adminhomeRoutes=require("./routes/adminhome");
 var sliderRoutes=require("./routes/slider");
 var newsRoutes=require("./routes/news");
 var sponsorRoutes=require("./routes/sponsor");
+var memberRoutes=require("./routes/advisory");
 var multer=require("multer");
 const download = require('download-file');
 var storage=multer.diskStorage({
@@ -37,6 +37,7 @@ app.use(adminhomeRoutes);
 app.use(sliderRoutes);
 app.use(newsRoutes);
 app.use(sponsorRoutes);
+app.use(memberRoutes);
 //body parser only parses url encoded bodies or json bodies
 var Detail=require("./models/detail");
 var Request=require("./models/request");
@@ -70,18 +71,7 @@ passport.deserializeUser(Detail.deserializeUser());
 //     res.render("header")
 // })
 
-app.get("/newmember",function(req,res){
-  res.render("newmember");
-})
-app.post("/newmember",upload.single('member[file]'),function(req,res){
-  Member.create({
-    file:req.file.path,
-    name:req.body.member.name,
-    designation:req.body.member.designation,
-    linkedIn:req.body.member.linkedIn
-  })
-  res.redirect("/adminhome")
-})
+
 app.get("/image",function(req,res){
   res.render("image");
 })
@@ -641,77 +631,7 @@ app.delete("/:id/editimage",function(req,res){
       }
   })
 })
-app.get("/editmember",function(req,res){
-  Member.find({},function(err,members){
-    if(err)
-    console.log("err")
-    else
-    res.render("editmember",{members:members})
-  })
-})
-app.get("/:id/editmember",function(req,res){
-  Member.findById(req.params.id,function(err,foundMember){
-    console.log(req.params.id);
-    if(err){
-        res.redirect("/");
-    }
-    else{
-        res.render("showmember",{member:foundMember});
-    }
-})
-})
-app.delete("/:id/editmember",function(req,res){
-  Member.findByIdAndRemove(req.params.id,function(err){
-    console.log(req.params.id);
-      if(err){
-          res.redirect("/editmember")
-      }
-      else{
-          res.redirect("/editmember")
-      }
-  })
-})
-app.get("/:id/changephotomember",function(req,res){
-  Member.findById(req.params.id,function(err,foundMember){
-      if(err){
-          console.log("Error");
-      }
-      else{
-          res.render("changephotomember",{member:foundMember})
-      }
-  }) 
-})
-app.post("/:id/changephotomember",upload.single("member[file]",{overwrite:true}),function(req,res){
-  console.log(req.file.path)
-       Member.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
-          if(err){
-              res.redirect("/adminhome");
-          }
-          else{
-              res.redirect("/editmember");
-          }
-      })
-  })
-  app.get("/:id/editmemberform",function(req,res){
-    Member.findById(req.params.id,function(err,foundMember){
-      if(err){
-        console.log("err")
-      }
-      else{
-        res.render("editmemberform",{member:foundMember})
-      }
-    })
-  })
-  app.post("/:id/editmemberform",function(req,res){
-    Member.findByIdAndUpdate(req.params.id,req.body.member,function(err){
-         if(err){
-             res.redirect("/adminhome");
-         }
-         else{
-             res.redirect("/editmember");
-         }
-     })
-   })
+
 app.get("/editworkshop",function(req,res){
   Workshop.find({},function(err,workshops){
     if(err)

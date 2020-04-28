@@ -1,4 +1,4 @@
-var News=require("../models/news");
+var Sponsor=require("../models/sponsor");
 var express=require("express");
 var router=express.Router();
 var multer=require("multer");
