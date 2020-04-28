@@ -17,6 +17,7 @@ var News=require("./models/news");
 var Intern=require("./models/intern");
 var Program=require("./models/program");
 var Workshop=require("./models/workshop");
+var homeRoutes=require("./routes/home");
 var multer=require("multer");
 const fs = require('fs');
 const download = require('download-file');
@@ -67,67 +68,7 @@ passport.deserializeUser(Detail.deserializeUser());
 // app.get("/header",function(req,res){
 //     res.render("header")
 // })
-app.get("/",async(req,res,next)=>{
-  var slider=[]
-  var news=[]
-  var sponsor=[]
-  var image=[]
-  var member=[]
-  await Member.find({},function(err,members){
-    if(err)
-    console.log("err")
-    else
-    {
-    for(var i=0;i<members.length;i++)
-    {
- member.push(members[i])
-    }}
-   
-  });
- await Slider.find({},function(err,sliders){
-   if(err)
-   console.log("err")
-   else
-   {
-   for(var i=0;i<sliders.length;i++)
-   {
-slider.push(sliders[i])
-   }}
-  
- });
- await News.find({},function(err,newss){
-   if(err)
-   console.log("err")
-   else{
-     for(var i=0;i<newss.length;i++)
-   {
-     news.push(newss[i])
-   }
-   }
 
- });
- await Sponsor.find({},function(err,sponsors){
-  if(err)
-  console.log("err")
-  else
-  {
-  for(var i=0;i<sponsors.length;i++)
-  {
-sponsor.push(sponsors[i])
-  }}
-});
-await Image.find({},function(err,images){
-  if(err)
-  console.log("err")
-  else
-  {
-  for(var i=0;i<images.length;i++)
-  {
-image.push(images[i])
-  }}
-});
- res.render("amz",{news:news,slider:slider,sponsor:sponsor,image:image,member:member});
-})
 app.get("/newmember",function(req,res){
   res.render("newmember");
 })
@@ -1115,7 +1056,7 @@ app.post("/:id/changeuserphoto",upload.single("detail[file]",{overwrite:true}),f
           }
       })
   })
-
+app.use(homeRoutes);
 app.listen("3000",function(){
     console.log("Server has started.");
 });
