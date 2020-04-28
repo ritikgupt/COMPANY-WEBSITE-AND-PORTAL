@@ -18,6 +18,7 @@ var sliderRoutes=require("./routes/slider");
 var newsRoutes=require("./routes/news");
 var sponsorRoutes=require("./routes/sponsor");
 var memberRoutes=require("./routes/advisory");
+var imageRoutes=require("./routes/image");
 var multer=require("multer");
 const download = require('download-file');
 var storage=multer.diskStorage({
@@ -38,10 +39,11 @@ app.use(sliderRoutes);
 app.use(newsRoutes);
 app.use(sponsorRoutes);
 app.use(memberRoutes);
+app.use(imageRoutes);
 //body parser only parses url encoded bodies or json bodies
 var Detail=require("./models/detail");
 var Request=require("./models/request");
-var Image=require("./models/image");
+
 var Request_staff=require("./models/request_staff");
 app.use(b.urlencoded({ extended: true }));
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
@@ -72,15 +74,7 @@ passport.deserializeUser(Detail.deserializeUser());
 // })
 
 
-app.get("/image",function(req,res){
-  res.render("image");
-})
-app.post("/image",upload.single('image[file]'),function(req,res){
-  Image.create({
-    file:req.file.path
-  })
-  res.redirect("/adminhome")
-})
+
 app.get("/about",function(req,res){
     res.render("about");
 })
@@ -612,25 +606,7 @@ app.get("/complaints",async(req,res)=>{
 
 
 
-app.get("/editimage",function(req,res){
-  Image.find({},function(err,images){
-    if(err)
-    console.log("err")
-    else
-    res.render("editimage",{images:images})
-  })
-})
-app.delete("/:id/editimage",function(req,res){
-  Image.findByIdAndRemove(req.params.id,function(err){
-    console.log(req.params.id);
-      if(err){
-          res.redirect("/editimage")
-      }
-      else{
-          res.redirect("/editimage")
-      }
-  })
-})
+
 
 app.get("/editworkshop",function(req,res){
   Workshop.find({},function(err,workshops){
