@@ -9,8 +9,6 @@ var h=require("passport-local-mongoose");
 var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
-var pdf=require("pdf").pdf
-var fs=require("fs")
 var Message=require("./models/message");
 var Slider=require("./models/slider");
 var Sponsor=require("./models/sponsor");
@@ -20,6 +18,8 @@ var Intern=require("./models/intern");
 var Program=require("./models/program");
 var Workshop=require("./models/workshop");
 var multer=require("multer");
+const fs = require('fs');
+const download = require('download-file');
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
     cb(null,'uploads/');
@@ -192,32 +192,18 @@ app.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
 )
   res.redirect("/dashboard")}
   else{
-//     var doc=new pdf()
-// doc.text(20,30,"This is the first page text")
-// doc.text(20,40,"this is more text in the pdf on the first page")
-// doc.addPage()
-// doc.text(20,20,"This is the second page of the pdf document.") 
-// doc.setProperties({
-//   title:"Basic pdf file",
-//   subject:"Expense Sheet",
-//   creator:"Ritik Gupta",
-//   keywords:"AMZ"
-// })
-// var filename="output.pdf"
-// fs.writeFile(filename,doc.output('./uploads'),function(err,data){
-//   console.log("Pdf file created");
-// })
-    // Request_staff.create({
-    //   desc:req.body.request_staff.desc
-    // })
-// var doc=new pdfdocument();
-// doc.pipe(fs.createWriteStream(Date.now()));
-// doc.fontSize(25).text(req.body.)
+    Request_staff.create({
+      desc:req.body.request_staff.desc,
+      credit:req.body.request_staff.credit,
+      purpose:req.body.request_staff.purpose,
+      empid:req.user.id,
+      date:Date.now()
+    })
 res.redirect("/dashboard");
   }
 })
 app.get("/logout",function(req,res){
-    req.logout();
+    req.logout(); 
     res.redirect("/login");
 })
 app.get("/intern",function(req,res){
@@ -263,6 +249,7 @@ for(i=0;i<workshops.length;i++){
     }
 )
 app.post("/newworkshop",upload.single('workshop[file]'),function(req,res){
+  console.log(req.file)
   Workshop.create({
     title:req.body.workshop.title,
     file:req.file.path,
@@ -637,6 +624,29 @@ app.get("/patent",async(req,res,next)=>{
       })
       res.render("patentshow",{detail:detail,request:request})
     })
+    app.get("/patent/:id/showpdf",async(req,res)=>{
+      request=[]
+      await Request.findById(req.params.id,function(err,foundRequest){
+        if(err)
+        console.log(err)
+        else
+        {
+          console.log(foundRequest)
+          request.push(foundRequest)
+        }
+      })
+    var url =""
+    console.log(url)
+    var options={
+      directory:"./views/",
+      filename:"hdf.pdf"
+    }
+    download(url,options,function(err){
+      if(err) throw err
+      console.log("done");
+    })
+      res.send("file downloaded");
+    })
 app.get("/research",async(req,res)=>{
   var request=[]
   var detail=[]
@@ -991,6 +1001,18 @@ app.delete("/:id/editworkshop",function(req,res){
       }
   })
 })
+app.get("/expense",function(req,res){
+  Request_staff.find({},function(err,request_staffs){
+    if(err)
+    console.log(err)
+    else
+    {
+console.log(request_staffs)
+    
+    res.render("expense",{request_staffs:request_staffs});
+  }})
+
+})
 app.get("/:id/changephotoworkshop",function(req,res){
   Workshop.findById(req.params.id,function(err,foundWorkshop){
       if(err){
@@ -1032,15 +1054,28 @@ app.post("/:id/changephotoworkshop",upload.single("workshop[file]",{overwrite:tr
          }
      })
    })
-app.get("/:id/",function(req,res){
-  Detail.findById(req.params.id,function(err,foundDetail){
+app.get("/:id/",async(req,res)=>{
+request=[]
+detail=[]
+ await Request_staff.find({},function(err,request_staffs){
+  if(err)
+  console.log(err)
+  else
+  {
+for(var i=0;i<request_staffs.length;i++)
+{
+  request.push(request_staffs[i])
+}
+}})
+ await  Detail.findById(req.params.id,function(err,foundDetail){
       if(err){
           res.redirect("/");
       }
       else{
-          res.render("show",{detail:foundDetail});
+          detail.push(foundDetail)
       }
   })
+  res.render("show",{detail:detail,request:request})
 })
 
 app.get("/:id/edituser",function(req,res){

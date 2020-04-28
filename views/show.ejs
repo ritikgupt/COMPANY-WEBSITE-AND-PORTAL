@@ -1,28 +1,32 @@
+<script src="https://unpkg.com/pdf-lib@1.4.0"></script>
+<script src="https://unpkg.com/downloadjs@1.4.7"></script>
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <div class="ui main text container a">
 <div class="ui main text container segment">
-        <div class="ui huge header"><%=detail.name%></div>
+    <%console.log(request)%>
+        <div class="ui huge header"><%=detail[0].name%></div>
         <div class="ui attached">
             <div class="item">
              
-                <img class="ui centered rounded image" src="<%=detail.file%>">
+                <img class="ui centered rounded image" src="<%=detail[0].file%>">
                 <div class="description">
-                    <h3>ID:<%=detail.username%></h3>
-                    <h3><%=detail.dept%></h3>
-                    <h3><%=detail.college%></h3>
-                    <h3>Email:<%=detail.email%></h3>
-                    <h3>Mobile Number:<%=detail.mobile%></h3>
+                    <h3>ID:<%=detail[0].username%></h3>
+                    <h3><%=detail[0].dept%></h3>
+                    <h3><%=detail[0].college%></h3>
+                    <h3>Email:<%=detail[0].email%></h3>
+                    <h3>Mobile Number:<%=detail[0].mobile%></h3>
                 </div>
-                    <a class="ui blue basic button"href="/<%=detail._id%>/edituser">Edit details</a>
-                    <a class="ui blue basic button"href="/<%=detail._id%>/changeuserphoto">Change Photo</a>
+                    <a class="ui blue basic button"href="/<%=detail[0]._id%>/edituser">Edit detail</a>
+                    <a class="ui blue basic button"href="/<%=detail[0]._id%>/changeuserphoto">Change Photo</a>
                     <br><br>
-                    <form action="/<%=detail._id%>?_method=Delete" method="POST">
+                    <form action="/<%=detail[0]._id%>?_method=Delete" method="POST">
                         <button class="ui red basic button">Remove</button>
                     </form>      
-                  <%console.log(detail.type)%>
-                  <%if(detail.type=='Employee'){%>
+                 
+                  <%if(detail[0].type=='Employee'){%>
+                    <button onclick="setDocumentMetadata()" class="ui green basic button">Expenditure Report</button>
                   <a class="ui red basic button"href="/employee">Back</a><%}%>
-                  <%if(detail.type=='Student'){%>
+                  <%if(detail[0].type=='Student'){%>
                   <a class="ui red basic button"href="/students">Back</a><%}%>
             </div>
     </div>
@@ -40,3 +44,42 @@
 }
 
     </style>
+
+<script>
+    const { PDFDocument, StandardFonts } = PDFLib
+
+    async function setDocumentMetadata() {
+      // Create a new PDFDocument
+      const pdfDoc = await PDFDocument.create()
+
+      // Embed the Times Roman font
+      const timesRomanFont = await pdfDoc.embedFont(StandardFonts.TimesRoman)
+
+      // Add a page and draw some text on it
+      const page = pdfDoc.addPage([500, 600])
+      page.setFont(timesRomanFont)
+      page.drawText('Expense report of <%=detail[0].name%>', { x: 30, y: 500, size: 30 })
+      page.drawText('An Epic Tale of Woe', { x: 125, y: 460, size: 25 })
+      <%for(var i=0;i<request.length;i++)%>
+     <% {%>
+        page.drawText('hello this is text 1')
+      <%}%>
+
+      // Set all available metadata fields on the PDFDocument. Note that these fields
+      // are visible in the "Document Properties" section of most PDF readers.
+      pdfDoc.setTitle('Expense report of <%=detail[0].name%>')
+      pdfDoc.setAuthor('Humpty Dumpty')
+      pdfDoc.setSubject('📘 An Epic Tale of Woe 📖')
+      pdfDoc.setKeywords(['eggs', 'wall', 'fall', 'king', 'horses', 'men'])
+      pdfDoc.setProducer('PDF App 9000 🤖')
+      pdfDoc.setCreator('pdf-lib (https://github.com/Hopding/pdf-lib)')
+      pdfDoc.setCreationDate(new Date('2018-06-24T01:58:37.228Z'))
+      pdfDoc.setModificationDate(new Date('2019-12-21T07:00:11.000Z'))
+
+      // Serialize the PDFDocument to bytes (a Uint8Array)
+      const pdfBytes = await pdfDoc.save()
+
+			// Trigger the browser to download the PDF document
+      download(pdfBytes, "pdf-lib_creation_example.pdf", "application/pdf");
+    }
+  </script>
