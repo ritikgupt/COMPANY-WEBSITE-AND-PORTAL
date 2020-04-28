@@ -10,7 +10,7 @@ var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var Message=require("./models/message");
-var Slider=require("./models/slider");
+
 var Sponsor=require("./models/sponsor");
 var Member=require("./models/member")
 var News=require("./models/news");
@@ -19,9 +19,8 @@ var Program=require("./models/program");
 var Workshop=require("./models/workshop");
 var homeRoutes=require("./routes/home");
 var adminhomeRoutes=require("./routes/adminhome");
-
+var sliderRoutes=require("./routes/slider");
 var multer=require("multer");
-const fs = require('fs');
 const download = require('download-file');
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -37,10 +36,9 @@ var storage=multer.diskStorage({
 var upload=multer({storage:storage});
 var app=a(); 
 app.use(adminhomeRoutes);
+app.use(sliderRoutes);
 //body parser only parses url encoded bodies or json bodies
-var Student=require("./models/student");
 var Detail=require("./models/detail");
-var Staff=require("./models/staff");
 var Request=require("./models/request");
 var Image=require("./models/image");
 var Request_staff=require("./models/request_staff");
@@ -202,15 +200,7 @@ app.post("/newworkshop",upload.single('workshop[file]'),function(req,res){
   })
   res.redirect("/workshop");
 })
-app.get("/newslider",function(req,res){
-  res.render("newslider");
-})
-app.post("/newslider",upload.single('slider[file]'),function(req,res){
-  Slider.create({
-file:req.file.path
-  })
-  res.redirect("/");
-})
+
 app.post("/:id/edituser",function(req,res){
  console.log(req.body.detail)
  Detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
@@ -650,25 +640,7 @@ app.get("/complaints",async(req,res)=>{
     })
     res.render("complaints",{detail:detail,request:request})
 })
-app.get("/editslider",function(req,res){
-  Slider.find({},function(err,sliders){
-    if(err)
-    console.log(err)
-    else
-    res.render("editslider",{sliders:sliders})
-  })
-})
-app.delete("/:id/editslider",function(req,res){
-  Slider.findByIdAndRemove(req.params.id,function(err){
-    console.log(req.params.id);
-      if(err){
-          res.redirect("/editslider")
-      }
-      else{
-          res.redirect("/editslider")
-      }
-  })
-})
+
 app.get("/editnews",function(req,res){
   News.find({},function(err,newss){
     if(err)
