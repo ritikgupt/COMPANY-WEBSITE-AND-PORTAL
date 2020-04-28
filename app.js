@@ -5,15 +5,11 @@ var f=require("method-override");
 var g=require("express-sanitizer");
 var passport=require("passport");
 var e=require("passport-local");
-var h=require("passport-local-mongoose");
 var async=require("async");
 var nodemailer=require("nodemailer");
 var crypto=require("crypto");
 var Message=require("./models/message");
-var Sponsor=require("./models/sponsor");
 var Member=require("./models/member")
-var News=require("./models/news");
-
 var Intern=require("./models/intern");
 var Program=require("./models/program");
 var Workshop=require("./models/workshop");
@@ -21,6 +17,7 @@ var homeRoutes=require("./routes/home");
 var adminhomeRoutes=require("./routes/adminhome");
 var sliderRoutes=require("./routes/slider");
 var newsRoutes=require("./routes/news");
+var sponsorRoutes=require("./routes/sponsor");
 var multer=require("multer");
 const download = require('download-file');
 var storage=multer.diskStorage({
@@ -39,6 +36,7 @@ var app=a();
 app.use(adminhomeRoutes);
 app.use(sliderRoutes);
 app.use(newsRoutes);
+app.use(sponsorRoutes);
 //body parser only parses url encoded bodies or json bodies
 var Detail=require("./models/detail");
 var Request=require("./models/request");
@@ -280,15 +278,6 @@ app.get("/employee",function(req,res){
     res.render("employee",{details:details})
   })
   
-})
-app.get("/newsponsor",function(req,res){
-  res.render("newsponsor");
-})
-app.post("/newsponsor",upload.single('sponsor[file]'),function(req,res){
-  Sponsor.create({
-file:req.file.path
-  })
-  res.redirect("/adminhome");
 })
 app.get("/forgot",function(req,res){
     res.render("forgot");
@@ -632,25 +621,7 @@ app.get("/complaints",async(req,res)=>{
 })
 
 
-app.get("/editsponsor",function(req,res){
-  Sponsor.find({},function(err,sponsors){
-    if(err)
-    console.log("err")
-    else
-    res.render("editsponsor",{sponsors:sponsors})
-  })
-})
-app.delete("/:id/editsponsor",function(req,res){
-  Sponsor.findByIdAndRemove(req.params.id,function(err){
-    console.log(req.params.id);
-      if(err){
-          res.redirect("/editsponsor")
-      }
-      else{
-          res.redirect("/editsponsor")
-      }
-  })
-})
+
 app.get("/editimage",function(req,res){
   Image.find({},function(err,images){
     if(err)
