@@ -11,7 +11,7 @@ var crypto=require("crypto");
 var Message=require("./models/message");
 var Intern=require("./models/intern");
 var Program=require("./models/program");
-var Workshop=require("./models/workshop");
+var workshopRoutes=require("./routes/workshop");
 var homeRoutes=require("./routes/home");
 var adminhomeRoutes=require("./routes/adminhome");
 var sliderRoutes=require("./routes/slider");
@@ -40,6 +40,7 @@ app.use(newsRoutes);
 app.use(sponsorRoutes);
 app.use(memberRoutes);
 app.use(imageRoutes);
+app.use(workshopRoutes)
 //body parser only parses url encoded bodies or json bodies
 var Detail=require("./models/detail");
 var Request=require("./models/request");
@@ -155,35 +156,7 @@ app.get("/online",function(req,res){
 app.get("/offline",function(req,res){
     res.render("offline");
 })
-app.get("/newworkshop",function(req,res){
-  res.render("newworkshop");
-})
-app.get("/workshop",async(req,res,next)=>{
-  var workshop=[]
-    await Workshop.find({},function(err,workshops){
-    if(err)
-    console.log(err)
-    else{
-for(i=0;i<workshops.length;i++){
-  workshop.push(workshops[i])
-}
-    }
-        
-      })
-      console.log(workshop)
-      res.render("workshop",{workshop:workshop})
-    }
-)
-app.post("/newworkshop",upload.single('workshop[file]'),function(req,res){
-  console.log(req.file)
-  Workshop.create({
-    title:req.body.workshop.title,
-    file:req.file.path,
-    desc:req.body.workshop.desc,
-    time:Date.now()
-  })
-  res.redirect("/workshop");
-})
+
 
 app.post("/:id/edituser",function(req,res){
  console.log(req.body.detail)
@@ -608,89 +581,7 @@ app.get("/complaints",async(req,res)=>{
 
 
 
-app.get("/editworkshop",function(req,res){
-  Workshop.find({},function(err,workshops){
-    if(err)
-    console.log("err")
-    else
-    res.render("editworkshop",{workshops:workshops})
-  })
-})
-app.get("/:id/editworkshop",function(req,res){
-  Workshop.findById(req.params.id,function(err,foundWorkshop){
-    console.log(req.params.id);
-    if(err){
-        res.redirect("/");
-    }
-    else{
-        res.render("showworkshop",{workshop:foundWorkshop});
-    }
-})
-})
-app.delete("/:id/editworkshop",function(req,res){
-  Workshop.findByIdAndRemove(req.params.id,function(err){
-    console.log(req.params.id);
-      if(err){
-          res.redirect("/editworkshop")
-      }
-      else{
-          res.redirect("/editworkshop")
-      }
-  })
-})
-app.get("/expense",function(req,res){
-  Request_staff.find({},function(err,request_staffs){
-    if(err)
-    console.log(err)
-    else
-    {
-console.log(request_staffs)
-    
-    res.render("expense",{request_staffs:request_staffs});
-  }})
 
-})
-app.get("/:id/changephotoworkshop",function(req,res){
-  Workshop.findById(req.params.id,function(err,foundWorkshop){
-      if(err){
-          console.log("Error");
-      }
-      else{
-          res.render("changephotoworkshop",{workshop:foundWorkshop})
-      }
-  }) 
-})
-app.post("/:id/changephotoworkshop",upload.single("workshop[file]",{overwrite:true}),function(req,res){
-  console.log(req.file.path)
-       Workshop.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
-          if(err){
-              res.redirect("/adminhome");
-          }
-          else{
-              res.redirect("/editworkshop");
-          }
-      })
-  })
-  app.get("/:id/editworkshopform",function(req,res){
-    Workshop.findById(req.params.id,function(err,foundWorkshop){
-      if(err){
-        console.log("err")
-      }
-      else{
-        res.render("editworkshopform",{workshop:foundWorkshop})
-      }
-    })
-  })
-  app.post("/:id/editworkshopform",function(req,res){
-    Workshop.findByIdAndUpdate(req.params.id,req.body.workshop,function(err){
-         if(err){
-             res.redirect("/adminhome");
-         }
-         else{
-             res.redirect("/editworkshop");
-         }
-     })
-   })
 app.get("/:id/",async(req,res)=>{
 request=[]
 detail=[]
