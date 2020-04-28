@@ -56,8 +56,10 @@
 
       // Add a page and draw some text on it
       const page = pdfDoc.addPage([500, 600])
+      const page1 = pdfDoc.addPage([500, 600])
+
       page.setFont(timesRomanFont)
-      page.drawText('Expense report of <%=detail[0].name%>', { x: 30, y: 500, size: 30 })
+      page.drawText('Expense report of <%=detail[0].name%>', { x: 30, y: 550, size: 30 })
      
       {s=0}
       <%for(var i=0;i<request.length;i++){%>
