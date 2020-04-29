@@ -72,7 +72,6 @@ app.use(dashboardRoutes);
 // app.get("/header",function(req,res){
 //     res.render("header")
 // })
-
 app.get("/about",function(req,res){
     res.render("about");
 })
@@ -88,21 +87,16 @@ app.get("/civil",function(req,res){
 app.get("/electrical",function(req,res){
     res.render("electrical");
 })
-
 app.get("/logout",function(req,res){
     req.logout(); 
     res.redirect("/login");
 })
-
 app.get("/online",function(req,res){
     res.render("online");
 })
 app.get("/offline",function(req,res){
     res.render("offline");
 })
-
-
-
 app.get("/newprogram",function(req,res){
   res.render("program");
 })
@@ -116,41 +110,6 @@ app.post("/newprogram",function(req,res){
   })
   res.redirect("/")
 })
-
-
-
-
-
-app.get("/:id/",async(req,res)=>{
-request=[]
-detail=[]
-
- await  Detail.findById(req.params.id,function(err,foundDetail){
-      if(err){
-          res.redirect("/");
-      }
-      else{
-          detail.push(foundDetail)
-      }
-  })
-  var a=detail[0].id
-  await Request_staff.find({},function(err,request_staffs){
-    if(err)
-    console.log(err)
-    else
-    {
-  for(var i=0;i<request_staffs.length;i++)
-  {
-    if(request_staffs[i].empid==a)
-    {
-    request.push(request_staffs[i])
-    }
-  }
-  }})
-  res.render("show",{detail:detail,request:request})
-})
-
-
 app.use(homeRoutes);
 app.use(detailRoutes);
 app.listen("3000",function(){
