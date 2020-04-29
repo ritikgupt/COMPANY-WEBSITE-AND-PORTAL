@@ -5,8 +5,6 @@ var f=require("method-override");
 var g=require("express-sanitizer");
 var passport=require("passport");
 var e=require("passport-local");
-
-var Intern=require("./models/intern");
 var Program=require("./models/program");
 var workshopRoutes=require("./routes/workshop");
 var homeRoutes=require("./routes/home");
@@ -24,6 +22,7 @@ var startupRoutes=require("./routes/startup");
 var consultRoutes=require("./routes/consult");
 var innovativeRoutes=require("./routes/innovative");
 var messageRoutes=require("./routes/message");
+var internRoutes=require("./routes/intern");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -41,9 +40,7 @@ var app=a();
 app.use(b.urlencoded({ extended: true }));
 var Detail=require("./models/detail");
 var Request=require("./models/request");
-
 var Request_staff=require("./models/request_staff");
-
 c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
 app.set("view engine","ejs");
 app.use(a.static("public"));
@@ -81,15 +78,11 @@ app.use(startupRoutes);
 app.use(consultRoutes);
 app.use(innovativeRoutes);
 app.use(messageRoutes);
+app.use(internRoutes)
 //body parser only parses url encoded bodies or json bodies
-
-
 // app.get("/header",function(req,res){
 //     res.render("header")
 // })
-
-
-
 app.get("/about",function(req,res){
     res.render("about");
 })
@@ -147,23 +140,7 @@ app.get("/logout",function(req,res){
     req.logout(); 
     res.redirect("/login");
 })
-app.get("/intern",function(req,res){
-    res.render("intern");
-})
-app.post("/intern",function(req,res){
-  Intern.create({
-    name:req.body.intern.name,
-    college:req.body.intern.college,
-    phone:req.body.intern.phone,
-    email:req.body.intern.email,
-    branch:req.body.intern.branch,
-    course:req.body.intern.course,
-    venue:req.body.intern.venue,
-    referal:req.body.intern.referal,
-    internship:req.body.intern.internship,
-  })
-  res.redirect("/");
-})
+
 app.get("/online",function(req,res){
     res.render("online");
 })
