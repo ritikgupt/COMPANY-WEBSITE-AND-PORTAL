@@ -5,7 +5,7 @@ var f=require("method-override");
 var g=require("express-sanitizer");
 var passport=require("passport");
 var e=require("passport-local");
-var Message=require("./models/message");
+
 var Intern=require("./models/intern");
 var Program=require("./models/program");
 var workshopRoutes=require("./routes/workshop");
@@ -23,6 +23,7 @@ var complaintRoutes=require("./routes/complaints");
 var startupRoutes=require("./routes/startup");
 var consultRoutes=require("./routes/consult");
 var innovativeRoutes=require("./routes/innovative");
+var messageRoutes=require("./routes/message");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -79,6 +80,7 @@ app.use(complaintRoutes);
 app.use(startupRoutes);
 app.use(consultRoutes);
 app.use(innovativeRoutes);
+app.use(messageRoutes);
 //body parser only parses url encoded bodies or json bodies
 
 
@@ -254,36 +256,6 @@ app.get("/logout",function(req,res){
     console.log(req.user)
     res.redirect("/login");
 })
-
-
-app.get("/message/:id",async(req,res,next)=>{
-var message=[]
-var detail=[]
-await Message.find({},function(err,messages){
-  if(err)
-  console.log("err")
-  else
-  {
-    for(var i=0;i<messages.length;i++)
-    {
-      message.push(messages[i])
-    }
-  }
-})
-req.params.id=req.user.id
- await Detail.findById(req.params.id,function(err,foundDetail){
-    if(err)
-    console.log("err")
-    else
-    detail.push(foundDetail)
-  })
-res.render("message",{message:message,detail:detail})
-
-})
-
-
-
-
 
 
 

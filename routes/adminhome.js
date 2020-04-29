@@ -5,6 +5,7 @@ var Sponsor=require("../models/sponsor");
 var Member=require("../models/member")
 var News=require("../models/news");
 var Image=require("../models/image")
+var Message=require("../models/message");
 router.get("/adminhome",async(req,res,next)=>{
     var slider=[]
     var news=[]
