@@ -24,6 +24,8 @@ var innovativeRoutes=require("./routes/innovative");
 var messageRoutes=require("./routes/message");
 var internRoutes=require("./routes/intern");
 var detailRoutes=require("./routes/detail");
+var employeeRoutes=require("./routes/employee");
+var studentRoutes=require("./routes/student");
 var dashboardRoutes=require("./routes/dashboard");
 var app=a(); 
 app.use(b.urlencoded({ extended: true }));
@@ -68,6 +70,8 @@ app.use(innovativeRoutes);
 app.use(messageRoutes);
 app.use(internRoutes)
 app.use(dashboardRoutes);
+app.use(employeeRoutes);
+app.use(studentRoutes);
 //body parser only parses url encoded bodies or json bodies
 // app.get("/header",function(req,res){
 //     res.render("header")
