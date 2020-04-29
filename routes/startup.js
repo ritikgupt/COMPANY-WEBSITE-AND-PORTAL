@@ -2,7 +2,7 @@ var Request=require("../models/request");
 var Detail=require("../models/detail");
 var a=require("express");
 var router=a.Router();
-  router.get("/research",async(req,res)=>{
+router.get("/startupidea",async(req,res)=>{
     var request=[]
     var detail1=[]
     var detail=[]
@@ -11,7 +11,7 @@ var router=a.Router();
       console.log("err")
       else
      {for(var i=0;i<requests.length;i++){
-       if(requests[i].recep=="Research")
+       if(requests[i].recep=="StartupIdea")
        request.push(requests[i])
      }
       }})
@@ -35,9 +35,9 @@ var router=a.Router();
         }
     }
       }
-      res.render("research",{detail:detail,request:request})
+      res.render("startupidea",{detail:detail,request:request})
   })
-  router.get("/research/:id/show",async(req,res,next)=>{
+  router.get("/startupidea/:id/show",async(req,res,next)=>{
     var request=[]
     var detail=[]
     await Request.findById(req.params.id,function(err,foundRequest){
@@ -54,6 +54,6 @@ var router=a.Router();
          detail.push(foundDetail)
         }
       })
-      res.render("requestshow",{detail:detail,request:request})
-    })       
-  module.exports=router;
+      res.render("startupideashow",{detail:detail,request:request})
+    })
+    module.exports=router;

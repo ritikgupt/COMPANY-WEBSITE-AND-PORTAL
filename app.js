@@ -18,6 +18,11 @@ var memberRoutes=require("./routes/advisory");
 var imageRoutes=require("./routes/image");
 var forgotRoutes=require("./routes/forgotpassword");
 var researchRoutes=require("./routes/research");
+var patentRoutes=require("./routes/patent");
+var complaintRoutes=require("./routes/complaints");
+var startupRoutes=require("./routes/startup");
+var consultRoutes=require("./routes/consult");
+var innovativeRoutes=require("./routes/innovative");
 var multer=require("multer");
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
@@ -69,6 +74,11 @@ app.use(imageRoutes);
 app.use(workshopRoutes)
 app.use(forgotRoutes);
 app.use(researchRoutes);
+app.use(patentRoutes);
+app.use(complaintRoutes);
+app.use(startupRoutes);
+app.use(consultRoutes);
+app.use(innovativeRoutes);
 //body parser only parses url encoded bodies or json bodies
 
 
