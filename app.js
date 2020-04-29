@@ -17,8 +17,8 @@ var sponsorRoutes=require("./routes/sponsor");
 var memberRoutes=require("./routes/advisory");
 var imageRoutes=require("./routes/image");
 var forgotRoutes=require("./routes/forgotpassword");
+var researchRoutes=require("./routes/research");
 var multer=require("multer");
-const download = require('download-file');
 var storage=multer.diskStorage({
   destination:function(req,file,cb){
     cb(null,'uploads/');
@@ -68,6 +68,7 @@ app.use(memberRoutes);
 app.use(imageRoutes);
 app.use(workshopRoutes)
 app.use(forgotRoutes);
+app.use(researchRoutes);
 //body parser only parses url encoded bodies or json bodies
 
 
@@ -269,198 +270,7 @@ req.params.id=req.user.id
 res.render("message",{message:message,detail:detail})
 
 })
-app.get("/patent",async(req,res,next)=>{
-  var request=[]
-  var detail=[]
-  await Request.find({},function(err,requests){
-    if(err)
-    console.log("err")
-    else
-   {for(var i=0;i<requests.length;i++){
-     if(requests[i].recep=="Patent")
-     request.push(requests[i])
-   }
-    }})
-    await Detail.find({},function(err,details){
-      if(err)
-      console.log("err")
-      else
-      {
-        for(var i=0;i<details.length;i++)
-        {
-          detail.push(details[i])
-        }
-      }
-    })
-    res.render("patent",{detail:detail,request:request})
-  })
-  app.get("/patent/:id/show",async(req,res,next)=>{
-    var request=[]
-    var detail=[]
-    await Request.findById(req.params.id,function(err,foundRequest){
-      if(err)
-      console.log("err")
-      else
-      request.push(foundRequest)
-      })
-      await Detail.findById(request[0].stu_id,function(err,foundDetail){
-        if(err)
-        console.log("err")
-        else
-        {
-         detail.push(foundDetail)
-        }
-      })
-      res.render("patentshow",{detail:detail,request:request})
-    })
-    app.get("/patent/:id/showpdf",async(req,res)=>{
-      request=[]
-      await Request.findById(req.params.id,function(err,foundRequest){
-        if(err)
-        console.log(err)
-        else
-        {
-          console.log(foundRequest)
-          request.push(foundRequest)
-        }
-      })
-    var url =""
-    console.log(url)
-    var options={
-      directory:"./views/",
-      filename:"hdf.pdf"
-    }
-    download(url,options,function(err){
-      if(err) throw err
-      console.log("done");
-    })
-      res.send("file downloaded");
-    })
-app.get("/research",async(req,res)=>{
-  var request=[]
-  var detail=[]
-  await Request.find({},function(err,requests){
-    if(err)
-    console.log("err")
-    else
-   {for(var i=0;i<requests.length;i++){
-     if(requests[i].recep=="Research")
-     request.push(requests[i])
-   }
-    }})
-    await Detail.find({},function(err,details){
-      if(err)
-      console.log()
-      else
-      {
-        for(var i=0;i<details.length;i++)
-        {
-          detail.push(details[i])
-        }
-      }
-    })
-    res.render("research",{detail:detail,request:request})
-})
-app.get("/startupidea",async(req,res,next)=>{
-  var request=[]
-  var detail=[]
-  await Request.find({},function(err,requests){
-    if(err)
-    console.log("err")
-    else
-   {for(var i=0;i<requests.length;i++){
-     if(requests[i].recep=="StartupIdea")
-     request.push(requests[i])
-   }
-    }})
-    await Detail.find({},function(err,details){
-      if(err)
-      console.log()
-      else
-      {
-        for(var i=0;i<details.length;i++)
-        {
-          detail.push(details[i])
-        }
-      }
-    })
-    res.render("startupidea",{detail:detail,request:request})
-})
-app.get("/startupconsult",async(req,res,next)=>{
-  var request=[]
-  var detail=[]
-  await Request.find({},function(err,requests){
-    if(err)
-    console.log("err")
-    else
-   {for(var i=0;i<requests.length;i++){
-     if(requests[i].recep=="StartupConsult")
-     request.push(requests[i])
-   }
-    }})
-    await Detail.find({},function(err,details){
-      if(err)
-      console.log()
-      else
-      {
-        for(var i=0;i<details.length;i++)
-        {
-          detail.push(details[i])
-        }
-      }
-    })
-    res.render("startupconsult",{detail:detail,request:request})
-})
-app.get("/innovative",async(req,res)=>{
-  var request=[]
-  var detail=[]
-  await Request.find({},function(err,requests){
-    if(err)
-    console.log("err")
-    else
-   {for(var i=0;i<requests.length;i++){
-     if(requests[i].recep=="InnovativeIdea")
-     request.push(requests[i])
-   }
-    }})
-    await Detail.find({},function(err,details){
-      if(err)
-      console.log()
-      else
-      {
-        for(var i=0;i<details.length;i++)
-        {
-          detail.push(details[i])
-        }
-      }
-    })
-    res.render("innovative",{detail:detail,request:request})
-})
-app.get("/complaints",async(req,res)=>{
-  var request=[]
-  var detail=[]
-  await Request.find({},function(err,requests){
-    if(err)
-    console.log("err")
-    else
-   {for(var i=0;i<requests.length;i++){
-     if(requests[i].recep=="Complaints")
-     request.push(requests[i])
-   }
-    }})
-    await Detail.find({},function(err,details){
-      if(err)
-      console.log()
-      else
-      {
-        for(var i=0;i<details.length;i++)
-        {
-          detail.push(details[i])
-        }
-      }
-    })
-    res.render("complaints",{detail:detail,request:request})
-})
+
 
 
 
