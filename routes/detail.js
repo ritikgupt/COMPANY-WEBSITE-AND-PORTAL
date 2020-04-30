@@ -1,6 +1,7 @@
-var Detail=require("../models/detail");
+
 var passport=require("passport");
 var e=require("passport-local");
+var Detail=require("../models/detail");
 var express=require("express");
 var router=express.Router();
 passport.use( new e(Detail.authenticate()));
@@ -19,27 +20,7 @@ var storage=multer.diskStorage({
 //   if(file.mimetype===)
 // }
 var upload=multer({storage:storage});
-router.post("/:id/edituser",function(req,res){
-    console.log(req.body.detail)
-    Detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
-         if(err){
-             res.redirect("/adminhome");
-         }
-         else{
-             res.redirect("/"+req.params.id+"/show");
-         }
-     })
-   })
-   router.get("/:id/changeuserphoto",function(req,res){
-     Detail.findById(req.params.id,function(err,foundDetail){
-         if(err){
-             console.log("Error");
-         }
-         else{
-             res.render("changeuserphoto",{detail:foundDetail})
-         }
-     }) 
-   })
+
    router.get("/newuser",function(req,res){
     res.render("newuser");
   })
@@ -57,7 +38,7 @@ router.post("/:id/edituser",function(req,res){
     file:req.file.path,
     college:req.body.detail.college
   })
-  res.redirect("/login");var Detail=require("../models/detail");
+  res.redirect("/login");
   })
   router.get("/logout",function(req,res){
       req.logout();
@@ -87,7 +68,27 @@ router.post("/:id/edituser",function(req,res){
             }
         })
     })
-    
+    router.post("/:id/edituser",function(req,res){
+      console.log(req.body.detail)
+      Detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
+           if(err){
+               res.redirect("/adminhome");
+           }
+           else{
+               res.redirect("/"+req.params.id+"/show");
+           }
+       })
+     })
+     router.get("/:id/changeuserphoto",function(req,res){
+       Detail.findById(req.params.id,function(err,foundDetail){
+           if(err){
+               console.log("Error");
+           }
+           else{
+               res.render("changeuserphoto",{detail:foundDetail})
+           }
+       }) 
+     })
         router.delete("/:id/",function(req,res){
           Detail.findByIdAndRemove(req.params.id,function(err){
               if(err){
