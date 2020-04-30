@@ -26,7 +26,7 @@ router.post("/:id/edituser",function(req,res){
              res.redirect("/adminhome");
          }
          else{
-             res.redirect("/"+req.params.id);
+             res.redirect("/"+req.params.id+"/show");
          }
      })
    })
@@ -57,7 +57,7 @@ router.post("/:id/edituser",function(req,res){
     file:req.file.path,
     college:req.body.detail.college
   })
-  res.redirect("/login");
+  res.redirect("/login");var Detail=require("../models/detail");
   })
   router.get("/logout",function(req,res){
       req.logout();
@@ -74,16 +74,7 @@ router.post("/:id/edituser",function(req,res){
         }
     })
   })    
-  router.delete("/:id/",function(req,res){
-    Detail.findByIdAndRemove(req.params.id,function(err){
-        if(err){
-            res.redirect("/")
-        }
-        else{
-            res.redirect("/students")
-        }
-    })
-  })
+  
   
   router.post("/:id/changeuserphoto",upload.single("detail[file]",{overwrite:true}),function(req,res){
     console.log(req.file.path)
@@ -92,35 +83,19 @@ router.post("/:id/edituser",function(req,res){
                 res.redirect("/adminhome");
             }
             else{
-                res.redirect("/"+req.params.id);
+                res.redirect("/"+req.params.id+"/show");
             }
         })
     })
-    router.get("/:id/",async(req,res)=>{
-        request=[]
-        detail=[]
-         await  Detail.findById(req.params.id,function(err,foundDetail){
+    
+        router.delete("/:id/",function(req,res){
+          Detail.findByIdAndRemove(req.params.id,function(err){
               if(err){
-                  res.redirect("/");
+                  res.redirect("/")
               }
               else{
-                  detail.push(foundDetail)
+                  res.redirect("/students")
               }
           })
-          var a=detail[0].id
-          await Request_staff.find({},function(err,request_staffs){
-            if(err)
-            console.log(err)
-            else
-            {
-          for(var i=0;i<request_staffs.length;i++)
-          {
-            if(request_staffs[i].empid==a)
-            {
-            request.push(request_staffs[i])
-            }
-          }
-          }})
-          res.render("show",{detail:detail,request:request})
         })
     module.exports=router;
