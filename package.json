@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/ritikgupt/AMZ.git"
   },
-  "keywords": [],
+  "keywords": ["node", "express", "heroku"],
   "author": "",
   "license": "ISC",
   "bugs": {
