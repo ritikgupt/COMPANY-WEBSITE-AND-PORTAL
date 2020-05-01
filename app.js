@@ -47,7 +47,7 @@ app.use('/uploads',a.static("uploads"));
 mongoose.set('useCreateIndex', true);
 app.use(g());
 app.use(f("_method"));
-app.use(require("express-session")
+app.use(require("cookie-session")
 ({
   secret:"Let your work make the noise not your mouth.",
   resave:false,
