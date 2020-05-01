@@ -1,5 +1,6 @@
 var a=require("express");
 var b=require("body-parser");
+const port = process.env.PORT || 5000;
 var mongoose=require("mongoose");
 require('dotenv').config();
 var f=require("method-override");
@@ -124,6 +125,6 @@ app.post("/newprogram",function(req,res){
 })
 app.use(homeRoutes);
 app.use(detailRoutes);
-app.listen("3000",function(){
+app.listen(port,function(){
     console.log("Server has started.");
 });
