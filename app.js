@@ -1,6 +1,7 @@
 var a=require("express");
 var b=require("body-parser");
-var c=require("mongoose");
+var mongoose=require("mongoose");
+require('dotenv').config();
 var f=require("method-override");
 var g=require("express-sanitizer");
 var passport=require("passport");
@@ -28,15 +29,22 @@ var employeeRoutes=require("./routes/employee");
 var studentRoutes=require("./routes/student");
 var dashboardRoutes=require("./routes/dashboard");
 var app=a(); 
+
 app.use(b.urlencoded({ extended: true }));
 var Detail=require("./models/detail");
 var Request_staff=require("./models/request_staff");
-c.connect("mongodb://localhost:27017/amz", { useNewUrlParser: true,useFindAndModify : false,useUnifiedTopology: true });
+var uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true ,useUnifiedTopology: true }
+);
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+})
 app.set("view engine","ejs");
 app.use(a.static("public"));
 app.use('/uploads',a.static("uploads"));
 // app.use(a.static('uploads'));
-c.set('useCreateIndex', true);
+mongoose.set('useCreateIndex', true);
 app.use(g());
 app.use(f("_method"));
 app.use(require("express-session")
