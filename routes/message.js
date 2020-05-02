@@ -23,6 +23,7 @@ router.get("/message/:id",async(req,res,next)=>{
         else
         detail.push(foundDetail)
       })
+      console.log(detail)
     res.render("message",{message:message,detail:detail})
     })
     module.exports=router;
