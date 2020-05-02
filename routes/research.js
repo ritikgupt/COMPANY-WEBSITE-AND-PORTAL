@@ -26,11 +26,10 @@ var router=a.Router();
           }
         }
       })
-      console.log(detail1)
       for(var i=0;i<request.length;i++){
     for(var j=0;j<detail1.length;j++){
         if(detail1[j].id==request[i].stu_id)
-        {   console.log("hello")
+        {  
             detail.push(detail1[j])
         }
     }

@@ -76,15 +76,12 @@ router.get('/reset/:token', function(req, res) {
             return res.redirect('back');
           }
           if(req.body.password === req.body.confirm) {
-            console.log(req.body.confirm)
+          
             detail.setPassword(req.body.password, function(err) {
               detail.resetPasswordToken = undefined;
               detail.resetPasswordExpires = undefined;
   
               detail.save(function(err) {
-               console.log("Password Updated")
-               console.log(req.body.password)
-               console.log(detail.password)
                detail.password=req.body.password;
                 done(err, detail); 
                 res.redirect("/logout");

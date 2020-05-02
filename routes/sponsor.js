@@ -31,7 +31,6 @@ router.get("/newsponsor",function(req,res){
   })
   router.delete("/:id/editsponsor",function(req,res){
     Sponsor.findByIdAndRemove(req.params.id,function(err){
-      console.log(req.params.id);
         if(err){
             res.redirect("/editsponsor")
         }

@@ -33,7 +33,6 @@ router.get("/newmember",function(req,res){
   })
   router.get("/:id/editmember",function(req,res){
     Member.findById(req.params.id,function(err,foundMember){
-      console.log(req.params.id);
       if(err){
           res.redirect("/");
       }
@@ -44,7 +43,6 @@ router.get("/newmember",function(req,res){
   })
   router.delete("/:id/editmember",function(req,res){
     Member.findByIdAndRemove(req.params.id,function(err){
-      console.log(req.params.id);
         if(err){
             res.redirect("/editmember")
         }
@@ -64,7 +62,6 @@ router.get("/newmember",function(req,res){
     }) 
   })
   router.post("/:id/changephotomember",upload.single("member[file]",{overwrite:true}),function(req,res){
-    console.log(req.file.path)
     cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
          Member.findByIdAndUpdate(req.params.id,{file:result.secure_url},function(err){
             if(err){

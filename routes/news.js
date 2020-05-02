@@ -33,7 +33,7 @@ router.get("/newnews",function(req,res){
   })
   router.get("/:id/editnews",function(req,res){
     News.findById(req.params.id,function(err,foundNews){
-      console.log(req.params.id);
+     
       if(err){
           res.redirect("/");
       }
@@ -44,7 +44,7 @@ router.get("/newnews",function(req,res){
   })
   router.delete("/:id/editnews",function(req,res){
     News.findByIdAndRemove(req.params.id,function(err){
-      console.log(req.params.id);
+      
         if(err){
             res.redirect("/editnews")
         }
@@ -64,7 +64,6 @@ router.get("/newnews",function(req,res){
     }) 
   })
   router.post("/:id/changephotonews",upload.single("news[file]",{overwrite:true}),function(req,res){
-    console.log(req.file.path)
     cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
          News.findByIdAndUpdate(req.params.id,{file:result.secure_url},function(err){
             if(err){

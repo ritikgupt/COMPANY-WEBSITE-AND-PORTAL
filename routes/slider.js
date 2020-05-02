@@ -30,7 +30,6 @@ router.get("/newslider",function(req,res){
   })
   router.delete("/:id/editslider",function(req,res){
     Slider.findByIdAndRemove(req.params.id,function(err){
-      console.log(req.params.id);
         if(err){
             res.redirect("/editslider")
         }

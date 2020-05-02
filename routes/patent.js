@@ -56,7 +56,7 @@ router.get("/patent",async(req,res,next)=>{
           console.log(err)
           else
           {
-            console.log(foundRequest)
+           
             request.push(foundRequest)
           }
         })

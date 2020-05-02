@@ -20,7 +20,6 @@ cloudinary.config({
     res.render("newuser");
   })
   router.post("/newuser",upload.single("detail[file]"),function(req,res){
-    console.log(req.file)
     req.body.detail.name
     req.body.detail.username
     req.body.detail.password
@@ -52,7 +51,6 @@ cloudinary.config({
   })
   router.get("/logout",function(req,res){
       req.logout();
-      console.log(req.user)
       res.redirect("/login");
   })
   router.get("/:id/edituser",function(req,res){
@@ -80,7 +78,6 @@ cloudinary.config({
         })
     })
     router.post("/:id/edituser",function(req,res){
-      console.log(req.body.detail)
       Detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
            if(err){
                res.redirect("/adminhome");

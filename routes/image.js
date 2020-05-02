@@ -30,7 +30,6 @@ router.get("/image",function(req,res){
   })
   router.delete("/:id/editimage",function(req,res){
     Image.findByIdAndRemove(req.params.id,function(err){
-      console.log(req.params.id);
         if(err){
             res.redirect("/editimage")
         }

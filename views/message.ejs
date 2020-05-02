@@ -1,16 +1,16 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <div class="ui main text container segment a">
-    <div class="ui huge header">Messages</div>
+    <div class="ui huge header">messages</div>
 <div class="ui compact message">
-        <% var a=detail[0].username%>
+        <% var a=currentUser.username%>
         <ul class="list">
-          <%for(var i=0;i<message.length;i++){%>
-            <%if(detail[0].type=='Student'){%>
-            <%if(message[i].recep=='Student'|| message[i].recep==a){%>
-         <li><%=message[i].desc%></li><%}}%>
-              <%if(detail[0].type=='Employee'){%>
-                <%if(message[i].recep=='Employee'||message[i].recep==a){%>
-                  <li><%=message[i].desc%></li><%}}%>
+          <%for(var i=0;i<messages.length;i++){%>
+            <%if(currentUser.type=='Student'){%>
+            <%if(messages[i].recep=='Student'|| messages[i].recep==a){%>
+         <li><%=messages[i].desc%></li><%}}%>
+              <%if(currentUser.type=='Employee'){%>
+                <%if(messages[i].recep=='Employee'||messages[i].recep==a){%>
+                  <li><%=messages[i].desc%></li><%}}%>
                <% }%>
              
               

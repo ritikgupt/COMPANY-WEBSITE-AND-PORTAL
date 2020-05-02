@@ -24,7 +24,6 @@ router.get("/newworkshop",function(req,res){
       }
           
         })
-        console.log(workshop)
         res.render("workshop",{workshop:workshop})
       }
   )
@@ -49,7 +48,6 @@ router.get("/newworkshop",function(req,res){
   })
   router.get("/:id/editworkshop",function(req,res){
     Workshop.findById(req.params.id,function(err,foundWorkshop){
-      console.log(req.params.id);
       if(err){
           res.redirect("/");
       }
@@ -60,7 +58,6 @@ router.get("/newworkshop",function(req,res){
   })
   router.delete("/:id/editworkshop",function(req,res){
     Workshop.findByIdAndRemove(req.params.id,function(err){
-      console.log(req.params.id);
         if(err){
             res.redirect("/editworkshop")
         }
@@ -75,7 +72,6 @@ router.get("/newworkshop",function(req,res){
       console.log(err)
       else
       {
-  console.log(request_staffs)
       
       res.render("expense",{request_staffs:request_staffs});
     }})
