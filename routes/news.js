@@ -2,27 +2,25 @@ var News=require("../models/news");
 var express=require("express");
 var router=express.Router();
 var multer=require("multer");
-var storage=multer.diskStorage({
-    destination:function(req,file,cb){
-      cb(null,'uploads/');
-    },
-    filename:function(req,file,cb){
-      cb(null,new Date().toISOString()+file.originalname);
-    }
-  });
-  var upload=multer({storage:storage});
-
-
+var upload=multer({dest:'uploads/'});
+var cloudinary =require("cloudinary");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
+});
 router.get("/newnews",function(req,res){
     res.render("newnews");
   })
   router.post("/newnews",upload.single('news[file]'),function(req,res){
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
     News.create({
       title:req.body.news.title,
-      file:req.file.path,
+      file:result.secure_url,
       desc:req.body.news.desc,
       time:Date.now()
     })
+  })
     res.redirect("/adminhome")
   })
   router.get("/editnews",function(req,res){
@@ -67,7 +65,8 @@ router.get("/newnews",function(req,res){
   })
   router.post("/:id/changephotonews",upload.single("news[file]",{overwrite:true}),function(req,res){
     console.log(req.file.path)
-         News.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
+         News.findByIdAndUpdate(req.params.id,{file:result.secure_url},function(err){
             if(err){
                 res.redirect("/adminhome");
             }
@@ -75,6 +74,7 @@ router.get("/newnews",function(req,res){
                 res.redirect("/editnews");
             }
         })
+      })
     })
     router.get("/:id/editnewsform",function(req,res){
       News.findById(req.params.id,function(err,foundNews){

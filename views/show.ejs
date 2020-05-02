@@ -3,11 +3,12 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <div class="ui main text container a">
 <div class="ui main text container segment">
+  <%console.log(detail[0])%>
         <div class="ui huge header"><%=detail[0].name%></div>
         <div class="ui attached">
             <div class="item">
              
-                <img class="ui centered rounded image" src="/<%=detail[0].file%>">
+                <img class="ui centered rounded image" src="<%=detail[0].file%>">
                 <div class="description">
                     <h3>ID:<%=detail[0].username%></h3>
                     <h3><%=detail[0].dept%></h3>

@@ -2,15 +2,13 @@ var Workshop=require("../models/workshop");
 var express=require("express");
 var router=express.Router();
 var multer=require("multer");
-var storage=multer.diskStorage({
-    destination:function(req,file,cb){
-      cb(null,'uploads/');
-    },
-    filename:function(req,file,cb){
-      cb(null,new Date().toISOString()+file.originalname);
-    }
-  });
-  var upload=multer({storage:storage});
+var upload=multer({dest:'uploads/'});
+var cloudinary =require("cloudinary");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
+});
 router.get("/newworkshop",function(req,res){
     res.render("newworkshop");
   })
@@ -31,13 +29,14 @@ router.get("/newworkshop",function(req,res){
       }
   )
   router.post("/newworkshop",upload.single('workshop[file]'),function(req,res){
-    console.log(req.file)
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
     Workshop.create({
       title:req.body.workshop.title,
-      file:req.file.path,
+      file:result.secure_url,
       desc:req.body.workshop.desc,
       time:Date.now()
     })
+  })
     res.redirect("/workshop");
   })
   router.get("/editworkshop",function(req,res){
@@ -93,14 +92,15 @@ router.get("/newworkshop",function(req,res){
     }) 
   })
   router.post("/:id/changephotoworkshop",upload.single("workshop[file]",{overwrite:true}),function(req,res){
-    console.log(req.file.path)
-         Workshop.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
+         Workshop.findByIdAndUpdate(req.params.id,{file:result.secure_url},function(err){
             if(err){
                 res.redirect("/adminhome");
             }
             else{
                 res.redirect("/editworkshop");
             }
+          })
         })
     })
     router.get("/:id/editworkshopform",function(req,res){

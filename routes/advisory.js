@@ -2,25 +2,25 @@ var Member=require("../models/member")
 var express=require("express");
 var router=express.Router();
 var multer=require("multer");
-var storage=multer.diskStorage({
-    destination:function(req,file,cb){
-      cb(null,'uploads/');
-    },
-    filename:function(req,file,cb){
-      cb(null,new Date().toISOString()+file.originalname);
-    }
-  });
-  var upload=multer({storage:storage});
+var upload=multer({dest:'uploads/'});
+var cloudinary =require("cloudinary");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
+});
 router.get("/newmember",function(req,res){
     res.render("newmember");
   })
   router.post("/newmember",upload.single('member[file]'),function(req,res){
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
     Member.create({
-      file:req.file.path,
+      file:result.secureurl,
       name:req.body.member.name,
       designation:req.body.member.designation,
       linkedIn:req.body.member.linkedIn
     })
+  })
     res.redirect("/adminhome")
   })
   router.get("/editmember",function(req,res){
@@ -65,7 +65,8 @@ router.get("/newmember",function(req,res){
   })
   router.post("/:id/changephotomember",upload.single("member[file]",{overwrite:true}),function(req,res){
     console.log(req.file.path)
-         Member.findByIdAndUpdate(req.params.id,{file:req.file.path},function(err){
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
+         Member.findByIdAndUpdate(req.params.id,{file:result.secure_url},function(err){
             if(err){
                 res.redirect("/adminhome");
             }
@@ -73,6 +74,7 @@ router.get("/newmember",function(req,res){
                 res.redirect("/editmember");
             }
         })
+      })
     })
     router.get("/:id/editmemberform",function(req,res){
       Member.findById(req.params.id,function(err,foundMember){

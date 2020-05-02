@@ -2,24 +2,24 @@ var express=require("express");
 var router=express.Router();
 var Slider=require("../models/slider");
 var multer=require("multer");
-var storage=multer.diskStorage({
-  destination:function(req,file,cb){
-    cb(null,'uploads/');
-  },
-  filename:function(req,file,cb){
-    cb(null,new Date().toISOString()+file.originalname);
-  }
+var upload=multer({dest:'uploads/'});
+var cloudinary =require("cloudinary");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
 });
-var upload=multer({storage:storage});
 router.get("/newslider",function(req,res){
     res.render("newslider");
   })
   router.post("/newslider",upload.single('slider[file]'),function(req,res){
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
     Slider.create({
-  file:req.file.path
+  file:result.secure_url
     })
     res.redirect("/");
   })
+})
   router.get("/editslider",function(req,res){
     Slider.find({},function(err,sliders){
       if(err)

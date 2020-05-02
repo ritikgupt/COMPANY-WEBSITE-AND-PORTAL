@@ -9,19 +9,13 @@ passport.use( new e(Detail.authenticate()));
 passport.serializeUser(Detail.serializeUser());
 passport.deserializeUser(Detail.deserializeUser());
 var multer=require("multer");
-var storage=multer.diskStorage({
-  destination:function(req,file,cb){
-    cb(null,'uploads/');
-  },
-  filename:function(req,file,cb){
-    cb(null,new Date().toISOString()+file.originalname);
-  }
+var upload=multer({dest:'uploads/'});
+var cloudinary =require("cloudinary");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
 });
-// var filefilter=(req,file,cb)=>{
-//   if(file.mimetype===)
-// }
-var upload=multer({storage:storage});
-
    router.get("/newuser",function(req,res){
     res.render("newuser");
   })
@@ -35,10 +29,13 @@ var upload=multer({storage:storage});
     req.body.detail.dept
     req.body.detail.type
     req.body.detail.image
-    req.file.path
+   
     req.body.detail.college
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
+      console.log("Error:",err);
+      console.log("Result:",result);
   Detail.register(new Detail({username:req.body.detail.username,name:req.body.detail.name,email:req.body.detail.email,mobile:req.body.detail.mobile,dept:req.body.detail.dept,
-    type:req.body.detail.type,image:req.body.detail.image,file:req.file.path,college:req.body.detail.college}),req.body.detail.password,function(err,detail){
+    type:req.body.detail.type,image:req.body.detail.image,file:result.secure_url,college:req.body.detail.college}),req.body.detail.password,function(err,detail){
       if(err)
       {
       console.log("err");
@@ -50,7 +47,7 @@ var upload=multer({storage:storage});
         })
       }
     })
-
+  })
   res.redirect("/login");
   })
   router.get("/logout",function(req,res){
@@ -83,7 +80,7 @@ var upload=multer({storage:storage});
     })
     router.post("/:id/edituser",function(req,res){
       console.log(req.body.detail)
-      Detail.findByIdAndUpdate({useFindAndModify:false},req.params.id,req.body.detail,function(err,updatedDetail){
+      Detail.findByIdAndUpdate(req.params.id,req.body.detail,function(err,updatedDetail){
            if(err){
                res.redirect("/adminhome");
            }
@@ -103,7 +100,7 @@ var upload=multer({storage:storage});
        }) 
      })
         router.delete("/:id/",function(req,res){
-          Detail.findByIdAndRemove({useFindAndModify:false},req.params.id,function(err){
+          Detail.findByIdAndRemove(req.params.id,function(err){
               if(err){
                   res.redirect("/")
               }
