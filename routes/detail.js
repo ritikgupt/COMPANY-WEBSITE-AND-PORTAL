@@ -68,14 +68,15 @@ cloudinary.config({
   
   
   router.post("/:id/changeuserphoto",upload.single("detail[file]",{overwrite:true}),function(req,res){
-    console.log(req.file.path)
-         Detail.findByIdAndUpdate({useFindAndModify:false},req.params.id,{file:req.file.path},function(err,updatedDetail){
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
+         Detail.findByIdAndUpdate(req.params.id,{file:result.secure_url},function(err,updatedDetail){
             if(err){
                 res.redirect("/adminhome");
             }
             else{
                 res.redirect("/"+req.params.id+"/show");
             }
+          })
         })
     })
     router.post("/:id/edituser",function(req,res){
