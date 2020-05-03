@@ -4,6 +4,28 @@ var b=require("body-parser");
 const port = process.env.PORT || 5000;
 var mongoose=require("mongoose");
 require('dotenv').config();
+
+var app=a(); 
+app.use(compression({ filter: shouldCompress,treshold:0 }));
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
+app.use(b.urlencoded({ extended: true }));
+var Detail=require("./models/detail");
+var Request_staff=require("./models/request_staff");
+var uri = process.env.ATLAS_URI;
+mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true ,useUnifiedTopology: true }
+);
+const connection = mongoose.connection;
+connection.once('open', () => {
+  console.log("MongoDB database connection established successfully");
+})
 var f=require("method-override");
 var g=require("express-sanitizer");
 var passport=require("passport");
@@ -30,18 +52,6 @@ var detailRoutes=require("./routes/detail");
 var employeeRoutes=require("./routes/employee");
 var studentRoutes=require("./routes/student");
 var dashboardRoutes=require("./routes/dashboard");
-var app=a(); 
-app.use(compression());//compress all responses
-app.use(b.urlencoded({ extended: true }));
-var Detail=require("./models/detail");
-var Request_staff=require("./models/request_staff");
-var uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true ,useUnifiedTopology: true }
-);
-const connection = mongoose.connection;
-connection.once('open', () => {
-  console.log("MongoDB database connection established successfully");
-})
 app.set("view engine","ejs");
 app.use(a.static("public"));
 app.use('/uploads',a.static("uploads"));
@@ -57,9 +67,6 @@ app.use(require("cookie-session")
 }))
 app.use(passport.initialize());
 app.use(passport.session());
-// passport.use(new e(Staff.authenticate()));
-// passport.serializeUser(Staff.serializeUser());
-// passport.deserializeUser(Staff.deserializeUser());
 passport.use( new e(Detail.authenticate()));
 passport.serializeUser(Detail.serializeUser());
 passport.deserializeUser(Detail.deserializeUser());
@@ -82,10 +89,6 @@ app.use(internRoutes)
 app.use(dashboardRoutes);
 app.use(employeeRoutes);
 app.use(studentRoutes);
-//body parser only parses url encoded bodies or json bodies
-// app.get("/header",function(req,res){
-//     res.render("header")
-// })
 app.get("/about",function(req,res){
     res.render("about");
 })
