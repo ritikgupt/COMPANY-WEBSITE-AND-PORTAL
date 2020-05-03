@@ -3,31 +3,31 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <div class="ui main text container a">
 <div class="ui main text container segment">
-  <%console.log(detail[0])%>
-        <div class="ui huge header"><%=detail[0].name%></div>
+  <%console.log(detail)%>
+        <div class="ui huge header"><%=detail.name%></div>
         <div class="ui attached">
             <div class="item">
              
-                <img class="ui centered rounded image" src="<%=detail[0].file%>">
+                <img class="ui centered rounded image" src="<%=detail.file%>">
                 <div class="description">
-                    <h3>ID:<%=detail[0].username%></h3>
-                    <h3><%=detail[0].dept%></h3>
-                    <h3><%=detail[0].college%></h3>
-                    <h3>Email:<%=detail[0].email%></h3>
-                    <h3>Mobile Number:<%=detail[0].mobile%></h3>
+                    <h3>ID:<%=detail.username%></h3>
+                    <h3><%=detail.dept%></h3>
+                    <h3><%=detail.college%></h3>
+                    <h3>Email:<%=detail.email%></h3>
+                    <h3>Mobile Number:<%=detail.mobile%></h3>
                 </div>
-                    <a class="ui blue basic button"href="/<%=detail[0]._id%>/edituser">Edit detail</a>
-                    <a class="ui blue basic button"href="/<%=detail[0]._id%>/changeuserphoto">Change Photo</a>
+                    <a class="ui blue basic button"href="/<%=detail._id%>/edituser">Edit detail</a>
+                    <a class="ui blue basic button"href="/<%=detail._id%>/changeuserphoto">Change Photo</a>
                     <br><br>
-                    <form action="/<%=detail[0]._id%>?_method=Delete" method="POST">
+                    <form action="/<%=detail._id%>?_method=Delete" method="POST">
                         <button class="ui red basic button">Remove</button>
                     </form>      
                  
-                  <%if(detail[0].type=='Employee'){%>
+                  <%if(detail.type=='Employee'){%>
                     <button onclick="setDocumentMetadata()" class="ui green basic button">Expenditure Report</button>
                   <a class="ui red basic button"href="/employee">Back</a><%}%>
                   <!-- <a class="ui purple basic button"href="/employee">Today's Schedule</a> -->
-                  <%if(detail[0].type=='Student'){%>
+                  <%if(detail.type=='Student'){%>
                   <a class="ui red basic button"href="/students">Back</a><%}%>
             </div>
     </div>
@@ -61,7 +61,7 @@
       // const page1 = pdfDoc.addPage([500, 600])
 
       page.setFont(timesRomanFont)
-      page.drawText('Expense report of <%=detail[0].name%>', { x: 30, y: 9950, size: 30 })
+      page.drawText('Expense report of <%=detail.name%>', { x: 30, y: 9950, size: 30 })
      
       {s=9900}
       <%for(var i=0;i<request.length;i++){%>
@@ -74,7 +74,7 @@
 
       // Set all available metadata fields on the PDFDocument. Note that these fields
       // are visible in the "Document Properties" section of most PDF readers.
-      pdfDoc.setTitle('Expense report of <%=detail[0].name%>')
+      pdfDoc.setTitle('Expense report of <%=detail.name%>')
       pdfDoc.setAuthor('Humpty Dumpty')
       pdfDoc.setSubject('📘 An Epic Tale of Woe 📖')
       pdfDoc.setKeywords(['eggs', 'wall', 'fall', 'king', 'horses', 'men'])

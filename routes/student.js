@@ -13,16 +13,6 @@ router.get("/students",function(req,res){
   })
   router.get("/:id/show",async(req,res)=>{
     request=[]
-    detail=[]
-     await  Detail.findById(req.params.id,function(err,foundDetail){
-          if(err){
-              res.redirect("/");
-          }
-          else{
-              detail.push(foundDetail)
-          }
-      })
-      var a=detail[0].id
       await Request_staff.find({},function(err,request_staffs){
         if(err)
         console.log(err)
@@ -30,13 +20,21 @@ router.get("/students",function(req,res){
         {
       for(var i=0;i<request_staffs.length;i++)
       {
-        if(request_staffs[i].empid==a)
+        if(request_staffs[i].empid==req.params.id)
         {
         request.push(request_staffs[i])
         }
       }
       }})
-      res.render("show",{detail:detail,request:request})
+      await  Detail.findById(req.params.id,function(err,foundDetail){
+        if(err){
+            res.redirect("/");
+        }
+        else{
+          res.render("show",{detail:foundDetail,request:request})
+        }
+    })
+      
     })
   
   module.exports=router
