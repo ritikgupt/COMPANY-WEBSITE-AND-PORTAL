@@ -33,12 +33,14 @@ router.get("/patent",async(req,res,next)=>{
         else
         request.push(foundRequest)
         })
-        await Detail.findById(request[0].stu_id,function(err,foundDetail){
+        await Detail.find({},function(err,details){
           if(err)
           console.log("err")
           else
           {
-           res.render("requestshow",{request:request,detail:foundDetail})
+            console.log(request)
+            console.log(details)
+           res.render("requestshow",{request:request,details:details})
           }
         })
       })

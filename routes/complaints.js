@@ -29,21 +29,20 @@ router.get("/complaints",async(req,res,next)=>{
     })
     router.get("/complaints/:id/show",async(req,res,next)=>{
       var request=[]
-      var detail=[]
       await Request.findById(req.params.id,function(err,foundRequest){
         if(err)
         console.log("err")
         else
         request.push(foundRequest)
         })
-        await Detail.findById(request[0].stu_id,function(err,foundDetail){
+        await Detail.find({},function(err,details){
           if(err)
           console.log("err")
           else
           {
-           detail.push(foundDetail)
+            res.render("requestshow",{details:details,request:request})
           }
         })
-        res.render("requestshow",{detail:detail,request:request})
+      
       })
       module.exports=router;

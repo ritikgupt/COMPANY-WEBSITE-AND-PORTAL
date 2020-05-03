@@ -32,14 +32,14 @@ router.get("/startupconsult",async(req,res,next)=>{
         else
         request.push(foundRequest)
         })
-        await Detail.findById(request[0].stu_id,function(err,foundDetail){
+        await Detail.find({},function(err,details){
           if(err)
           console.log("err")
           else
           {
-           detail.push(foundDetail)
+            res.render("requestshow",{details:details,request:request})
           }
         })
-        res.render("requestshow",{detail:detail,request:request})
+        
       })
       module.exports=router;

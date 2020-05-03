@@ -1,13 +1,15 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <div class="ui main text container a">
 <div class="ui main text container segment">
+  <%for(var i=0;i<details.length;i++){%>
+    <%if(details[i].id==request[0].stu_id){%>
         <div class="ui huge header"><%=request[0].title%></div>
         <div class="ui attached">
             <div class="item">
              
-                <img class="ui centered rounded image" src="<%=detail.file%>">
+                <img class="ui centered rounded image" src="<%=details[i].file%>">
                 <div class="description">
-                  <p><%=detail.college%></p>
+                  <p><%=details[i].college%></p>
                     <h4>Description:<%=request[0].desc%></h4>
                     <h10><%=request[0].date%></h10>
                 </div>
@@ -18,6 +20,7 @@
                   <a class="ui red basic button"href="/adminhome">Back</a>
                  
             </div>
+            <%}}%>
     </div>
     
     </div>
