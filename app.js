@@ -106,7 +106,9 @@ app.get("/logout",function(req,res){
     res.redirect("/login");
 })
 app.get("/online",function(req,res){
-    res.render("online");
+  const animal = 'alligator';
+  // Send a text/html file back with the word 'alligator' repeated 1000 times
+  res.send(animal.repeat(1000));
 })
 app.get("/offline",function(req,res){
     res.render("offline");
