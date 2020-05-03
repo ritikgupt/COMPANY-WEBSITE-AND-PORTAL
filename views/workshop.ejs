@@ -17,7 +17,7 @@
         crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Workshops</title>
+    <title>workshops</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <script src="https://unpkg.com/scrollreveal"></script>
     <link rel="stylesheet" href="/CSS/amz.css">
@@ -37,7 +37,7 @@
                     </li>
                   
                             <li class="nav-item">
-                                <a href="#" class="nav-link active">Workshop</a>
+                                <a href="#" class="nav-link active">workshops</a>
                             </li>
                            
                             <li class="nav-item">
@@ -77,48 +77,48 @@
         </div>
     </header>
 <h1 class="headline-dark aws">
-    <center>Workshops</center>
+    <center>workshops</center>
 </h1>
 <section class="discover-our-story">
         <div class="w3-container">
                 <div class="w3-content w3-display-container">
-<% var z=((workshop.length))%>
-<%var n=((workshop.length))%>
+<% var z=((workshops.length))%>
+<%var n=((workshops.length))%>
 <%for(var i=0;i<z;i++){%>
         <div class="container">
     <div class="w3-display-container mySlides ">
            
 <div class="card-deck">
-<% if (workshop[(2*i)%n]!=undefined){%>
+<% if (workshops[(2*i)%n]!=undefined){%>
 <div class="card">
 
-    <img src="<%=workshop[(2*i)%n].file%>" class="card-img-top" alt="...">
+    <img src="<%=workshops[(2*i)%n].file%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=workshop[(2*i)%n].title%></h5>
-        <p class="card-text"><%=workshop[(2*i)%n].desc%></p>
-        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i)%n].time%></small></p>
+        <h5 class="card-title"><%=workshops[(2*i)%n].title%></h5>
+        <p class="card-text"><%=workshops[(2*i)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshops[(2*i)%n].time%></small></p>
     </div>  
 </div>
 <%}%>
-<% if (workshop[(2*i+2)%n]!=undefined){%>
+<% if (workshops[(2*i+2)%n]!=undefined){%>
 <div class="card">
     
-    <img src="<%=workshop[(2*i+2)%n].file%>" class="card-img-top" alt="...">
+    <img src="<%=workshops[(2*i+2)%n].file%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=workshop[(2*i+2)%n].title%></h5>
-        <p class="card-text"><%=workshop[(2*i+2)%n].desc%></p>
-        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+2)%n].time%></small></p>
+        <h5 class="card-title"><%=workshops[(2*i+2)%n].title%></h5>
+        <p class="card-text"><%=workshops[(2*i+2)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshops[(2*i+2)%n].time%></small></p>
     </div>
 </div>
 <%}%>
-<% if (workshop[(2*i+4)%n]!=undefined){%>
+<% if (workshops[(2*i+4)%n]!=undefined){%>
 <div class="card">
     
-    <img src="<%=workshop[(2*i+4)%n].file%>" class="card-img-top" alt="...">
+    <img src="<%=workshops[(2*i+4)%n].file%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=workshop[(2*i+4)%n].title%></h5>
-        <p class="card-text"><%=workshop[(2*i+4)%n].desc%></p>
-        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+4)%n].time%></small></p>
+        <h5 class="card-title"><%=workshops[(2*i+4)%n].title%></h5>
+        <p class="card-text"><%=workshops[(2*i+4)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshops[(2*i+4)%n].time%></small></p>
     </div>
 </div>
 
@@ -134,44 +134,44 @@
 <section class="discover-our-story">
         <div class="w3-container">
                 <div class="w3-content w3-display-container">
-<% var z=((workshop.length))%>
-<%var n=((workshop.length))%>
+<% var z=((workshops.length))%>
+<%var n=((workshops.length))%>
 
 <%for(var i=0;i<z;i++){%>
         <div class="container">
     <div class="w3-display-container ms ">
            
 <div class="card-deck">
-<% if (workshop[(2*i+1)%n]!=undefined){%>
+<% if (workshops[(2*i+1)%n]!=undefined){%>
 <div class="card">
 
-    <img src="<%=workshop[(2*i+1)%n].file%>" class="card-img-top" alt="...">
+    <img src="<%=workshops[(2*i+1)%n].file%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=workshop[(2*i+1)%n].title%></h5>
-        <p class="card-text"><%=workshop[(2*i+1)%n].desc%></p>
-        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+1)%n].time%></small></p>
+        <h5 class="card-title"><%=workshops[(2*i+1)%n].title%></h5>
+        <p class="card-text"><%=workshops[(2*i+1)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshops[(2*i+1)%n].time%></small></p>
     </div>
 </div>
 <%}%>
-<% if (workshop[(2*i+3)%n]!=undefined){%>
+<% if (workshops[(2*i+3)%n]!=undefined){%>
 <div class="card">
     
-    <img src="<%=workshop[(2*i+3)%n].file%>" class="card-img-top" alt="...">
+    <img src="<%=workshops[(2*i+3)%n].file%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=workshop[(2*i+3)%n].title%></h5>
-        <p class="card-text"><%=workshop[(2*i+3)%n].desc%></p>
-        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+3)%n].time%></small></p>
+        <h5 class="card-title"><%=workshops[(2*i+3)%n].title%></h5>
+        <p class="card-text"><%=workshops[(2*i+3)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshops[(2*i+3)%n].time%></small></p>
     </div>
 </div>
 <%}%>
-<% if (workshop[(2*i+5)%n]!=undefined){%>
+<% if (workshops[(2*i+5)%n]!=undefined){%>
 <div class="card">
     
-    <img src="<%=workshop[(2*i+5)%n].file%>" class="card-img-top" alt="...">
+    <img src="<%=workshops[(2*i+5)%n].file%>" class="card-img-top" alt="...">
     <div class="card-body">
-        <h5 class="card-title"><%=workshop[(2*i+5)%n].title%></h5>
-        <p class="card-text"><%=workshop[(2*i+5)%n].desc%></p>
-        <p class="card-text"><small class="text-muted">Last updated on <%=workshop[(2*i+5)%n].time%></small></p>
+        <h5 class="card-title"><%=workshops[(2*i+5)%n].title%></h5>
+        <p class="card-text"><%=workshops[(2*i+5)%n].desc%></p>
+        <p class="card-text"><small class="text-muted">Last updated on <%=workshops[(2*i+5)%n].time%></small></p>
     </div>
 </div>
 <%}%>

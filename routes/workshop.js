@@ -13,18 +13,15 @@ router.get("/newworkshop",function(req,res){
     res.render("newworkshop");
   })
   router.get("/workshop",async(req,res,next)=>{
-    var workshop=[]
       await Workshop.find({},function(err,workshops){
       if(err)
       console.log(err)
       else{
-  for(i=0;i<workshops.length;i++){
-    workshop.push(workshops[i])
-  }
+        res.render("workshop",{workshops:workshops})
       }
           
         })
-        res.render("workshop",{workshop:workshop})
+        
       }
   )
   router.post("/newworkshop",upload.single('workshop[file]'),function(req,res){
