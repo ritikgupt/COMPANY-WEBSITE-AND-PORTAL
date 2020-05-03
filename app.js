@@ -1,4 +1,5 @@
 var a=require("express");
+const compression=require("compression");
 var b=require("body-parser");
 const port = process.env.PORT || 5000;
 var mongoose=require("mongoose");
@@ -30,7 +31,7 @@ var employeeRoutes=require("./routes/employee");
 var studentRoutes=require("./routes/student");
 var dashboardRoutes=require("./routes/dashboard");
 var app=a(); 
-
+app.use(compression());//compress all responses
 app.use(b.urlencoded({ extended: true }));
 var Detail=require("./models/detail");
 var Request_staff=require("./models/request_staff");
