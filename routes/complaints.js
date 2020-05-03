@@ -22,13 +22,10 @@ router.get("/complaints",async(req,res,next)=>{
         console.log("err")
         else
         {
-          for(var i=0;i<details.length;i++)
-          {
-            detail.push(details[i])
-          }
+          res.render("patent",{details:details,request:request})
         }
       })
-      res.render("complaints",{detail:detail,request:request})
+      
     })
     router.get("/complaints/:id/show",async(req,res,next)=>{
       var request=[]
@@ -47,6 +44,6 @@ router.get("/complaints",async(req,res,next)=>{
            detail.push(foundDetail)
           }
         })
-        res.render("complaintshow",{detail:detail,request:request})
+        res.render("requestshow",{detail:detail,request:request})
       })
       module.exports=router;

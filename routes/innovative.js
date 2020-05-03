@@ -19,15 +19,12 @@ router.get("/innovative",async(req,res,next)=>{
         console.log("err")
         else
         {
-          for(var i=0;i<details.length;i++)
-          {
-            detail.push(details[i])
-          }
+          res.render("patent",{details:details,request:request})
         }
       })
-      res.render("innovative",{detail:detail,request:request})
+     
     })
-    router.get("/innovative/:id/show",async(req,res,next)=>{
+    router.get("/InnovativeIdea/:id/show",async(req,res,next)=>{
       var request=[]
       var detail=[]
       await Request.findById(req.params.id,function(err,foundRequest){
@@ -44,6 +41,6 @@ router.get("/innovative",async(req,res,next)=>{
            detail.push(foundDetail)
           }
         })
-        res.render("innovativeshow",{detail:detail,request:request})
+        res.render("requestshow",{detail:detail,request:request})
       })
       module.exports=router;

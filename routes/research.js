@@ -20,21 +20,9 @@ var router=a.Router();
         console.log("err")
         else
         {
-          for(var i=0;i<details.length;i++)
-          { 
-            detail1.push(details[i])
-          }
+          res.render("patent",{details:details,request:request})
         }
       })
-      for(var i=0;i<request.length;i++){
-    for(var j=0;j<detail1.length;j++){
-        if(detail1[j].id==request[i].stu_id)
-        {  
-            detail.push(detail1[j])
-        }
-    }
-      }
-      res.render("research",{detail:detail,request:request})
   })
   router.get("/research/:id/show",async(req,res,next)=>{
     var request=[]

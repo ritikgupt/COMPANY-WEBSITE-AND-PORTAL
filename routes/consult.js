@@ -4,7 +4,6 @@ var a=require("express");
 var router=a.Router();
 router.get("/startupconsult",async(req,res,next)=>{
     var request=[]
-    var detail=[]
     await Request.find({},function(err,requests){
       if(err)
       console.log("err")
@@ -19,13 +18,10 @@ router.get("/startupconsult",async(req,res,next)=>{
         console.log("err")
         else
         {
-          for(var i=0;i<details.length;i++)
-          {
-            detail.push(details[i])
-          }
+          res.render("patent",{details:details,request:request})
         }
       })
-      res.render("startupconsult",{detail:detail,request:request})
+   
     })
     router.get("/startupconsult/:id/show",async(req,res,next)=>{
       var request=[]
@@ -44,6 +40,6 @@ router.get("/startupconsult",async(req,res,next)=>{
            detail.push(foundDetail)
           }
         })
-        res.render("startupconsultshow",{detail:detail,request:request})
+        res.render("requestshow",{detail:detail,request:request})
       })
       module.exports=router;

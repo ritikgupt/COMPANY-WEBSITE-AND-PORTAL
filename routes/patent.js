@@ -7,7 +7,6 @@ var download=require("download-file")
 var pdf=require("pdf");
 router.get("/patent",async(req,res,next)=>{
     var request=[]
-    var detail=[]
     await Request.find({},function(err,requests){
       if(err)
       console.log("err")
@@ -17,22 +16,17 @@ router.get("/patent",async(req,res,next)=>{
        request.push(requests[i])
      }
       }})
-      await Detail.find({},function(err,details){
+    await Detail.find({},function(err,details){
         if(err)
         console.log("err")
         else
         {
-          for(var i=0;i<details.length;i++)
-          {
-            detail.push(details[i])
-          }
+          res.render("patent",{details:details,request:request})
         }
       })
-      res.render("patent",{detail:detail,request:request})
     })
     router.get("/patent/:id/show",async(req,res,next)=>{
       var request=[]
-      var detail=[]
       await Request.findById(req.params.id,function(err,foundRequest){
         if(err)
         console.log("err")
@@ -44,10 +38,9 @@ router.get("/patent",async(req,res,next)=>{
           console.log("err")
           else
           {
-           detail.push(foundDetail)
+           res.render("requestshow",{request:request,detail:foundDetail})
           }
         })
-        res.render("requestshow",{detail:detail,request:request})
       })
       router.get("/patent/:id/showpdf",async(req,res)=>{
         request=[]
@@ -60,11 +53,13 @@ router.get("/patent",async(req,res,next)=>{
             request.push(foundRequest)
           }
         })
-      var url ="www.google.com"
+      console.log(request[0].req_file);
+      var url =request[0].req_file
       console.log(url)
+
       var options={
-        directory:"./views/",
-        filename:"hdf.pdf"
+        directory:"",
+        filename:Date.now()+"AMZ.pdf"
       }
       download(url,options,function(err){
         if(err)

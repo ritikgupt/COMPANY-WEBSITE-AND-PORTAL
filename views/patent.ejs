@@ -108,25 +108,26 @@
     <div class="ui top attached segment">
         <div class="ui divided items">
             <%for(var i=0;i<request.length;i++){%>
-                    <%for(var j=0;j<detail.length;j++){%>
+                    <%for(var j=0;j<details.length;j++){%>
                        
-                        <%if(detail[j].id==request[i].stu_id){%>
+                        <%if(details[j].id==request[i].stu_id){%>
                           
             <div class="item">
                 <div class="image">
-                    <img src="<%=detail[j].file%>">
+                    <img src="<%=details[j].file%>">
                 </div>
                 <div class="content">
-                    <a class="header" href="/request/<%=request[i]._id %>"><%=detail[i].username%></a>
+                    <a class="header" href="/request/<%=request[i]._id %>"><%=details[j].username%></a>
                     <div class="description">
-                        <p><%=detail[i].college%></p>
+                        <p><%=details[j].college%></p>
                     </div>
                     <div class="extra">
-                        <a class="ui floated basic violet button b" href="/patent/<%=request[i]._id %>/show">Read More
+                        <a class="ui floated basic violet button b" href="/<%=request[i].recep%>/<%=request[i]._id %>/show">Read More
                             <i class="right chevron icon"></i></a>
                     </div>
                 </div>
             </div>
+            
             <%}}}%> 
         </div>
     </div>

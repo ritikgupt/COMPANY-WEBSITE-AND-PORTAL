@@ -4,8 +4,6 @@ var a=require("express");
 var router=a.Router();
 router.get("/startupidea",async(req,res)=>{
     var request=[]
-    var detail1=[]
-    var detail=[]
     await Request.find({},function(err,requests){
       if(err)
       console.log("err")
@@ -20,22 +18,11 @@ router.get("/startupidea",async(req,res)=>{
         console.log("err")
         else
         {
-          for(var i=0;i<details.length;i++)
-          { 
-            detail1.push(details[i])
+          res.render("patent",{details:details,request:request})
           }
         }
-      })
-      for(var i=0;i<request.length;i++){
-    for(var j=0;j<detail1.length;j++){
-        if(detail1[j].id==request[i].stu_id)
-        {  
-            detail.push(detail1[j])
-        }
-    }
-      }
-      res.render("startupidea",{detail:detail,request:request})
-  })
+ ) })
+      
   router.get("/startupidea/:id/show",async(req,res,next)=>{
     var request=[]
     var detail=[]
@@ -53,6 +40,6 @@ router.get("/startupidea",async(req,res)=>{
          detail.push(foundDetail)
         }
       })
-      res.render("startupideashow",{detail:detail,request:request})
+      res.render("requestshow",{detail:detail,request:request})
     })
     module.exports=router;

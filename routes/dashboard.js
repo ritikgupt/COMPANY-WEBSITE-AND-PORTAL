@@ -6,18 +6,13 @@ var e=require("passport-local");
 var express=require("express");
 var router=express.Router();
 var multer=require("multer");
-var storage=multer.diskStorage({
-  destination:function(req,file,cb){
-    cb(null,'uploads/');
-  },
-  filename:function(req,file,cb){
-    cb(null,new Date().toISOString()+file.originalname);
-  }
+var upload=multer({dest:'uploads/'});
+var cloudinary =require("cloudinary");
+cloudinary.config({
+    cloud_name:'dzsms0nne',
+    api_key:'542159551497727',
+    api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0'
 });
-// var filefilter=(req,file,cb)=>{
-//   if(file.mimetype===)
-// }
-var upload=multer({storage:storage});
 passport.use( new e(Detail.authenticate()));
 passport.serializeUser(Detail.serializeUser());
 passport.deserializeUser(Detail.deserializeUser());
@@ -46,15 +41,16 @@ router.get("/dashboard",isLoggedIn,function(req,res){
 router.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
   if(req.user.type=="Student")
   {
+    cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
   Request.create(
     {
         desc:req.body.request.desc,
         recep:req.body.request.recep,
         stu_id:req.user.id,
-        req_file:req.file.path,
+        req_file:result.secure_url,
         date:Date.now()
     }
-)
+)})
   res.redirect("/dashboard")}
   else{
     Request_staff.create({
