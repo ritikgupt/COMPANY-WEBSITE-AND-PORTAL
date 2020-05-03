@@ -58,7 +58,7 @@ router.get("/patent",async(req,res,next)=>{
       console.log(url)
 
       var options={
-        directory:"",
+        
         filename:Date.now()+"AMZ.pdf"
       }
       download(url,options,function(err){
