@@ -41,6 +41,7 @@ router.get("/dashboard",isLoggedIn,function(req,res){
 router.post("/dashboard",upload.single('request[req_file]'),(req,res,next)=>{
   if(req.user.type=="Student")
   {
+    console.log(req.file)
     cloudinary.v2.uploader.upload(req.file.path,{overwrite:true},function(err,result){
   Request.create(
     {
