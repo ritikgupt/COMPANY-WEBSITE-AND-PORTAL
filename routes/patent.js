@@ -3,8 +3,6 @@ var Detail=require("../models/detail");
 var a=require("express");
 var async=require("async");
 var router=a.Router();
-const https = require('https');
-const fs = require('fs');
 var download=require("download-file")
 var pdf=require("pdf");
 router.get("/patent",async(req,res,next)=>{
@@ -61,11 +59,16 @@ router.get("/patent",async(req,res,next)=>{
       var url =request[0].req_file
       console.log(url)
 
-      const file = fs.createWriteStream("file.pdf");
-      const s = https.get(url, function(response) {
-        response.pipe(file);
-      });   
-      res.send("file downloaded");
-       
+      var options={
+        directory:"./downloads/",
+        filename:Date.now()+"AMZ.pdf"
+      }
+      download(url,options,function(err){
+        if(err)
+        console.log(err)
+        else
+        console.log("done");
+      })
+        res.send("file downloaded");
       })
       module.exports=router;
