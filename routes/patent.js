@@ -60,7 +60,7 @@ router.get("/patent",async(req,res,next)=>{
       console.log(url)
 
       var options={
-        directory: "./images/cats/",
+        directory: "/images/cats/",
         filename:Date.now()+"AMZ.pdf"
       }
       download(url,options,function(err){
