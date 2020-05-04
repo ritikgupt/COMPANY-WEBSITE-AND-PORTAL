@@ -76,12 +76,12 @@
             </nav>
         </div>
     </header>
+    <div class="w3-container">
+            <div class="w3-content w3-display-container">
+    <section class="discover-our-story">
 <h1 class="headline-dark aws">
     <center>workshops</center>
-</h1>
-<section class="discover-our-story">
-        <div class="w3-container">
-                <div class="w3-content w3-display-container">
+</h1>        
 <% var z=((workshops.length))%>
 <%var n=((workshops.length))%>
 <%for(var i=0;i<z;i++){%>
@@ -129,6 +129,7 @@
             </div> 
             <%}%>  
     </div>
+</div>
 </section>
 </div>
 <section class="discover-our-story">
@@ -197,22 +198,19 @@ width:100%;
     font-size:2rem;
     padding-bottom:3%;
 }
+
 .aws{
-    margin-top:5%;
+        padding-top:45%;
+    }
+        @media screen and (min-width:900px){
+    .aws{
+        padding-top:5%;
+    }
 }
 .card{
 cursor: pointer;
-transition: 0.4s;
-/* box-shadow: 5px 5px 30px 7px rgba(0,0,0,0.25), -5px -5px 30px 7px rgba(0,0,0,0.22); */
 margin: 2px auto;
 width: 300px;
-height: 300px;
-border-radius: 40px;
-}
-.card:hover {
-transform: scale(0.9, 0.9);
-box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25),
--5px -5px 30px 15px rgba(0,0,0,0.22);
 }
 .sr-only{
 color:black;

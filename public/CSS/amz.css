@@ -33,12 +33,12 @@ html{
 
 }
 .asd{
-  padding-top:30%;
+  padding-top:35%;
   margin-bottom: 0%;
   background-size:cover;
 }
 .i{
-  height:800px;
+  height:400px;
   width:100%;
 }
 .about{
@@ -364,7 +364,7 @@ margin-bottom:2.4rem;
   background-color:#000;
   color:#fff;
   position:absolute;
-  top:200%;
+  top:300%;
 }
 .as4{
     text-decoration: none;
@@ -373,8 +373,29 @@ margin-bottom:2.4rem;
   background-color:#000;
   color:#fff;
   position:absolute;
-  top:200%;
-  left:97%;
+  top:300%;
+  left:89%;
+}
+.as11{
+  text-decoration: none;
+display: inline-block;
+
+padding: 8px 16px;
+background-color:#000;
+color:#fff;
+position:absolute;
+top:580%;
+right:90%;
+}
+.as12{
+  text-decoration: none;
+display: inline-block;
+padding: 8px 16px;
+background-color:#000;
+color:#fff;
+position:absolute;
+top:580%;
+left:90%;
 }
 .as13{
   text-decoration: none;
@@ -394,7 +415,7 @@ background-color:#000;
 color:#fff;
 position:absolute;
 top:45%;
-left:95%;
+left:90%;
 }
 .as15{
   text-decoration: none;
@@ -404,7 +425,7 @@ padding: 8px 16px;
 background-color:#000;
 color:#fff;
 position:absolute;
-top:95%;
+top:210%;
 }
 .as16{
   text-decoration: none;
@@ -413,8 +434,8 @@ padding: 8px 16px;
 background-color:#000;
 color:#fff;
 position:absolute;
-top:95%;
-left:95%;
+top:210%;
+left:90%;
 }
 .as:hover {
   background-color: #ddd;
@@ -427,6 +448,7 @@ left:95%;
 }
  .column {
   float: left; 
+  width: 50%;
   margin-bottom:5%;
 } 
  .column1 {
@@ -533,7 +555,10 @@ left:95%;
 .our-team .social li {
   display: inline-block;
 }
-
+.aaa{
+  font-size:3rem;
+  
+}
 .our-team .social li a {
   display: block;
   padding: 10px;
@@ -823,7 +848,7 @@ margin-bottom:2.4rem;
   background-color:#000;
   color:#fff;
   position:absolute;
-  top:200%;
+  top:205%;
 }
 .as4{
     text-decoration: none;
@@ -832,7 +857,7 @@ margin-bottom:2.4rem;
   background-color:#000;
   color:#fff;
   position:absolute;
-  top:200%;
+  top:205%;
   left:97%;
 }
 .as13{
@@ -995,7 +1020,7 @@ img{
 }
 .column {
   float:left;
-  width: 20%;
+  width: 16.5%;
  
   
   padding-left:5%;
