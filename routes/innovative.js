@@ -2,7 +2,7 @@ var Request=require("../models/request");
 var Detail=require("../models/detail");
 var a=require("express");
 var router=a.Router();
-router.get("/innovative",async(req,res,next)=>{
+router.get("/InnovativeIdea",async(req,res,next)=>{
     var request=[]
     var detail=[]
     await Request.find({},function(err,requests){
