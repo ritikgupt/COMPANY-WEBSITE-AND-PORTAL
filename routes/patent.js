@@ -44,31 +44,4 @@ router.get("/patent",async(req,res,next)=>{
           }
         })
       })
-      router.get("/patent/:id/showpdf",async(req,res)=>{
-        request=[]
-        await Request.findById(req.params.id,function(err,foundRequest){
-          if(err)
-          console.log(err)
-          else
-          {
-           
-            request.push(foundRequest)
-          }
-        })
-      console.log(request[0].req_file);
-      var url =request[0].req_file
-      console.log(url)
-
-      var options={
-        directory:"./downloads/",
-        filename:Date.now()+"AMZ.pdf"
-      }
-      download(url,options,function(err){
-        if(err)
-        console.log(err)
-        else
-        console.log("done");
-      })
-        res.send("file downloaded");
-      })
       module.exports=router;

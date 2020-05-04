@@ -13,7 +13,8 @@
                     <h4>Description:<%=request[0].desc%></h4>
                     <h10><%=request[0].date%></h10>
                 </div>
-                    <a class="ui blue basic button"href="/patent/<%=request[0].id%>/showpdf">Download Pdf</a>
+                <%console.log(request[0].req_file)%>
+                    <a class="ui blue basic button"href="<%=request[0].req_file%>" download>Download Pdf</a>
                   
                        
                  
