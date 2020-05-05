@@ -1,22 +1,33 @@
-var a=require("express");
 const compression=require("compression");
+var createError = require('http-errors');
+var path = require('path');
+var cookieParser = require('cookie-parser');
+
+var a=require("express");
 var b=require("body-parser");
+var morgan=require("morgan");
 const port = process.env.PORT || 5000;
 var mongoose=require("mongoose");
 require('dotenv').config();
-
-var app=a(); 
-app.use(compression({ filter: shouldCompress,treshold:0 }));
-function shouldCompress (req, res) {
-  if (req.headers['x-no-compression']) {
-    // don't compress responses with this request header
-    return false
-  }
-
-  // fallback to standard filter function
-  return compression.filter(req, res)
-}
+var app=a();
+app.set("view engine","ejs");
+app.use(a.static("public"));
+app.use('/uploads',a.static("uploads"));
 app.use(b.urlencoded({ extended: true }));
+app.use(compression());
+var winston = require('./config/winston');
+app.use(morgan('combined', { stream: winston.stream }));
+
+
+// function shouldCompress (req, res) {
+//   if (req.headers['x-no-compression']) {
+//     // don't compress responses with this request header
+//     return false
+//   }
+
+//   // fallback to standard filter function
+//   return compression.filter(req, res)
+// }
 var Detail=require("./models/detail");
 var Request_staff=require("./models/request_staff");
 var uri = process.env.ATLAS_URI;
@@ -26,7 +37,7 @@ const connection = mongoose.connection;
 connection.once('open', () => {
   console.log("MongoDB database connection established successfully");
 })
-var f=require("method-override");
+var f=require("method-override"); 
 var g=require("express-sanitizer");
 var passport=require("passport");
 var e=require("passport-local");
@@ -52,9 +63,7 @@ var detailRoutes=require("./routes/detail");
 var employeeRoutes=require("./routes/employee");
 var studentRoutes=require("./routes/student");
 var dashboardRoutes=require("./routes/dashboard");
-app.set("view engine","ejs");
-app.use(a.static("public"));
-app.use('/uploads',a.static("uploads"));
+
 // app.use(a.static('uploads'));
 mongoose.set('useCreateIndex', true);
 app.use(g());
@@ -131,6 +140,21 @@ app.post("/newprogram",function(req,res){
 })
 app.use(homeRoutes);
 app.use(detailRoutes);
+app.use(function(req, res, next) {
+  next(createError(404));
+});
+app.use(function(err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+  // add this line to include winston logging
+  winston.error(`${err.status || 500} - ${err.message} - ${req.originalUrl} - ${req.method} - ${req.ip}`);
+
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error',{err:err});
+});
 app.listen(port,function(){
     console.log("Server has started.");
 });
