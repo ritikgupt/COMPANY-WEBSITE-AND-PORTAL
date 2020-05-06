@@ -1,0 +1,29 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<div class="ui main text container a">
+<div class="ui main text container segment">
+        <div class="ui huge header"><%=certificate.stu_id%></div>
+        <div class="ui attached">
+            <div class="item">
+             
+                <img class="ui centered rounded image" src="<%=certificate.file%>">
+                <div class="description">
+                </div>
+                    <a class="ui blue basic button" href="<%=certificate.file%>" download>Download certificate</a>                 
+                  <a class="ui red basic button"href="/">Back</a>
+                 
+            </div>
+    </div>
+    
+    </div>
+    <style>
+ body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+.a{
+    margin-top:2%;
+}
+
+    </style>

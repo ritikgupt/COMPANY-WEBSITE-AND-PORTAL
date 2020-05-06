@@ -1,3 +1,4 @@
+// prevents the use of undeclared variable
 var appRoot = require('app-root-path');
 var winston = require('winston');
 require('winston-mongodb');
@@ -19,22 +20,22 @@ var options = {
   },
 };
 var logger = winston.createLogger({
-    transports: [
-      new winston.transports.File(options.file),
-      new winston.transports.Console(options.console),
-      new winston.transports.MongoDB({
-        db: process.env.ATLAS_URI,
-        collection: 'log',
-        level: 'info',
-        storeHost: true,
-        capped: true,
-      })
-    ],
-    exitOnError: false, // do not exit on handled exceptions
-  });
-  logger.stream = {
-    write: function(message, encoding) {
-      logger.info(message);
-    },
-  };
-  module.exports = logger;
+  transports: [
+    new winston.transports.File(options.file),
+    new winston.transports.Console(options.console),
+    new winston.transports.MongoDB({
+      db: process.env.ATLAS_URI,
+      collection: 'log',
+      level: 'info',
+      storeHost: true,
+      capped: true,
+    }),
+  ],
+  exitOnError: false, // do not exit on handled exceptions
+});
+logger.stream = {
+  write: function(message, encoding) {
+    logger.info(message);
+  },
+};
+module.exports = logger;
