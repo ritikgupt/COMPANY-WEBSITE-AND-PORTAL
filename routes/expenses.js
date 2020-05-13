@@ -29,4 +29,13 @@ router.post('/:id/edit', (req, res) => {
     }
   });
 });
+router.post('/:id/request_staff', (req, res) => {
+  Request_staff.deleteMany({empid: {$in: [req.params.id]}}, (err, request_staffs) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.redirect('/employee');
+    }
+  });
+});
 module.exports = router;

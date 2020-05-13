@@ -3,7 +3,6 @@
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
 <div class="ui main text container a">
 <div class="ui main text container segment">
-  <%console.log(detail)%>
         <div class="ui huge header"><%=detail.name%></div>
         <div class="ui attached">
             <div class="item">
@@ -24,6 +23,9 @@
                     </form>      
                  
                   <%if(detail.type=='Employee'){%>
+                    <form action="/<%=detail.id%>/request_staff" method="POST">
+                    <button class="ui red basic button">Clear Expenditure</button>
+                    </form>
                     <button onclick="setDocumentMetadata()" class="ui green basic button">Expenditure Report</button>
                   <a class="ui red basic button"href="/employee">Back</a><%}%>
                   <!-- <a class="ui purple basic button"href="/employee">Today's Schedule</a> -->
