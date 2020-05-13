@@ -22,7 +22,6 @@ var options = {
 var logger = winston.createLogger({
   transports: [
     new winston.transports.File(options.file),
-    new winston.transports.Console(options.console),
     new winston.transports.MongoDB({
       db: process.env.ATLAS_URI,
       collection: 'log',

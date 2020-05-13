@@ -1,4 +1,3 @@
-
 var compression = require('compression');
 var createError = require('http-errors');
 var a = require('express');
@@ -51,9 +50,15 @@ var studentRoutes = require('./routes/student');
 var dashboardRoutes = require('./routes/dashboard');
 var certificateRoutes = require('./routes/certificate');
 var verifyRoutes = require('./routes/verify');
+var expensesRoutes = require('./routes/expenses');
+var cors = require('cors');
 // app.use(a.static('uploads'));
 mongoose.set('useCreateIndex', true);
 app.use(g());
+app.use(cors({
+
+  credentials: true,
+}));
 app.use(f('_method'));
 app.use(require('cookie-session')({
   secret: 'Let your work make the noise not your mouth.',
@@ -86,6 +91,7 @@ app.use(employeeRoutes);
 app.use(studentRoutes);
 app.use(certificateRoutes);
 app.use(verifyRoutes);
+app.use(expensesRoutes);
 app.get('/about', function(req, res){
   res.render('about');
 });
