@@ -51,6 +51,7 @@ var dashboardRoutes = require('./routes/dashboard');
 var certificateRoutes = require('./routes/certificate');
 var verifyRoutes = require('./routes/verify');
 var expensesRoutes = require('./routes/expenses');
+var requestsRoutes = require('./routes/requests');
 var cors = require('cors');
 // app.use(a.static('uploads'));
 mongoose.set('useCreateIndex', true);
@@ -92,6 +93,7 @@ app.use(studentRoutes);
 app.use(certificateRoutes);
 app.use(verifyRoutes);
 app.use(expensesRoutes);
+app.use(requestsRoutes);
 app.get('/about', function(req, res){
   res.render('about');
 });
