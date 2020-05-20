@@ -6,5 +6,6 @@ var RequestSchema = new c.Schema({
   req_file: {type: String, required: true},
   recep: String,
   date: Date,
+  accept: String,
 });
 module.exports = c.model('Request', RequestSchema);

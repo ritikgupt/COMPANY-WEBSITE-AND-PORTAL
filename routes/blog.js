@@ -43,4 +43,26 @@ router.get('/Blog/:id/show', async(req, res, next) => {
     }
   });
 });
+router.post('/:id/blog', async(req, res) => {
+  await Request.findByIdAndRemove(req.params.id, (err) => {
+    if (err){
+      console.log('err');
+    } else {
+      res.redirect('/Blog');
+    }
+  });
+});
+router.post('/:id/blogdisplay', async(req, res) => {
+  console.log(req.params.id);
+  await Request.findByIdAndUpdate(req.params.id, req.body.request, (err, request) => {
+    console.log(request);
+    if (err){
+      console.log('err');
+    } else {
+      console.log(request);
+      request.accept = 'True';
+    }
+  });
+  await res.send('done');
+});
 module.exports = router;

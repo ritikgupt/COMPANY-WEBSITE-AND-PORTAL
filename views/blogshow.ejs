@@ -14,8 +14,12 @@
                     <h10><%=request[0].date%></h10>
                 </div>
                 <%console.log(request[0].req_file)%>
-                    <a class="ui Green basic button"href="<%=request[0].req_file%>" download>Accept</a>
-                    <a class="ui Red basic button"href="<%=request[0].req_file%>" download>Reject</a>
+                <form action="/<%=request[0].id%>/blogdisplay" method="POST">
+                  <button class="ui green basic button">Accept</button>
+                  </form>
+                  <form action="/<%=request[0].id%>/blog" method="POST">
+                    <button class="ui red basic button">Reject</button>
+                    </form>
                   
                        
                  

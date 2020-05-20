@@ -51,6 +51,7 @@ router.post('/dashboard', upload.single('request[req_file]'), (req, res, next) =
           recep: req.body.request.recep,
           stu_id: req.user.id,
           req_file: result.secure_url,
+          accept: 'NO',
           date: Date.now(),
         }
       );
