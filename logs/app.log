@@ -876,3 +876,51 @@
 {"message":"::ffff:127.0.0.1 - - [14/May/2020:09:54:57 +0000] \"GET /Research/5eae3871eaa89411d6199502/show HTTP/1.1\" 200 - \"http://localhost:5000/research\" \"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0\"\n","level":"info"}
 {"message":"::ffff:127.0.0.1 - - [14/May/2020:09:55:03 +0000] \"GET /Research/5eae3b29301719130141ebfe/show HTTP/1.1\" 200 - \"http://localhost:5000/research\" \"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0\"\n","level":"info"}
 {"message":"::ffff:127.0.0.1 - - [14/May/2020:09:55:17 +0000] \"GET /Research/5eae3871eaa89411d6199502/show HTTP/1.1\" 304 - \"http://localhost:5000/research\" \"Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:76.0) Gecko/20100101 Firefox/76.0\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:19:01 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /favicon.ico - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:19:05 +0000] \"GET /favicon.ico HTTP/1.1\" 404 157 \"http://localhost:5000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:26:12 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:26:15 +0000] \"GET /login HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:26:19 +0000] \"GET /login HTTP/1.1\" 304 - \"http://localhost:5000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:26:21 +0000] \"POST /login HTTP/1.1\" 302 56 \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:26:21 +0000] \"GET /login HTTP/1.1\" 200 - \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:26:23 +0000] \"POST /login HTTP/1.1\" 302 56 \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:26:23 +0000] \"GET /login HTTP/1.1\" 200 - \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:27:28 +0000] \"GET /about HTTP/1.1\" 200 - \"http://localhost:5000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /amz.js - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:27:28 +0000] \"GET /amz.js HTTP/1.1\" 404 157 \"http://localhost:5000/about\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /amz.js - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:27:28 +0000] \"GET /amz.js HTTP/1.1\" 404 157 \"http://localhost:5000/about\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:27:35 +0000] \"GET /computer HTTP/1.1\" 200 - \"http://localhost:5000/about\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /amz.css - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:27:35 +0000] \"GET /amz.css HTTP/1.1\" 404 157 \"http://localhost:5000/computer\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /amz.js - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:27:35 +0000] \"GET /amz.js HTTP/1.1\" 404 157 \"http://localhost:5000/computer\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /amz.css - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:27:35 +0000] \"GET /amz.css HTTP/1.1\" 404 157 \"http://localhost:5000/computer\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /amz.js - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:27:35 +0000] \"GET /amz.js HTTP/1.1\" 404 157 \"http://localhost:5000/computer\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:27:38 +0000] \"GET /intern HTTP/1.1\" 200 - \"http://localhost:5000/computer\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:28:01 +0000] \"GET /login HTTP/1.1\" 304 - \"http://localhost:5000/\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:28:14 +0000] \"POST /login HTTP/1.1\" 302 56 \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:28:14 +0000] \"GET /login HTTP/1.1\" 200 - \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:28:25 +0000] \"POST /login HTTP/1.1\" 302 64 \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:28:25 +0000] \"GET /dashboard HTTP/1.1\" 200 - \"http://localhost:5000/login\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:31:28 +0000] \"GET /dashboard HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:32:18 +0000] \"GET /dashboard HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:35:36 +0000] \"POST /dashboard HTTP/1.1\" 302 64 \"http://localhost:5000/dashboard\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:35:36 +0000] \"GET /dashboard HTTP/1.1\" 200 - \"http://localhost:5000/dashboard\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /appointment - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:40:25 +0000] \"GET /appointment HTTP/1.1\" 404 157 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:40:27 +0000] \"GET /adminhome HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /images/download.png - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:40:27 +0000] \"GET /images/download.png HTTP/1.1\" 404 157 \"http://localhost:5000/adminhome\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /Blog - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:40:33 +0000] \"GET /Blog HTTP/1.1\" 404 157 \"http://localhost:5000/adminhome\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /adminhomefgfg - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:40:46 +0000] \"GET /adminhomefgfg HTTP/1.1\" 404 157 \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:42:28 +0000] \"GET /adminhome HTTP/1.1\" 304 - \"-\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"404 - Not Found - /images/download.png - GET - ::1","level":"error"}
+{"message":"::1 - - [20/May/2020:09:42:28 +0000] \"GET /images/download.png HTTP/1.1\" 404 157 \"http://localhost:5000/adminhome\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:42:32 +0000] \"GET /Blog HTTP/1.1\" 200 - \"http://localhost:5000/adminhome\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
+{"message":"::1 - - [20/May/2020:09:42:35 +0000] \"GET /Blog/5ec4f9ea4dba98321266f46b/show HTTP/1.1\" 200 - \"http://localhost:5000/Blog\" \"Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36\"\n","level":"info"}
