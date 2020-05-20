@@ -39,7 +39,7 @@ router.get('/Blog/:id/show', async(req, res, next) => {
     else {
       console.log(request);
       console.log(details);
-      res.render('requestshow', {request: request, details: details});
+      res.render('blogshow', {request: request, details: details});
     }
   });
 });

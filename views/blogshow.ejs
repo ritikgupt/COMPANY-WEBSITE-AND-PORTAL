@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+<div class="ui main text container a">
+<div class="ui main text container segment">
+  <%for(var i=0;i<details.length;i++){%>
+    <%if(details[i].id==request[0].stu_id){%>
+        <div class="ui huge header"><%=request[0].title%></div>
+        <div class="ui attached">
+            <div class="item">
+             
+                <img class="ui centered rounded image" src="<%=request[0].req_file%>">
+                <div class="description">
+                  <p><%=details[i].college%></p>
+                    <h4>Description:<%=request[0].desc%></h4>
+                    <h10><%=request[0].date%></h10>
+                </div>
+                <%console.log(request[0].req_file)%>
+                    <a class="ui Green basic button"href="<%=request[0].req_file%>" download>Accept</a>
+                    <a class="ui Red basic button"href="<%=request[0].req_file%>" download>Reject</a>
+                  
+                       
+                 
+                  <a class="ui red basic button"href="/<%=request[0].recep%>">Back</a>
+                 
+            </div>
+            <%}}%>
+    </div>
+    
+    </div>
+    <style>
+ body  {
+  background-image: url(https://img.freepik.com/free-photo/black-white-bamboo-surface-merge-background_7182-2053.jpg?size=626&ext=jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size:cover
+}
+.a{
+    margin-top:2%;
+}
+
+    </style>
