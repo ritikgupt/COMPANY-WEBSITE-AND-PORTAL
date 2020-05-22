@@ -1,0 +1,56 @@
+<section class="discover-our-story"  id="a1">
+    <h1 class="headline-dark" id="a2">
+            <center> Recent blogs</center>
+        </h1>
+    <div class="w3-container">
+            <div class="w3-content w3-display-container">
+<% var z=((blogs.length))%>
+<%var n=((blogs.length))%>
+<%for(var i=0;i<z;i++){%>
+<div class="w3-display-container mySlides ">
+       
+<div class="card-deck">
+<% if (blogs[(i)%n]!=undefined){%>
+<div class="card">
+
+<img src="<%=blogs[i%n].photo%>" class="card-img-top" alt="...">
+<div class="card-body">
+    <h5 class="card-title"><%=blogs[i%n].title%></h5>
+    <p class="card-text"><%=blogs[i%n].desc%></p>
+    <p class="card-text"><small class="text-muted">Last updated on <%=blogs[i%n].time%></small></p>
+</div>
+</div>
+<%}%>
+<% if (blogs[(i+1)%n]!=undefined){%>
+<div class="card">
+
+<img src="<%=blogs[(i+1)%n].photo%>" class="card-img-top" alt="...">
+<div class="card-body">
+    <h5 class="card-title"><%=blogs[(i+1)%n].title%></h5>
+    <p class="card-text"><%=blogs[(i+1)%n].desc%></p>
+    <p class="card-text"><small class="text-muted">Last updated on <%=blogs[(i+1)%n].time%></small></p>
+</div>
+</div>
+<%}%>
+<% if (blogs[(i+2)%n]!=undefined){%>
+<div class="card">
+
+<img src="<%=blogs[(i+2)%n].photo%>" class="card-img-top" alt="...">
+<div class="card-body">
+    <h5 class="card-title"><%=blogs[(i+2)%n].title%></h5>
+    <p class="card-text"><%=blogs[(i+2)%n].desc%></p>
+    <p class="card-text"><small class="text-muted">Last updated on <%=blogs[(i+2)%n].time%></small></p>
+</div>
+</div>
+<%}%>
+</div>
+               
+            </div>
+        </div>   
+</div>
+<%}%>
+</section>
+<button class="as3" onclick="plusDivs(-1)">&#10094;</button>
+<button class="as4" onclick="plusDivs(1)">&#10095;</button>
+</div>
+</section>

@@ -2,6 +2,7 @@
 var Request = require('../models/request');
 var Request_staff = require('../models/request_staff');
 var Detail = require('../models/detail');
+var Blog = require('../models/blog');
 var passport = require('passport');
 var E = require('passport-local');
 var express = require('express');
@@ -25,7 +26,19 @@ function isLoggedIn(req, res, next){
 }
 
 router.get('/login', function(req, res){
-  res.render('login');
+  Blog.find({}, function(err, blogs){
+    if (err){
+      console.log('err');
+    } else {
+      Blog.find({}, (err, blogs) => {
+        if (err)
+          console.log(err);
+        else {
+          res.render('login', {blogs: blogs});
+        }
+      });
+    }
+  });
 });
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/dashboard',
