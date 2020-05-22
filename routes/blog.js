@@ -1,6 +1,7 @@
 // prevents the use of undeclared variable
 var Request = require('../models/request');
 var Detail = require('../models/detail');
+var Blog = require('../models/blog');
 var a = require('express');
 var router = a.Router();
 router.get('/Blog', async(req, res, next) => {
@@ -54,15 +55,18 @@ router.post('/:id/blog', async(req, res) => {
 });
 router.post('/:id/blogdisplay', async(req, res) => {
   console.log(req.params.id);
-  await Request.findByIdAndUpdate(req.params.id, req.body.request, (err, request) => {
-    console.log(request);
+  Request.findById(req.params.id, (err, request) => {
     if (err){
-      console.log('err');
+      console.log(err);
     } else {
-      console.log(request);
-      request.accept = 'True';
+      Blog.create({
+        stu_id: request.stu_id,
+        desc: request.desc,
+        photo: request.req_file,
+        date: Date.now(),
+      });
+
     }
   });
-  await res.send('done');
 });
 module.exports = router;
