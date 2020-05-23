@@ -12,7 +12,7 @@ router.get('/', async(req, res, next) => {
   var sponsor = [];
   var image = [];
   var member = [];
-  await Member.find({}, function(err, members){
+  await Member.find({}, async(err, members) => {
     if (err)
       console.log('err');
     else {
@@ -22,7 +22,7 @@ router.get('/', async(req, res, next) => {
     }
 
   });
-  await Slider.find({}, function(err, sliders){
+  await Slider.find({}, async(err, sliders) => {
     if (err)
       console.log('err');
     else {
@@ -32,7 +32,7 @@ router.get('/', async(req, res, next) => {
     }
 
   });
-  await News.find({}, function(err, newss){
+  await News.find({}, async(err, newss) => {
     if (err)
       console.log('err');
     else {
@@ -42,7 +42,7 @@ router.get('/', async(req, res, next) => {
     }
 
   });
-  await Sponsor.find({}, function(err, sponsors){
+  await Sponsor.find({}, async(err, sponsors) => {
     if (err)
       console.log('err');
     else {
@@ -51,7 +51,7 @@ router.get('/', async(req, res, next) => {
       }
     }
   });
-  await Image.find({}, function(err, images){
+  await Image.find({}, async(err, images) => {
     if (err)
       console.log('err');
     else {

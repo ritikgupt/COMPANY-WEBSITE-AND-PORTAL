@@ -25,8 +25,8 @@ function isLoggedIn(req, res, next){
     res.redirect('/login');
 }
 
-router.get('/login', function(req, res){
-  Blog.find({}, function(err, blogs){
+router.get('/login', async(req, res) => {
+  Blog.find({}, async(err, blogs) => {
     if (err){
       console.log('err');
     } else {
@@ -44,7 +44,7 @@ router.post('/login', passport.authenticate('local', {
   successRedirect: '/dashboard',
   failureRedirect: '/login',
 }));
-router.get('/dashboard', isLoggedIn, function(req, res){
+router.get('/dashboard', isLoggedIn, async(req, res) => {
   console.log(req.user);
   if (req.user.type === 'Employee')
     res.render('staff', {currentStaff: req.user});
@@ -54,7 +54,7 @@ router.get('/dashboard', isLoggedIn, function(req, res){
 router.post('/dashboard', upload.single('request[req_file]'), (req, res, next) => {
   if (req.user.type === 'Student') {
     console.log(req.file);
-    cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+    cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
       if (err){
         console.log('err');
       }

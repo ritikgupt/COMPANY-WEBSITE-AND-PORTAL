@@ -3,8 +3,8 @@ var a = require('express');
 var router = a.Router();
 var Detail = require('../models/detail');
 var Request_staff = require('../models/request_staff');
-router.get('/students', function(req, res){
-  Detail.find({}, function(err, details){
+router.get('/students', async(req, res) => {
+  Detail.find({}, async(err, details) => {
     if (err)
       console.log(err);
     else
@@ -14,7 +14,7 @@ router.get('/students', function(req, res){
 });
 router.get('/:id/show', async(req, res) => {
   var request = [];
-  await Request_staff.find({}, function(err, request_staffs){
+  await Request_staff.find({}, async(err, request_staffs) => {
     if (err)
       console.log(err);
     else {
@@ -25,7 +25,7 @@ router.get('/:id/show', async(req, res) => {
       }
     }
   });
-  await Detail.findById(req.params.id, function(err, foundDetail){
+  await Detail.findById(req.params.id, async(err, foundDetail) => {
     if (err){
       res.redirect('/');
     } else {

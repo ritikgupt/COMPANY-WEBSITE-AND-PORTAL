@@ -10,11 +10,11 @@ cloudinary.config({
   api_key: '542159551497727',
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
-router.get('/newnews', function(req, res){
+router.get('/newnews', async(req, res) => {
   res.render('newnews');
 });
-router.post('/newnews', upload.single('news[file]'), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/newnews', upload.single('news[file]'), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
@@ -27,16 +27,16 @@ router.post('/newnews', upload.single('news[file]'), function(req, res){
   });
   res.redirect('/adminhome');
 });
-router.get('/editnews', function(req, res){
-  News.find({}, function(err, newss){
+router.get('/editnews', async(req, res) => {
+  News.find({}, async(err, newss) => {
     if (err)
       console.log('err');
     else
       res.render('editnews', {newss: newss});
   });
 });
-router.get('/:id/editnews', function(req, res){
-  News.findById(req.params.id, function(err, foundNews){
+router.get('/:id/editnews', async(req, res) => {
+  News.findById(req.params.id, async(err, foundNews) => {
 
     if (err){
       res.redirect('/');
@@ -45,8 +45,8 @@ router.get('/:id/editnews', function(req, res){
     }
   });
 });
-router.delete('/:id/editnews', function(req, res){
-  News.findByIdAndRemove(req.params.id, function(err){
+router.delete('/:id/editnews', async(req, res) => {
+  News.findByIdAndRemove(req.params.id, async(err) => {
 
     if (err){
       res.redirect('/editnews');
@@ -55,8 +55,8 @@ router.delete('/:id/editnews', function(req, res){
     }
   });
 });
-router.get('/:id/changephotonews', function(req, res){
-  News.findById(req.params.id, function(err, foundNews){
+router.get('/:id/changephotonews', async(req, res) => {
+  News.findById(req.params.id, async(err, foundNews) => {
     if (err){
       console.log('Error');
     } else {
@@ -64,12 +64,12 @@ router.get('/:id/changephotonews', function(req, res){
     }
   });
 });
-router.post('/:id/changephotonews', upload.single('news[file]', {overwrite: true}), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/:id/changephotonews', upload.single('news[file]', {overwrite: true}), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
-    News.findByIdAndUpdate(req.params.id, {file: result.secure_url}, function(err){
+    News.findByIdAndUpdate(req.params.id, {file: result.secure_url}, async(err) => {
       if (err){
         res.redirect('/adminhome');
       } else {
@@ -78,8 +78,8 @@ router.post('/:id/changephotonews', upload.single('news[file]', {overwrite: true
     });
   });
 });
-router.get('/:id/editnewsform', function(req, res){
-  News.findById(req.params.id, function(err, foundNews){
+router.get('/:id/editnewsform', async(req, res) => {
+  News.findById(req.params.id, async(err, foundNews) => {
     if (err){
       console.log('err');
     } else {
@@ -87,8 +87,8 @@ router.get('/:id/editnewsform', function(req, res){
     }
   });
 });
-router.post('/:id/editnewsform', function(req, res){
-  News.findByIdAndUpdate(req.params.id, req.body.news, function(err){
+router.post('/:id/editnewsform', async(req, res) => {
+  News.findByIdAndUpdate(req.params.id, req.body.news, async(err) => {
     if (err){
       res.redirect('/adminhome');
     } else {

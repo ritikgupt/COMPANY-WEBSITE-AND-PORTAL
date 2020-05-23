@@ -5,7 +5,7 @@ var a = require('express');
 var router = a.Router();
 router.get('/patent', async(req, res, next) => {
   var request = [];
-  await Request.find({}, function(err, requests){
+  await Request.find({}, async(err, requests) => {
     if (err)
       console.log('err');
     else {
@@ -15,7 +15,7 @@ router.get('/patent', async(req, res, next) => {
       }
     }
   });
-  await Detail.find({}, function(err, details){
+  await Detail.find({}, async(err, details) => {
     if (err)
       console.log('err');
     else {
@@ -27,13 +27,13 @@ router.get('/patent/:id/show', async(req, res, next) => {
   // prevents the use of undeclared variable
 
   var request = [];
-  await Request.findById(req.params.id, function(err, foundRequest){
+  await Request.findById(req.params.id, async(err, foundRequest) => {
     if (err)
       console.log('err');
     else
       request.push(foundRequest);
   });
-  await Detail.find({}, function(err, details){
+  await Detail.find({}, async(err, details) => {
     if (err)
       console.log('err');
     else {

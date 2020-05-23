@@ -2,10 +2,10 @@
 var Intern = require('../models/intern');
 var a = require('express');
 var router = a.Router();
-router.get('/intern', function(req, res){
+router.get('/intern', async(req, res) => {
   res.render('intern');
 });
-router.post('/intern', function(req, res){
+router.post('/intern', async(req, res) => {
   Intern.create({
     name: req.body.intern.name,
     college: req.body.intern.college,

@@ -10,11 +10,11 @@ cloudinary.config({
   api_key: '542159551497727',
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
-router.get('/newworkshop', function(req, res){
+router.get('/newworkshop', async(req, res) => {
   res.render('newworkshop');
 });
 router.get('/workshop', async(req, res, next) => {
-  await Workshop.find({}, function(err, workshops){
+  await Workshop.find({}, async(err, workshops) => {
     if (err)
       console.log(err);
     else {
@@ -25,8 +25,8 @@ router.get('/workshop', async(req, res, next) => {
 
 }
 );
-router.post('/newworkshop', upload.single('workshop[file]'), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/newworkshop', upload.single('workshop[file]'), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
@@ -39,16 +39,16 @@ router.post('/newworkshop', upload.single('workshop[file]'), function(req, res){
   });
   res.redirect('/workshop');
 });
-router.get('/editworkshop', function(req, res){
-  Workshop.find({}, function(err, workshops){
+router.get('/editworkshop', async(req, res) => {
+  Workshop.find({}, async(err, workshops) => {
     if (err)
       console.log('err');
     else
       res.render('editworkshop', {workshops: workshops});
   });
 });
-router.get('/:id/editworkshop', function(req, res){
-  Workshop.findById(req.params.id, function(err, foundWorkshop){
+router.get('/:id/editworkshop', async(req, res) => {
+  Workshop.findById(req.params.id, async(err, foundWorkshop) => {
     if (err){
       res.redirect('/');
     } else {
@@ -56,8 +56,8 @@ router.get('/:id/editworkshop', function(req, res){
     }
   });
 });
-router.delete('/:id/editworkshop', function(req, res){
-  Workshop.findByIdAndRemove(req.params.id, function(err){
+router.delete('/:id/editworkshop', async(req, res) => {
+  Workshop.findByIdAndRemove(req.params.id, async(err) => {
     if (err){
       res.redirect('/editworkshop');
     } else {
@@ -65,8 +65,8 @@ router.delete('/:id/editworkshop', function(req, res){
     }
   });
 });
-router.get('/:id/changephotoworkshop', function(req, res){
-  Workshop.findById(req.params.id, function(err, foundWorkshop){
+router.get('/:id/changephotoworkshop', async(req, res) => {
+  Workshop.findById(req.params.id, async(err, foundWorkshop) => {
     if (err){
       console.log('Error');
     } else {
@@ -74,12 +74,12 @@ router.get('/:id/changephotoworkshop', function(req, res){
     }
   });
 });
-router.post('/:id/changephotoworkshop', upload.single('workshop[file]', {overwrite: true}), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/:id/changephotoworkshop', upload.single('workshop[file]', {overwrite: true}), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
-    Workshop.findByIdAndUpdate(req.params.id, {file: result.secure_url}, function(err){
+    Workshop.findByIdAndUpdate(req.params.id, {file: result.secure_url}, async(err) => {
       if (err){
         res.redirect('/adminhome');
       } else {
@@ -88,8 +88,8 @@ router.post('/:id/changephotoworkshop', upload.single('workshop[file]', {overwri
     });
   });
 });
-router.get('/:id/editworkshopform', function(req, res){
-  Workshop.findById(req.params.id, function(err, foundWorkshop){
+router.get('/:id/editworkshopform', async(req, res) => {
+  Workshop.findById(req.params.id, async(err, foundWorkshop) => {
     if (err){
       console.log('err');
     } else {
@@ -97,8 +97,8 @@ router.get('/:id/editworkshopform', function(req, res){
     }
   });
 });
-router.post('/:id/editworkshopform', function(req, res){
-  Workshop.findByIdAndUpdate(req.params.id, req.body.workshop, function(err){
+router.post('/:id/editworkshopform', async(req, res) => {
+  Workshop.findByIdAndUpdate(req.params.id, req.body.workshop, async(err) => {
     if (err){
       res.redirect('/adminhome');
     } else {

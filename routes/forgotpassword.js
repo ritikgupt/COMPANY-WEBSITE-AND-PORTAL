@@ -5,20 +5,20 @@ var nodemailer = require('nodemailer');
 var crypto = require('crypto');
 var Detail = require('../models/detail');
 var router = a.Router();
-router.get('/forgot', function(req, res){
+router.get('/forgot', async(req, res) => {
   res.render('forgot');
 });
 
-router.post('/forgot', function(req, res, next){
+router.post('/forgot', async(req, res, next) => {
   async.waterfall([
-    function(done){
-      crypto.randomBytes(20, function(err, buf){
+    async(done) => {
+      crypto.randomBytes(20, async(err, buf) => {
         var token = buf.toString('hex');
         done(err, token);// token is that,which is to be send as the part of the url to the user's email address
       });
     },
-    function(token, done){
-      Detail.findOne({email: req.body.email}, function(err, detail){
+    async(token, done) => {
+      Detail.findOne({email: req.body.email}, async(err, detail) => {
         if (err){
           console.log('err');
         }
@@ -28,12 +28,12 @@ router.post('/forgot', function(req, res, next){
         }
         detail.resetPasswordToken = token;
         detail.resetPasswordExpires = Date.now() + 360000;
-        detail.save(function(err){
+        detail.save(async(err) => {
           done(err, token, detail);
         });
       });
     },
-    function(token, detail, done){
+    async(token, detail, done) => {
       var transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -50,19 +50,19 @@ router.post('/forgot', function(req, res, next){
                 'http://' + req.headers.host + '/reset/' + token + '\n\n' +
                 'If you did not request this, please ignore this email and your password will remain unchanged.\n',
       };
-      transporter.sendMail(mailOptions, function(err) {
+      transporter.sendMail(mailOptions, async(err) => {
         console.log('mail sent');
         done(err, 'done');
       });
     },
   ],
-  function(err) {
+  async(err) => {
     if (err) return next(err);
     res.redirect('/forgot');
   });
 });
-router.get('/reset/:token', function(req, res) {
-  Detail.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, detail) {
+router.get('/reset/:token', async(req, res) => {
+  Detail.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, async(err, detail) => {
     if (err){
       console.log('err');
     }
@@ -74,10 +74,10 @@ router.get('/reset/:token', function(req, res) {
   });
 });
 
-router.post('/reset/:token', function(req, res) {
+router.post('/reset/:token', async(req, res) => {
   async.waterfall([
-    function(done) {
-      Detail.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, detail) {
+    async(done) => {
+      Detail.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, async(err, detail) => {
         if (err){
           console.log('err');
         }
@@ -87,14 +87,14 @@ router.post('/reset/:token', function(req, res) {
         }
         if (req.body.password === req.body.confirm) {
 
-          detail.setPassword(req.body.password, function(err) {
+          detail.setPassword(req.body.password, async(err) => {
             if (err){
               console.log('err');
             }
             detail.resetPasswordToken = undefined;
             detail.resetPasswordExpires = undefined;
 
-            detail.save(function(err) {
+            detail.save(async(err) => {
               detail.password = req.body.password;
               done(err, detail);
               res.redirect('/logout');
@@ -107,7 +107,7 @@ router.post('/reset/:token', function(req, res) {
         }
       });
     },
-    function(detail, done) {
+    async(detail, done) => {
       var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
@@ -122,12 +122,12 @@ router.post('/reset/:token', function(req, res) {
         text: 'Hello,\n\n' +
             'This is a confirmation that the password for your account ' + detail.email + ' has just been changed.\n',
       };
-      transporter.sendMail(mailOptions, function(err) {
+      transporter.sendMail(mailOptions, async(err) => {
         req.flash('success', 'Success! Your password has been changed.');
         done(err);
       });
     },
-  ], function(err) {
+  ], async(err) => {
     if (err){
       console.log('err');
     }

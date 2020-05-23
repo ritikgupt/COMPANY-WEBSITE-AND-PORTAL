@@ -14,7 +14,7 @@ router.get('/certificate', (req, res) => {
   res.render('certificate');
 });
 router.post('/certificate', upload.single('certificate[file]'), (req, res) => {
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result){
     if (err){
       console.log('err');
     }

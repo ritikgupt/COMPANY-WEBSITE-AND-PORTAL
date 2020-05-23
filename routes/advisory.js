@@ -10,11 +10,11 @@ cloudinary.config({
   api_key: '542159551497727',
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
-router.get('/newmember', function(req, res){
+router.get('/newmember', async(req, res) => {
   res.render('newmember');
 });
-router.post('/newmember', upload.single('member[file]'), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/newmember', upload.single('member[file]'), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
@@ -27,16 +27,16 @@ router.post('/newmember', upload.single('member[file]'), function(req, res){
   });
   res.redirect('/adminhome');
 });
-router.get('/editmember', function(req, res){
-  Member.find({}, function(err, members){
+router.get('/editmember', async(req, res) => {
+  Member.find({}, async(err, members) => {
     if (err)
       console.log('err');
     else
       res.render('editmember', {members: members});
   });
 });
-router.get('/:id/editmember', function(req, res){
-  Member.findById(req.params.id, function(err, foundMember){
+router.get('/:id/editmember', async(req, res) => {
+  Member.findById(req.params.id, async(err, foundMember) => {
     if (err){
       res.redirect('/');
     } else {
@@ -44,8 +44,8 @@ router.get('/:id/editmember', function(req, res){
     }
   });
 });
-router.delete('/:id/editmember', function(req, res){
-  Member.findByIdAndRemove(req.params.id, function(err){
+router.delete('/:id/editmember', async(req, res) => {
+  Member.findByIdAndRemove(req.params.id, async(err) => {
     if (err){
       res.redirect('/editmember');
     } else {
@@ -53,8 +53,8 @@ router.delete('/:id/editmember', function(req, res){
     }
   });
 });
-router.get('/:id/changephotomember', function(req, res){
-  Member.findById(req.params.id, function(err, foundMember){
+router.get('/:id/changephotomember', async(req, res) => {
+  Member.findById(req.params.id, async(err, foundMember) => {
     if (err){
       console.log('Error');
     } else {
@@ -62,12 +62,12 @@ router.get('/:id/changephotomember', function(req, res){
     }
   });
 });
-router.post('/:id/changephotomember', upload.single('member[file]', {overwrite: true}), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/:id/changephotomember', upload.single('member[file]', {overwrite: true}), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
-    Member.findByIdAndUpdate(req.params.id, {file: result.secure_url}, function(err){
+    Member.findByIdAndUpdate(req.params.id, {file: result.secure_url}, async(err) => {
       if (err){
         res.redirect('/adminhome');
       } else {
@@ -76,8 +76,8 @@ router.post('/:id/changephotomember', upload.single('member[file]', {overwrite: 
     });
   });
 });
-router.get('/:id/editmemberform', function(req, res){
-  Member.findById(req.params.id, function(err, foundMember){
+router.get('/:id/editmemberform', async(req, res) => {
+  Member.findById(req.params.id, async(err, foundMember) => {
     if (err){
       console.log('err');
     } else {
@@ -85,8 +85,8 @@ router.get('/:id/editmemberform', function(req, res){
     }
   });
 });
-router.post('/:id/editmemberform', function(req, res){
-  Member.findByIdAndUpdate(req.params.id, req.body.member, function(err){
+router.post('/:id/editmemberform', async(req, res) => {
+  Member.findByIdAndUpdate(req.params.id, req.body.member, async(err) => {
     if (err){
       res.redirect('/adminhome');
     } else {

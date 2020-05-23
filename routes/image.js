@@ -10,11 +10,11 @@ cloudinary.config({
   api_key: '542159551497727',
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
-router.get('/image', function(req, res){
+router.get('/image', async(req, res) => {
   res.render('image');
 });
-router.post('/image', upload.single('image[file]'), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/image', upload.single('image[file]'), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
@@ -24,16 +24,16 @@ router.post('/image', upload.single('image[file]'), function(req, res){
   });
   res.redirect('/adminhome');
 });
-router.get('/editimage', function(req, res){
-  Image.find({}, function(err, images){
+router.get('/editimage', async(req, res) => {
+  Image.find({}, async(err, images) => {
     if (err)
       console.log('err');
     else
       res.render('editimage', {images: images});
   });
 });
-router.delete('/:id/editimage', function(req, res){
-  Image.findByIdAndRemove(req.params.id, function(err){
+router.delete('/:id/editimage', async(req, res) => {
+  Image.findByIdAndRemove(req.params.id, async(err) => {
     if (err){
       res.redirect('/editimage');
     } else {

@@ -15,10 +15,10 @@ cloudinary.config({
   api_key: '542159551497727',
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
-router.get('/newuser', function(req, res){
+router.get('/newuser', async(req, res) => {
   res.render('newuser');
 });
-router.post('/newuser', upload.single('detail[file]'), function(req, res){
+router.post('/newuser', upload.single('detail[file]'), async(req, res) => {
   req.body.detail.name;
   req.body.detail.username;
   req.body.detail.password;
@@ -29,16 +29,16 @@ router.post('/newuser', upload.single('detail[file]'), function(req, res){
   req.body.detail.image;
 
   req.body.detail.college;
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     console.log('Error:', err);
     console.log('Result:', result);
     Detail.register(new Detail({username: req.body.detail.username, name: req.body.detail.name, email: req.body.detail.email, mobile: req.body.detail.mobile, dept: req.body.detail.dept,
-      type: req.body.detail.type, image: req.body.detail.image, file: result.secure_url, college: req.body.detail.college}), req.body.detail.password, function(err, detail){
+      type: req.body.detail.type, image: req.body.detail.image, file: result.secure_url, college: req.body.detail.college}), req.body.detail.password, async(err, detail) => {
       if (err) {
         console.log('err');
         return res.redirect('/newuser');
       } else {
-        passport.authenticate('local')(req, res, function(){
+        passport.authenticate('local')(req, res, async() => {
           return res.redirect('/dashboard');
         });
       }
@@ -46,12 +46,12 @@ router.post('/newuser', upload.single('detail[file]'), function(req, res){
   });
   res.redirect('/login');
 });
-router.get('/logout', function(req, res){
+router.get('/logout', async(req, res) => {
   req.logout();
   res.redirect('/login');
 });
-router.get('/:id/edituser', function(req, res){
-  Detail.findById(req.params.id, function(err, foundDetail){
+router.get('/:id/edituser', async(req, res) => {
+  Detail.findById(req.params.id, async(err, foundDetail) => {
     if (err){
       console.log('Error');
     } else {
@@ -61,12 +61,12 @@ router.get('/:id/edituser', function(req, res){
 });
 
 
-router.post('/:id/changeuserphoto', upload.single('detail[file]', {overwrite: true}), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/:id/changeuserphoto', upload.single('detail[file]', {overwrite: true}), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
-    Detail.findByIdAndUpdate(req.params.id, {file: result.secure_url}, function(err, updatedDetail){
+    Detail.findByIdAndUpdate(req.params.id, {file: result.secure_url}, async(err, updatedDetail) => {
       if (err){
         res.redirect('/adminhome');
       } else {
@@ -75,8 +75,8 @@ router.post('/:id/changeuserphoto', upload.single('detail[file]', {overwrite: tr
     });
   });
 });
-router.post('/:id/edituser', function(req, res){
-  Detail.findByIdAndUpdate(req.params.id, req.body.detail, function(err, updatedDetail){
+router.post('/:id/edituser', async(req, res) => {
+  Detail.findByIdAndUpdate(req.params.id, req.body.detail, async(err, updatedDetail) => {
     if (err){
       res.redirect('/adminhome');
     } else {
@@ -84,8 +84,8 @@ router.post('/:id/edituser', function(req, res){
     }
   });
 });
-router.get('/:id/changeuserphoto', function(req, res){
-  Detail.findById(req.params.id, function(err, foundDetail){
+router.get('/:id/changeuserphoto', async(req, res) => {
+  Detail.findById(req.params.id, async(err, foundDetail) => {
     if (err){
       console.log('Error');
     } else {
@@ -93,8 +93,8 @@ router.get('/:id/changeuserphoto', function(req, res){
     }
   });
 });
-router.delete('/:id/', function(req, res){
-  Detail.findByIdAndRemove(req.params.id, function(err){
+router.delete('/:id/', async(req, res) => {
+  Detail.findByIdAndRemove(req.params.id, async(err) => {
     if (err){
       res.redirect('/');
     } else {

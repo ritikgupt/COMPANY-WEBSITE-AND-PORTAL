@@ -10,11 +10,11 @@ cloudinary.config({
   api_key: '542159551497727',
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
-router.get('/newsponsor', function(req, res){
+router.get('/newsponsor', async(req, res) => {
   res.render('newsponsor');
 });
-router.post('/newsponsor', upload.single('sponsor[file]'), function(req, res){
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, function(err, result){
+router.post('/newsponsor', upload.single('sponsor[file]'), async(req, res) => {
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }
@@ -24,16 +24,16 @@ router.post('/newsponsor', upload.single('sponsor[file]'), function(req, res){
   });
   res.redirect('/adminhome');
 });
-router.get('/editsponsor', function(req, res){
-  Sponsor.find({}, function(err, sponsors){
+router.get('/editsponsor', async(req, res) => {
+  Sponsor.find({}, async(err, sponsors) => {
     if (err)
       console.log('err');
     else
       res.render('editsponsor', {sponsors: sponsors});
   });
 });
-router.delete('/:id/editsponsor', function(req, res){
-  Sponsor.findByIdAndRemove(req.params.id, function(err){
+router.delete('/:id/editsponsor', async(req, res) => {
+  Sponsor.findByIdAndRemove(req.params.id, async(err) => {
     if (err){
       res.redirect('/editsponsor');
     } else {
