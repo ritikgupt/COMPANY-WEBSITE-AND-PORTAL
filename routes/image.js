@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/image', async(req, res) => {
-  res.render('image');
+  res.status(200).render('image');
 });
 router.post('/image', upload.single('image[file]'), async(req, res) => {
   cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
@@ -29,7 +29,7 @@ router.get('/editimage', async(req, res) => {
     if (err)
       console.log('err');
     else
-      res.render('editimage', {images: images});
+      res.status(200).render('editimage', {images: images});
   });
 });
 router.delete('/:id/editimage', async(req, res) => {

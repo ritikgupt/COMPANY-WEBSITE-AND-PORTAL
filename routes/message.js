@@ -8,7 +8,7 @@ router.get('/message/:id', async(req, res, next) => {
       console.log('err');
     else {
       console.log(req.user);
-      res.render('message', {messages: messages, currentUser: req.user});
+      res.status(200).render('message', {messages: messages, currentUser: req.user});
     }
   });
 });

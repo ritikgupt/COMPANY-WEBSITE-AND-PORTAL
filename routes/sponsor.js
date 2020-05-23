@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/newsponsor', async(req, res) => {
-  res.render('newsponsor');
+  res.status(200).render('newsponsor');
 });
 router.post('/newsponsor', upload.single('sponsor[file]'), async(req, res) => {
   cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
@@ -29,7 +29,7 @@ router.get('/editsponsor', async(req, res) => {
     if (err)
       console.log('err');
     else
-      res.render('editsponsor', {sponsors: sponsors});
+      res.status(200).render('editsponsor', {sponsors: sponsors});
   });
 });
 router.delete('/:id/editsponsor', async(req, res) => {

@@ -11,10 +11,10 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/certificate', (req, res) => {
-  res.render('certificate');
+  res.status(200).render('certificate');
 });
 router.post('/certificate', upload.single('certificate[file]'), (req, res) => {
-  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result){
+  cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
     if (err){
       console.log('err');
     }

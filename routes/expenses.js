@@ -6,7 +6,7 @@ router.get('/expenses', (req, res) => {
     if (err) {
       console.log('err');
     } else {
-      res.render('expenses', {user: req.user, request_staffs: request_staffs});
+      res.status(200).render('expenses', {user: req.user, request_staffs: request_staffs});
     }
   });
 }
@@ -16,7 +16,7 @@ router.get('/:id/edit', (req, res) => {
     if (err){
       console.log('err');
     } else {
-      res.render('editexpense', {request: foundRequest_staff});
+      res.status(200).render('editexpense', {request: foundRequest_staff});
     }
   });
 });

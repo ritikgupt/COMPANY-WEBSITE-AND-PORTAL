@@ -14,7 +14,7 @@ router.get('/requests', (req, res) => {
     if (err) {
       console.log('err');
     } else {
-      res.render('requests', {user: req.user, requests: requests});
+      res.status(200).render('requests', {user: req.user, requests: requests});
     }
   });
 }
@@ -24,7 +24,7 @@ router.get('/hello/:id/edit', (req, res) => {
     if (err){
       console.log('err');
     } else {
-      res.render('editrequest', {request: foundRequest});
+      res.status(200).render('editrequest', {request: foundRequest});
     }
   });
 });
@@ -42,7 +42,7 @@ router.get('/hello/:id/changefile', (req, res) => {
     if (err){
       console.log('err');
     } else {
-      res.render('changerequestfile', {request: foundRequest});
+      res.status(200).render('changerequestfile', {request: foundRequest});
     }
   });
 });

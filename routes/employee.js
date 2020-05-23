@@ -7,7 +7,7 @@ router.get('/employee', async(req, res) => {
     if (err)
       console.log(err);
     else
-      res.render('employee', {details: details});
+      res.status(200).render('employee', {details: details});
   });
 
 });

@@ -61,7 +61,7 @@ router.get('/adminhome', async(req, res, next) => {
       }
     }
   });
-  res.render('adminhome', {news: news, slider: slider, sponsor: sponsor, image: image, member: member});
+  res.status(200).render('adminhome', {news: news, slider: slider, sponsor: sponsor, image: image, member: member});
 });
 router.post('/adminhome', async(req, res) => {
   Message.create({

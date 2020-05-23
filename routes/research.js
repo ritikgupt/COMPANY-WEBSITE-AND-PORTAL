@@ -19,7 +19,7 @@ router.get('/research', async(req, res) => {
     if (err)
       console.log('err');
     else {
-      res.render('patent', {details: details, request: request});
+      res.status(200).render('patent', {details: details, request: request});
     }
   });
 });
@@ -35,7 +35,7 @@ router.get('/research/:id/show', async(req, res, next) => {
     if (err)
       console.log('err');
     else {
-      res.render('requestshow', {details: details, request: request});
+      res.status(200).render('requestshow', {details: details, request: request});
     }
   });
 });

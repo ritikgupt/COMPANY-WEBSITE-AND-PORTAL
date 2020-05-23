@@ -12,7 +12,7 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/newslider', async(req, res) => {
-  res.render('newslider');
+  res.status(200).render('newslider');
 });
 router.post('/newslider', upload.single('slider[file]'), async(req, res) => {
   cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
@@ -30,7 +30,7 @@ router.get('/editslider', async(req, res) => {
     if (err)
       console.log(err);
     else
-      res.render('editslider', {sliders: sliders});
+      res.status(200).render('editslider', {sliders: sliders});
   });
 });
 router.delete('/:id/editslider', async(req, res) => {

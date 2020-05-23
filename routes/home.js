@@ -60,7 +60,7 @@ router.get('/', async(req, res, next) => {
       }
     }
   });
-  res.render('amz', {news: news, slider: slider, sponsor: sponsor, image: image, member: member});
+  res.status(200).render('amz', {news: news, slider: slider, sponsor: sponsor, image: image, member: member});
 });
 
 module.exports = router;

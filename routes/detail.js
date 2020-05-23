@@ -16,7 +16,7 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/newuser', async(req, res) => {
-  res.render('newuser');
+  res.status(200).render('newuser');
 });
 router.post('/newuser', upload.single('detail[file]'), async(req, res) => {
   req.body.detail.name;
@@ -55,7 +55,7 @@ router.get('/:id/edituser', async(req, res) => {
     if (err){
       console.log('Error');
     } else {
-      res.render('edituser', {detail: foundDetail});
+      res.status(200).render('edituser', {detail: foundDetail});
     }
   });
 });
@@ -89,7 +89,7 @@ router.get('/:id/changeuserphoto', async(req, res) => {
     if (err){
       console.log('Error');
     } else {
-      res.render('changeuserphoto', {detail: foundDetail});
+      res.status(200).render('changeuserphoto', {detail: foundDetail});
     }
   });
 });

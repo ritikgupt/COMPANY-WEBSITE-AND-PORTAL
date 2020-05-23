@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 var Certificate = require('../models/certificate');
 router.get('/verify', (req, res) => {
-  res.render('verify');
+  res.status(200).render('verify');
 });
 router.post('/verify', (req, res) => {
   console.log(req.body.stu_id);
@@ -11,7 +11,7 @@ router.post('/verify', (req, res) => {
     if (err)
       console.log('error');
     else {
-      res.render('showcertificate', {certificate: certificate});
+      res.status(200).render('showcertificate', {certificate: certificate});
     }
   });
 });

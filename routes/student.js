@@ -8,7 +8,7 @@ router.get('/students', async(req, res) => {
     if (err)
       console.log(err);
     else
-      res.render('students', {details: details});
+      res.status(200).render('students', {details: details});
   });
 
 });
@@ -29,7 +29,7 @@ router.get('/:id/show', async(req, res) => {
     if (err){
       res.redirect('/');
     } else {
-      res.render('show', {detail: foundDetail, request: request});
+      res.status(200).render('show', {detail: foundDetail, request: request});
     }
   });
 

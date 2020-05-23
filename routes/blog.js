@@ -20,7 +20,7 @@ router.get('/Blog', async(req, res, next) => {
     if (err)
       console.log('err');
     else {
-      res.render('patent', {details: details, request: request});
+      res.status(200).render('patent', {details: details, request: request});
     }
   });
 });
@@ -40,7 +40,7 @@ router.get('/Blog/:id/show', async(req, res, next) => {
     else {
       console.log(request);
       console.log(details);
-      res.render('blogshow', {request: request, details: details});
+      res.status(200).render('blogshow', {request: request, details: details});
     }
   });
 });

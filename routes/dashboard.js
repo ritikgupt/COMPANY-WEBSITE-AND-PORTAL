@@ -34,7 +34,7 @@ router.get('/login', async(req, res) => {
         if (err)
           console.log(err);
         else {
-          res.render('login', {blogs: blogs});
+          res.status(200).render('login', {blogs: blogs});
         }
       });
     }
@@ -47,9 +47,9 @@ router.post('/login', passport.authenticate('local', {
 router.get('/dashboard', isLoggedIn, async(req, res) => {
   console.log(req.user);
   if (req.user.type === 'Employee')
-    res.render('staff', {currentStaff: req.user});
+    res.status(200).render('staff', {currentStaff: req.user});
   else
-    res.render('aspiring', {currentStudent: req.user});
+    res.status(200).render('aspiring', {currentStudent: req.user});
 });
 router.post('/dashboard', upload.single('request[req_file]'), (req, res, next) => {
   if (req.user.type === 'Student') {

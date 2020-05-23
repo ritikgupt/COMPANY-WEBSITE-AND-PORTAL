@@ -22,13 +22,13 @@ var options = {
 var logger = winston.createLogger({
   transports: [
     new winston.transports.File(options.file),
-    new winston.transports.MongoDB({
-      db: process.env.ATLAS_URI,
-      collection: 'log',
-      level: 'info',
-      storeHost: true,
-      capped: true,
-    }),
+    // new winston.transports.MongoDB({
+    //   db: process.env.ATLAS_URI,
+    //   collection: 'log',
+    //   level: 'info',
+    //   storeHost: true,
+    //   capped: true,
+    // }),
   ],
   exitOnError: false, // do not exit on handled exceptions
 });

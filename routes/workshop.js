@@ -11,14 +11,14 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/newworkshop', async(req, res) => {
-  res.render('newworkshop');
+  res.status(200).render('newworkshop');
 });
 router.get('/workshop', async(req, res, next) => {
   await Workshop.find({}, async(err, workshops) => {
     if (err)
       console.log(err);
     else {
-      res.render('workshop', {workshops: workshops});
+      res.status(200).render('workshop', {workshops: workshops});
     }
 
   });
@@ -44,7 +44,7 @@ router.get('/editworkshop', async(req, res) => {
     if (err)
       console.log('err');
     else
-      res.render('editworkshop', {workshops: workshops});
+      res.status(200).render('editworkshop', {workshops: workshops});
   });
 });
 router.get('/:id/editworkshop', async(req, res) => {
@@ -52,7 +52,7 @@ router.get('/:id/editworkshop', async(req, res) => {
     if (err){
       res.redirect('/');
     } else {
-      res.render('showworkshop', {workshop: foundWorkshop});
+      res.status(200).render('showworkshop', {workshop: foundWorkshop});
     }
   });
 });
@@ -70,7 +70,7 @@ router.get('/:id/changephotoworkshop', async(req, res) => {
     if (err){
       console.log('Error');
     } else {
-      res.render('changephotoworkshop', {workshop: foundWorkshop});
+      res.status(200).render('changephotoworkshop', {workshop: foundWorkshop});
     }
   });
 });
@@ -93,7 +93,7 @@ router.get('/:id/editworkshopform', async(req, res) => {
     if (err){
       console.log('err');
     } else {
-      res.render('editworkshopform', {workshop: foundWorkshop});
+      res.status(200).render('editworkshopform', {workshop: foundWorkshop});
     }
   });
 });

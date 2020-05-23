@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/newnews', async(req, res) => {
-  res.render('newnews');
+  res.status(200).render('newnews');
 });
 router.post('/newnews', upload.single('news[file]'), async(req, res) => {
   cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
@@ -32,7 +32,7 @@ router.get('/editnews', async(req, res) => {
     if (err)
       console.log('err');
     else
-      res.render('editnews', {newss: newss});
+      res.status(200).render('editnews', {newss: newss});
   });
 });
 router.get('/:id/editnews', async(req, res) => {
@@ -41,7 +41,7 @@ router.get('/:id/editnews', async(req, res) => {
     if (err){
       res.redirect('/');
     } else {
-      res.render('shownews', {news: foundNews});
+      res.status(200).render('shownews', {news: foundNews});
     }
   });
 });
@@ -60,7 +60,7 @@ router.get('/:id/changephotonews', async(req, res) => {
     if (err){
       console.log('Error');
     } else {
-      res.render('changephotonews', {news: foundNews});
+      res.status(200).render('changephotonews', {news: foundNews});
     }
   });
 });
@@ -83,7 +83,7 @@ router.get('/:id/editnewsform', async(req, res) => {
     if (err){
       console.log('err');
     } else {
-      res.render('editnewsform', {news: foundNews});
+      res.status(200).render('editnewsform', {news: foundNews});
     }
   });
 });

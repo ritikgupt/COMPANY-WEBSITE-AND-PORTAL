@@ -6,7 +6,7 @@ var crypto = require('crypto');
 var Detail = require('../models/detail');
 var router = a.Router();
 router.get('/forgot', async(req, res) => {
-  res.render('forgot');
+  res.status(200).render('forgot');
 });
 
 router.post('/forgot', async(req, res, next) => {
@@ -70,7 +70,7 @@ router.get('/reset/:token', async(req, res) => {
       // req.flash('error', 'Password reset token is invalid or has expired.');
       return res.redirect('/forgot');
     }
-    res.render('reset', {token: req.params.token});
+    res.status(200).render('reset', {token: req.params.token});
   });
 });
 

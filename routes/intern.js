@@ -3,7 +3,7 @@ var Intern = require('../models/intern');
 var a = require('express');
 var router = a.Router();
 router.get('/intern', async(req, res) => {
-  res.render('intern');
+  res.status(200).render('intern');
 });
 router.post('/intern', async(req, res) => {
   Intern.create({

@@ -11,7 +11,7 @@ cloudinary.config({
   api_secret: 'yRkiZK6Gf4eNNhXqvrNI9WHFKM0',
 });
 router.get('/newmember', async(req, res) => {
-  res.render('newmember');
+  res.status(200).render('newmember');
 });
 router.post('/newmember', upload.single('member[file]'), async(req, res) => {
   cloudinary.v2.uploader.upload(req.file.path, {overwrite: true}, async(err, result) => {
@@ -32,7 +32,7 @@ router.get('/editmember', async(req, res) => {
     if (err)
       console.log('err');
     else
-      res.render('editmember', {members: members});
+      res.status(200).render('editmember', {members: members});
   });
 });
 router.get('/:id/editmember', async(req, res) => {
@@ -40,7 +40,7 @@ router.get('/:id/editmember', async(req, res) => {
     if (err){
       res.redirect('/');
     } else {
-      res.render('showmember', {member: foundMember});
+      res.status(200).render('showmember', {member: foundMember});
     }
   });
 });
@@ -58,7 +58,7 @@ router.get('/:id/changephotomember', async(req, res) => {
     if (err){
       console.log('Error');
     } else {
-      res.render('changephotomember', {member: foundMember});
+      res.status(200).render('changephotomember', {member: foundMember});
     }
   });
 });
@@ -81,7 +81,7 @@ router.get('/:id/editmemberform', async(req, res) => {
     if (err){
       console.log('err');
     } else {
-      res.render('editmemberform', {member: foundMember});
+      res.status(200).render('editmemberform', {member: foundMember});
     }
   });
 });

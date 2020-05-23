@@ -1,16 +1,16 @@
 var compression = require('compression');
 var createError = require('http-errors');
 var a = require('express');
-var b = require('body-parser');
 var morgan = require('morgan');
 var port = process.env.PORT || 5000;
 var mongoose = require('mongoose');
 require('dotenv').config();
 var app = a();
+app.use(a.urlencoded({extended: true}));
+app.use(a.json());
 app.set('view engine', 'ejs');
 app.use(a.static('public'));
 app.use('/uploads', a.static('uploads'));
-app.use(b.urlencoded({ extended: true }));
 app.use(compression());
 var winston = require('./config/winston');
 app.use(morgan('combined', { stream: winston.stream }));
@@ -96,37 +96,32 @@ app.use(verifyRoutes);
 app.use(expensesRoutes);
 app.use(requestsRoutes);
 app.use(blogRoutes);
-app.get('/about', function(req, res){
+app.get('/about', async(req, res) => {
   res.render('about');
 });
-app.get('/mechanical', function(req, res){
+app.get('/mechanical', async(req, res) => {
   res.render('mechanical');
 });
-app.get('/computer', function(req, res){
+app.get('/computer', async(req, res) => {
   res.render('computer');
 });
-app.get('/civil', function(req, res){
+app.get('/civil', async(req, res) => {
   res.render('civil');
 });
-app.get('/electrical', function(req, res){
+app.get('/electrical', async(req, res) => {
   res.render('electrical');
 });
-app.get('/logout', function(req, res){
+app.get('/logout', async(req, res) => {
   req.logout();
   res.redirect('/login');
 });
-app.get('/online', function(req, res){
-  const animal = 'alligator';
-  // Send a text/html file back with the word 'alligator' repeated 1000 times
-  res.send(animal.repeat(1000));
-});
-app.get('/offline', function(req, res){
+app.get('/offline', async(req, res) => {
   res.render('offline');
 });
-app.get('/newprogram', function(req, res){
+app.get('/newprogram', async(req, res) => {
   res.render('program');
 });
-app.post('/newprogram', function(req, res){
+app.post('/newprogram', async(req, res) => {
   Program.create({
     about: req.body.program.about,
     eligibility: req.body.program.eligibility,
@@ -153,6 +148,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {err: err});
 });
-app.listen(port, function(){
+app.listen(port, () => {
   console.log('Server has started.');
 });
